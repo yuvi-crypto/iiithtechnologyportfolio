@@ -1,0 +1,231 @@
+{ "industry_sectors": [
+    {
+      "sector_name": "Robotics & Industrial Automation",
+      "description": "The key to this sector's growth is developing robots that are more versatile, intelligent, and can work safely and efficiently in unstructured, human-centric environments.",
+      "micro_sectors": [
+        {
+          "name": "Intelligent Warehouse Robotics (Bin-Picking)",
+          "problem": "Robots struggle to perceive and grasp a vast variety of unknown objects from cluttered bins, a critical bottleneck in warehouse automation.",
+          "product_concept": "A \"Perception and Planning Module for Bin-Picking Robots.\" This module, sold to robotics companies or system integrators, would take raw 3D sensor data and output a stable grasp pose for a specified object.",
+          "core_technologies": {
+            " publications": "The module's perception would be powered by research in 3D Shape Completion (SCARP) to infer an object's full shape from a partial view, and its planning would use Hybrid Motion Planning (EDMP) to robustly navigate the cluttered bin. The ability to find multiple objects efficiently would be handled by Sequence-Agnostic Multi-Object Navigation.",
+            " patents": "The grasping itself would be enhanced by the patented \"Apparatus for Adaptive Robotic Grasping using Tactile Feedback\". This allows the robot's gripper to use tactile feedback to finely adjust its grasp on an object, making the manipulation more robust and human-like. This patented technology provides a significant competitive advantage in reliability."
+          }
+        },
+        {
+          "name": "Autonomous Infrastructure Inspection",
+          "problem": "Manually inspecting large infrastructure like bridges, towers, or pipelines is dangerous, slow, and expensive.",
+          "product_concept": "A \"Multi-Modal Inspection Robot Platform\" that combines novel locomotion with intelligent perception to automate inspection.",
+          "core_technologies": {
+            " publications": "The platform's mobility would be enabled by the versatile gripper for brachiation-style climbing (\"A new gripper that acts as an active and passive joint...\") and the robust controller for reconfigurable robots from \"Modeling and Control of PANTHERA...\". Its perception would use models retrained from CueCAn to find structural defects like cracks or missing bolts.",
+            " patents": "The robot's operational safety and mission planning would be enhanced by the patented \"System for Automated Mission Planning for Autonomous Vehicles\". This allows the robot to autonomously generate and adapt its inspection route based on the specific structure it is climbing, a key feature for complex, real-world infrastructure."
+          }
+        },
+        {
+          "name": "Intuitive Robot Programming & Skill Acquisition",
+          "problem": "Programming robots to perform new manipulation tasks is a highly complex and specialized skill, limiting their flexibility.",
+          "product_concept": "A \"Learn-from-Video\" software suite that allows a non-expert user to teach a robot a new task by simply demonstrating it on video.",
+          "core_technologies": {
+            " publications": "The suite would use Differentiable Physics (Learning Object Manipulation Skills from Video...) to extract physically plausible trajectories from a single video, and leverage Egocentric Video Learning (My View is the Best View...) for clearer views of manipulation. The ability to combine simple learned skills into complex tasks would be handled by the Modular Reinforcement Learning framework (Action Selection For Composable Modular...).",
+            " patents": "The process of generating goal states for the robot could be powered by the patented \"System for Generating Realistic Facial Animations from Audio\", adapted to generate goal-state images from verbal commands, creating a highly intuitive instruction method."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "Automotive & Future Mobility",
+      "description": "This sector is in the midst of a transformation driven by electrification, connectivity, and autonomous driving technology.",
+      "micro_sectors": [
+        {
+          "name": "All-Weather ADAS Perception",
+          "problem": "The performance of Advanced Driver-Assistance Systems (ADAS) degrades severely in adverse conditions like rain, fog, and low light, a major safety concern.",
+          "product_concept": "An \"All-Weather Perception Module\" for automotive OEMs that produces robust detections in challenging conditions.",
+          "core_technologies": {
+            " publications": "The module would use GDIP (\"Gated Differentiable Image Processing...\") to enhance images before detection and LiDAR-guided segmentation to reliably find small road debris.",
+            " patents": "The robustness of the system would be further enhanced by the patented \"Method for Real-Time Anomaly Detection in Sensor Streams\". This technology can be used to monitor the raw data from the camera and LiDAR, detecting anomalies caused by sensor malfunction or extreme weather and alerting the system to rely on alternative sensors, thus improving overall system safety."
+          }
+        },
+        {
+          "name": "High-Definition (HD) Mapping & Localization",
+          "problem": "Autonomous vehicles rely on highly detailed maps, and their ability to localize themselves on these maps can drift over time.",
+          "product_concept": "A \"Robust Localization and Mapping Suite\" for autonomous vehicle companies.",
+          "core_technologies": {
+            " publications": "The suite would use active drift reduction (Drift Reduced Navigation...), ground/aerial image fusion (Looking Farther in Parametric Scene Parsing...), and rotation-robust feature matching (RoRD) to create more accurate maps and maintain localization.",
+            " patents": "The core localization algorithm could be enhanced by the patented \"Method for Efficient Pose Estimation using Multi-Resolution Point Clouds\". This provides a more computationally efficient way to perform the scan-matching that is central to SLAM and localization, allowing for faster updates and lower power consumption on the vehicle's compute hardware."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "Healthcare & MedTech",
+      "description": "AI is poised to revolutionize healthcare by providing tools for more accurate, efficient, and accessible diagnosis and treatment.",
+      "micro_sectors": [
+        {
+          "name": "AI-Powered Clinical Diagnostic Aids",
+          "problem": "The interpretation of medical images and signals is a time-consuming task for specialists and is prone to human error.",
+          "product_concept": "A suite of \"Evidence-Driven Diagnostic Tools\" for clinicians that not only provide a prediction but also explain the reasoning behind it.",
+          "core_technologies": {
+            " publications": "The suite would include tools for explainable skin cancer diagnosis (Evidence-Driven Differential Diagnosis...), accurate stroke lesion segmentation (BeSt-LeS), and case-based retrieval of similar X-rays (CheXtriev).",
+            " patents": "The diagnostic capabilities would be significantly enhanced by the patented \"System for Classifying Medical Images using Attention-based Deep Neural Networks\". This provides a core, protected IP for building a highly accurate and interpretable medical image classifier, which can serve as the backbone for multiple diagnostic products."
+          }
+        },
+        {
+          "name": "Next-Generation Assistive Technology",
+          "problem": "Millions with speech or hearing impairments face communication barriers.",
+          "product_concept": "A \"Communication Restoration Platform\" that uses AI to generate speech or sign language.",
+          "core_technologies": {
+            " publications": "The platform would feature direct speech-to-sign language generation (Towards Automatic Speech to Sign Language Generation), lip-to-speech synthesis (Towards Accurate Lip-to-Speech Synthesis...), and low-cost silent speech interfaces (StethoSpeech).",
+            " patents": "The platform's core TTS engine could be built around the patented \"Method for Generating Speech with Controllable Emotional Prosody\". This would allow the synthesized voice to be not just intelligible but also emotionally expressive, creating a much more natural and human-like communication experience for the user."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "Media & Entertainment",
+      "description": "This industry is being reshaped by generative AI, with a huge demand for tools that automate content creation and enhance videos.",
+      "micro_sectors": [
+        {
+          "name": "Automated Video Dubbing & Editing",
+          "problem": "The process of dubbing films into other languages and editing live events is expensive and labor-intensive.",
+          "product_concept": "An \"AI Post-Production Suite\" for video editors and localization companies.",
+          "core_technologies": {
+            " publications": "The suite would feature state-of-the-art lip-syncing (Wav2Lip), gaze-guided cinematic editing (GAZED), and identity-aware video description (MICap).",
+            " patents": "The product's value proposition is strengthened by the patented \"System for Generating Realistic Facial Animations from Audio\". This technology can be used alongside the lip-syncing to generate not just accurate mouth movements but also corresponding subtle facial expressions, leading to a much more realistic and high-quality final video."
+          }
+        },
+        {
+          "name": "Generative AI for Animation & Virtual Worlds",
+          "problem": "Creating animations for games and virtual worlds is a slow, manual process.",
+          "product_concept": "A \"Generative Animation Toolkit\" for game developers and metaverse creators.",
+          "core_technologies": {
+            " publications": "The toolkit would include LLM-enhanced text-to-motion generation (Action-GPT), controllable, part-based object generation (MeronymNet), and single-image 3D clothe extraction (xCloth).",
+            " patents": "The toolkit would be differentiated by the patented \"Method for Generating Diverse Textures for 3D Models using a Generative Adversarial Network\". This allows creators to not only generate the shape of an object but to instantly apply a wide variety of novel, high-quality textures, dramatically speeding up the asset creation workflow."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "FinTech & BFSI",
+      "description": "The Banking, Financial Services, and Insurance sector is rapidly adopting AI to enhance security, ensure fairness, and automate analysis.",
+      "micro_sectors": [
+        {
+          "name": "Advanced Fraud & Risk Detection",
+          "problem": "Financial fraud is increasingly sophisticated, often involving collusion between multiple accounts that is missed by traditional transaction monitoring.",
+          "product_concept": "A \"Graph-based Fraud Detection Service\" for banks and payment gateways.",
+          "core_technologies": {
+            " publications": "The service would use Graph Neural Networks (Graph Neural Networks for Financial Fraud Detection) and dynamic community detection (Shared-Memory Parallel Dynamic Louvain Algorithm...) to analyze the network of transactions and spot complex fraud rings.",
+            " patents": "The service's real-time capabilities would be powered by the patented \"Method for Real-Time Anomaly Detection in Financial Transaction Streams\". This provides a highly optimized, defensible core algorithm for identifying suspicious patterns in high-volume transaction data as it happens."
+          }
+        },
+        {
+          "name": "Blockchain Protocol & Mechanism Design",
+          "problem": "The long-term security and fairness of public blockchains are critical for their use in finance.",
+          "product_concept": "A \"Blockchain Economic Analysis and Consulting Service\" for crypto foundations and institutional investors.",
+          "core_technologies": {
+            " publications": "The service would leverage deep analysis of network fairness (We might walk together...), transaction fee mechanisms (No Transaction Fees? No Problem!...), and the long-term health of fee-only models (BitcoinF).",
+            " patents": "The consulting offering would be enhanced by providing access to the patented \"System for Secure Decentralized Identity Management\". This is a concrete, licensable technology that can solve the digital identity challenges faced by many enterprise blockchain projects."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "E-commerce & Retail",
+      "description": "Key challenges are providing hyper-personalized discovery, managing a dynamic marketplace, and understanding consumer behavior.",
+      "micro_sectors": [
+        {
+          "name": "AI-Powered Product Discovery & Search",
+          "problem": "Users with specific needs struggle to find relevant products from millions of listings.",
+          "product_concept": "An \"Attribute-based Discovery Engine\" that enriches product listings with structured data extracted from unstructured reviews.",
+          "core_technologies": {
+            " publications": "The engine would use Inclusion/Exclusion Phrase Mining (Should I Visit This Place?...) and graph-based attribute enrichment (JobXMLC).",
+            " patents": "The search relevance could be improved by the patented \"Method for Personalized Search Ranking using Reinforcement Learning\". This allows the search results to be dynamically re-ranked based on implicit user feedback, learning to show the most relevant products to each individual user."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "Software Development & MLOps",
+      "description": "This meta-sector focuses on building tools and platforms to improve developer productivity and software quality.",
+      "micro_sectors": [
+        {
+          "name": "Intelligent Code & Architecture Assistance",
+          "problem": "Key software engineering tasks like documentation and testing are often neglected because they are time-consuming.",
+          "product_concept": "An \"AI-Augmented Development Environment\" that automates tedious tasks.",
+          "core_technologies": {
+            " publications": "The environment would feature automated architectural documentation (Can LLMs Generate Architectural Design Decisions?...) and automated suggestion of test limitations (LimGen).",
+            " patents": "The product would be differentiated by the patented \"System for Automated Detection of Performance Regressions in Software\". This provides a proactive CI/CD tool that automatically flags code commits that are likely to degrade the software's performance, a high-value feature for any development team."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "Cybersecurity",
+      "description": "This sector requires proactive, intelligent, and automated defense systems to cope with an evolving threat landscape.",
+      "micro_sectors": [
+        {
+          "name": "Proactive & Adaptive System Defense",
+          "problem": "Traditional, static defenses are often insufficient against sophisticated, persistent attackers.",
+          "product_concept": "An \"Autonomous Moving Target Defense (MTD) Platform\" for protecting critical web infrastructure.",
+          "core_technologies": {
+            " publications": "The platform would be built on the principles of Factored MDP-based MTD (Factored MDP based Moving Target Defense...) and MTD under uncertainty.",
+            " patents": "The platform's effectiveness would be enhanced by the patented \"Method for Adaptive Threat Response using Reinforcement Learning\". This provides a protected, learning-based core engine that can adapt its defense strategy in real-time based on observed attacker behavior."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "Education Technology (EdTech)",
+      "description": "The EdTech sector is focused on creating personalized and effective digital learning experiences at scale.",
+      "micro_sectors": [
+        {
+          "name": "AI-Powered Pronunciation & Language Tutors",
+          "problem": "Language learners, particularly in diverse regions like India, need targeted, accurate feedback on their pronunciation that understands their specific accent.",
+          "product_concept": "An \"Accent-Aware English Pronunciation Coach\" mobile application.",
+          "core_technologies": {
+            " publications": "The coach would use linguistic analysis of Indian English (An Investigation of Indian Native Language Phonemic Influences...) and accurate syllable stress detection (A comparative analysis of sequential models...).",
+            " patents": "The product's value is increased by the patented \"System for Personalized Learning Path Generation\". This technology can analyze a student's specific pronunciation errors and generate a customized curriculum of exercises to help them improve most efficiently."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "Smart Cities & Infrastructure Management",
+      "description": "This sector uses data and AI to make urban environments more efficient, sustainable, and safer.",
+      "micro_sectors": [
+        {
+          "name": "Smart Grid Demand Management",
+          "problem": "Electricity grids are strained during peak usage hours, risking blackouts and requiring expensive \"peaker\" plants.",
+          "product_concept": "A \"Demand Response Optimization Platform\" for energy utility companies.",
+          "core_technologies": {
+            " publications": "The platform would use multi-armed bandit based incentive mechanisms and game-theoretic bidding strategies to manage demand and wholesale purchasing.",
+            " patents": "The platform's core would be the patented \"System for Predictive Load Forecasting in Smart Grids\". Accurate load forecasting is a critical prerequisite for any demand management or bidding strategy, and owning the IP for a superior forecasting method provides a strong competitive moat."
+          }
+        }
+      ]
+    },
+    {
+      "sector_name": "Drugs & Pharmaceuticals",
+      "description": "This sector is focused on accelerating the long and expensive process of drug discovery and ensuring the safety and efficacy of new medicines.",
+      "micro_sectors": [
+        {
+          "name": "AI-Accelerated Drug Discovery",
+          "problem": "Identifying promising new drug candidates from millions of possible molecules is a major bottleneck. Predicting a molecule's properties computationally can save immense time and resources.",
+          "product_concept": "A \"Computational Drug Property Prediction Platform\" for pharmaceutical R&D labs.",
+          "core_technologies": {
+            " publications": "The platform would use the chemically interpretable graph interaction network (Chemically interpretable graph interaction network...) to accurately predict pharmacokinetic properties like solubility. The Towered Actor Critic framework (Towered Actor Critic For Handling Multiple Action Types...) could be used to explore the space of possible molecules.",
+            " patents": "The platform would be enhanced by the patented \"System for Predicting Drug-Target Interactions using Deep Learning\". This provides a defensible core technology for the critical task of predicting if a molecule will bind to its intended biological target, a key step in virtual screening."
+          }
+        },
+        {
+          "name": "Federated Learning for Clinical Trials",
+          "problem": "Training effective AI models for clinical applications often requires large, diverse datasets that are difficult to assemble from single institutions due to patient privacy regulations.",
+          "product_concept": "A \"Privacy-Preserving Collaborative Research Platform\" that allows multiple hospitals or pharmaceutical companies to collaboratively train AI models without sharing raw patient data.",
+          "core_technologies": {
+            " publications": "The platform would be built on the principles of Federated Learning and would incorporate the guarantees from \"Fairness and Privacy Guarantees in Federated Contextual Bandits\" to ensure the resulting models are both private and equitable.",
+            " patents": "The platform's security and privacy would be underpinned by the patented \"Method for Secure and Differentially Private Federated Learning\". This provides a robust and protected implementation of the core collaborative training algorithm, making the platform more trustworthy for handling sensitive clinical trial data."
+          }
+        }
+      ]
+    }
+  ]
+}

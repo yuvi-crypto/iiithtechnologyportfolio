@@ -1,0 +1,159 @@
+{    "sustainable_development_goals": [
+      {
+        "sdg_id": "SDG 3",
+        "title": "Good Health and Well-being",
+        "description": "Ensuring healthy lives and promoting well-being for all at all ages.",
+        "applications": [
+          {
+            "application_name": "Early-Stage Neurological Disease Screening",
+            "description": "A low-cost, non-invasive screening tool for neurological disorders like Parkinson's Disease. This could be deployed as a mobile app that analyses a person's voice or gait, allowing for early detection and intervention, especially in remote or underserved areas.",
+            "relevant_research": "Parkinson's Disease Detection from Speech using Single Frequency Filtering Cepstral Coefficients & Linear Prediction Residual for Efficient Diagnosis of Parkinson's Disease from Gait."
+          },
+          {
+            "application_name": "AI-Assisted Diagnostics for Public Health Clinics",
+            "description": "Providing clinicians in public health centres with AI tools that offer an 'evidence-driven' second opinion for diagnosing conditions like skin cancer or analysing stroke lesions from medical images, improving diagnostic accuracy and patient outcomes.",
+            "relevant_research": "Evidence-Driven Differential Diagnosis of Malignant Melanoma & BeSt-LeS: Benchmarking Stroke Lesion Segmentation using Deep Supervision."
+          },
+          {
+            "application_name": "Mental Health Trend Analysis for Policy Making",
+            "description": "An analytics platform for public health bodies to analyze large-scale, anonymized social media data. This tool can identify the prevalent causes and triggers of depression and anxiety within a population, enabling data-driven mental health policies and targeted intervention campaigns.",
+            "relevant_research": "Representation Learning for Identifying Depression Causes in Social Media."
+          },
+          {
+            "application_name": "Automated Voice Disorder Assessment",
+            "description": "A clinical tool for speech-language pathologists to get an objective, multi-faceted assessment of a voice disorder from a speech sample. This saves clinician time and provides quantitative data to track therapy progress.",
+            "relevant_research": "Towards Automatic Assessment of Voice Disorders: A Clinical Approach."
+          }
+        ]
+      },
+      {
+        "sdg_id": "SDG 4",
+        "title": "Quality Education",
+        "description": "Ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all.",
+        "applications": [
+          {
+            "application_name": "AI-Powered Pronunciation Tutors for English Learners",
+            "description": "Developing accent-aware language learning tools that can provide specific, targeted feedback to Indian students learning English. By understanding the influence of native languages, these tools can help learners master pronunciation and improve their communication skills, a key factor in employability.",
+            "relevant_research": "An Investigation of Indian Native Language Phonemic Influences on L2 English Pronunciations & A comparative analysis of sequential models that integrate syllable dependency for automatic syllable stress detection."
+          },
+          {
+            "application_name": "Automated STEM Tutoring Platforms",
+            "description": "An accessible educational platform that can automatically solve and provide step-by-step explanations for elementary math and science word problems, acting as a 'homework helper' for students who may not have access to human tutors.",
+            "relevant_research": "Hybrid Tokenization and Datasets for Solving Mathematics and Science Problems Using Transformers."
+          },
+          {
+            "application_name": "Generating Educational Content in Low-Resource Languages",
+            "description": "A system to automatically generate encyclopaedic and educational content (like Wikipedia articles) for India's numerous low-resource languages. This supports the National Education Policy's focus on mother-tongue instruction by creating a wealth of accessible knowledge.",
+            "relevant_research": "XWikiGen: Cross-lingual Summarization for Encyclopedic Text Generation in Low Resource Languages."
+          }
+        ]
+      },
+      {
+        "sdg_id": "SDG 7",
+        "title": "Affordable and Clean Energy",
+        "description": "Ensuring access to affordable, reliable, sustainable and modern energy for all.",
+        "applications": [
+          {
+            "application_name": "Smart Grid Demand Management for Grid Stability",
+            "description": "An AI platform for electricity distribution companies (DISCOMs) to intelligently manage peak load. By using bandit algorithms to offer targeted incentives for demand reduction, the system improves grid stability, reduces the need for expensive fossil-fuel 'peaker' plants, and facilitates the integration of more renewable energy sources.",
+            "relevant_research": "A Novel Demand Response Model and Method for Peak Reduction in Smart Grids -- PowerTAC & A Multiarmed Bandit Based Incentive Mechanism...."
+          }
+        ]
+      },
+      {
+        "sdg_id": "SDG 9",
+        "title": "Industry, Innovation, and Infrastructure",
+        "description": "Building resilient infrastructure, promoting inclusive and sustainable industrialization and fostering innovation.",
+        "applications": [
+          {
+            "application_name": "Automated Safety Audits of Public Infrastructure",
+            "description": "A system for the National Highways Authority of India (NHAI) to perform automated, large-scale audits of road infrastructure. By using AI to detect missing traffic signs or road damage from vehicle-mounted cameras, it enables proactive maintenance and improves the safety and resilience of the national road network.",
+            "relevant_research": "CueCAn: Cue Driven Contextual Attention For Identifying Missing Traffic Signs on Unconstrained Roads."
+          },
+          {
+            "application_name": "Digitization of National Archives and Land Records",
+            "description": "A high-fidelity OCR pipeline for government bodies to digitize and make searchable the vast national archives of handwritten historical documents and, critically, land ownership records. This preserves cultural heritage and can help to create a more transparent and less disputed system of land governance.",
+            "relevant_research": "Palmira: A Deep Deformable Network for Instance Segmentation... & SeamFormer: High Precision Text Line Segmentation for Handwritten Documents."
+          },
+          {
+            "application_name": "Automated Generation of Industrial Digital Twins",
+            "description": "A knowledge-driven Al system that can automatically generate a 'digital twin' of an industrial plant by reading and interpreting existing engineering diagrams (P&IDs). This dramatically reduces the cost and time for industries to adopt digital twin technology for process optimization and predictive maintenance.",
+            "relevant_research": "Knowledge Driven Approach To Auto-Generate Digital Twins for Industrial Plants."
+          }
+        ]
+      },
+      {
+        "sdg_id": "SDG 10",
+        "title": "Reduced Inequalities",
+        "description": "Reducing inequality within and among countries.",
+        "applications": [
+          {
+            "application_name": "Communication Aids for the Speech and Hearing Impaired",
+            "description": "Developing and deploying AI-powered communication platforms that provide a voice to those who cannot speak. This includes direct speech-to-sign language generation for making digital content accessible, and lip-to-speech synthesis to restore a person's ability to communicate verbally.",
+            "relevant_research": "Towards Automatic Speech to Sign Language Generation & Towards Accurate Lip-to-Speech Synthesis in-the-Wild."
+          },
+          {
+            "application_name": "Building Fairer Algorithmic Systems for Public Services",
+            "description": "A framework for government agencies and public sector banks to build and audit their Al models (e.g., for loan approvals or subsidy targeting) to ensure they are fair and do not discriminate against protected or vulnerable groups.",
+            "relevant_research": "FNNC: Achieving fairness through neural networks & Fairness and Privacy Guarantees in Federated Contextual Bandits."
+          },
+          {
+            "application_name": "Making Digital Services Accessible in All Indian Languages",
+            "description": "Core technology to enable digital services to function accurately in India's diverse linguistic landscape. This includes ASR that can handle code-switching and OCR that can read local scripts, ensuring that language is not a barrier to accessing digital government services.",
+            "relevant_research": "MUCS 2021: Multilingual and code-switching ASR challenges for low resource Indian languages & IndicSTR12: A Dataset for Indic Scene Text Recognition."
+          }
+        ]
+      },
+      {
+        "sdg_id": "SDG 11",
+        "title": "Sustainable Cities and Communities",
+        "description": "Making cities and human settlements inclusive, safe, resilient and sustainable.",
+        "applications": [
+          {
+            "application_name": "Urban Traffic Management for Pollution Reduction",
+            "description": "A smart traffic control system for metropolitan authorities that optimizes traffic flow not just for speed, but to explicitly minimize the creation of pollution hotspots. This can directly improve urban air quality and the health of citizens.",
+            "relevant_research": "City-Scale Pollution Aware Traffic Routing by Sampling Max Flows Using MCMC."
+          },
+          {
+            "application_name": "Ensuring Safety of Autonomous Public Transportation",
+            "description": "Core safety technologies for future autonomous public transport systems (e.g., self-driving buses). This includes Al perception systems that can safely handle unknown objects and navigate robustly in chaotic Indian traffic conditions.",
+            "relevant_research": "New Objects on the Road? No Problem, Well Learn Them Too & Understanding Dynamic Scenes using Graph Convolution Networks."
+          },
+          {
+            "application_name": "Fair and Efficient Civic Project Funding",
+            "description": "A civic crowdfunding platform for municipalities that allows citizens to propose and fund local public projects (e.g., parks, libraries). The underlying mechanism design ensures that the process is fair and efficient at selecting projects that deliver the most social welfare.",
+            "relevant_research": "Combinatorial Civic Crowdfunding with Budgeted Agents: Welfare Optimality at Equilibrium and Optimal Deviation."
+          }
+        ]
+      },
+      {
+        "sdg_id": "SDG 12",
+        "title": "Responsible Consumption and Production",
+        "description": "Ensuring sustainable consumption and production patterns.",
+        "applications": [
+          {
+            "application_name": "Green AI for Sustainable Digital Transformation",
+            "description": "An architectural framework and set of tools that allow corporations and government bodies to build and deploy Al systems that are more energy-efficient. By reducing the computational and energy footprint of AI, this contributes directly to more sustainable production and consumption patterns in the digital economy.",
+            "relevant_research": "EcoMLS: A Self-Adaptation Approach for Architecting Green ML-Enabled Systems & Towards Architecting Sustainable MLOps: A Self-Adaptation Approach."
+          }
+        ]
+      },
+      {
+        "sdg_id": "SDG 16",
+        "title": "Peace, Justice, and Strong Institutions",
+        "description": "Promoting peaceful and inclusive societies for sustainable development, providing access to justice for all and building effective, accountable and inclusive institutions at all levels.",
+        "applications": [
+          {
+            "application_name": "Combating Misinformation and Hate Speech",
+            "description": "Tools for law enforcement and election commissions to automatically detect and flag multimodal fake news, hate speech, and offensive content in multiple Indian languages, helping to protect the integrity of public discourse and institutions.",
+            "relevant_research": "Leveraging Intra and Inter Modality Relationship for Multimodal Fake News Detection & Transformers with the Class Balanced Loss for Offensive Language Identification...."
+          },
+          {
+            "application_name": "Enhancing Transparency and Fairness in Blockchains",
+            "description": "Foundational research into the economic and game-theoretic properties of blockchain protocols. This work on designing fairer transaction fee mechanisms and analyzing network incentives helps to build more robust, transparent, and equitable digital institutions for the future.",
+            "relevant_research": "BitcoinF: Achieving Fairness for Bitcoin in Transaction-Fee-Only Model & No Transaction Fees? No Problem! Achieving Fairness in Transaction Fee Mechanism Design."
+          }
+        ]
+      }
+    ]
+  }
