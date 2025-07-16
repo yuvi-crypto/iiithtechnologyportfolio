@@ -216,6 +216,10 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
+            border: 1px solid #e0e0e0; /* Light border for visual separation */
+            border-radius: 10px;
+            padding: 15px;
+            background-color: #fcfcfc;
         }
         .cloud-container.expanded {
             max-height: 400px; /* Expanded height */
@@ -937,6 +941,7 @@
         let currentStrategicEntryDetail = null; // To store the currently viewed strategic entry for PDF download
 
         let searchableData = []; // Unified data for market view search
+        let cloudItemDataMap = {}; // New: Map to store full data for cloud items for easy lookup
 
         // Define the heatmap configurations directly in the script, as found in HeatMap.HTML
         // These contain the heatmap data and the paper mappings for drill-down.
@@ -1074,7 +1079,7 @@
             let tableHtml = `
                 <div class="heatmap-container">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="my-0">${title}</h4>
+                        <h4 class="my-0">Heatmap: ${title}</h4>
                         ${viewReportButtonHtml}
                     </div>
                     <div class="mb-3 d-flex flex-wrap gap-2">
@@ -1513,7 +1518,7 @@
                 company: 'Companywise_TechUse.json',
                 productwise: 'Productwise_TechUse.json',
                 sdg: 'SDG_TechUse.json',
-                social: 'Social_Impact_&_Government_Applications_TechUse.json' // Corrected filename
+                social: 'Social_impact_&_Government_Applications_TechUse.json' // Corrected filename
             };
 
             for (const key in files) {
@@ -1521,12 +1526,78 @@
                     const response = await fetch(files[key]);
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for ${files[key]}`);
                     strategicDataCache[key] = await response.json();
+                    // Populate cloudItemDataMap here
+                    populateCloudItemDataMap(key, strategicDataCache[key]);
                 } catch (error) {
                     console.error(`Error loading strategic data file ${files[key]}:`, error);
                 }
             }
             populateSearchableData(); // Populate the unified searchableData array after all strategic data is loaded
         }
+
+        // New function to populate cloudItemDataMap
+        function populateCloudItemDataMap(type, data) {
+            if (!data) return;
+
+            switch (type) {
+                case 'industry':
+                    if (data.industry_sectors) {
+                        data.industry_sectors.forEach(sector => {
+                            cloudItemDataMap[`${type}_${sector.sector_name}`] = sector;
+                            sector.micro_sectors.forEach(micro => {
+                                cloudItemDataMap[`${type}_${micro.name}`] = micro;
+                            });
+                        });
+                    }
+                    break;
+                case 'company':
+                    if (data.companies) {
+                        data.companies.forEach(company => {
+                            cloudItemDataMap[`${type}_${company.name}`] = company;
+                            company.strategic_areas.forEach(area => {
+                                // For strategic areas, we might want to store the whole company object or a combined object
+                                // For simplicity, let's store the company object for now, and the modal can drill down
+                                cloudItemDataMap[`${type}_${area.Area}`] = { companyName: company.name, ...area };
+                            });
+                        });
+                    }
+                    break;
+                case 'productwise':
+                    for (const category in data) {
+                        if (Array.isArray(data[category])) {
+                            data[category].forEach(product => {
+                                cloudItemDataMap[`${type}_${product.product_name}`] = product;
+                                product.strategic_areas.forEach(area => {
+                                    cloudItemDataMap[`${type}_${area.name}`] = { productName: product.product_name, ...area };
+                                });
+                            });
+                        }
+                    }
+                    break;
+                case 'social':
+                    if (data.application_themes) {
+                        data.application_themes.forEach(theme => {
+                            cloudItemDataMap[`${type}_${theme.theme_name}`] = theme;
+                            theme.applications.forEach(app => {
+                                cloudItemDataMap[`${type}_${app.title}`] = app;
+                            });
+                        });
+                    }
+                    break;
+                case 'sdg':
+                    if (data.sustainable_development_goals) {
+                        data.sustainable_development_goals.forEach(sdg => {
+                            cloudItemDataMap[`${type}_${sdg.title}`] = sdg;
+                            sdg.applications.forEach(app => {
+                                cloudItemDataMap[`${type}_${app.application_name}`] = app;
+                            });
+                        });
+                    }
+                    break;
+            }
+            console.log(`Cloud Item Data Map populated for ${type}. Total entries:`, Object.keys(cloudItemDataMap).length);
+        }
+
 
         // Populate the unified searchableData array for market view search
         function populateSearchableData() {
@@ -1731,6 +1802,12 @@
 
         // --- Navigation and Page Rendering ---
         function showPage(pageId, filterParams = {}) {
+            // Scroll to top of the page only if navigating to a new *main* page, not within sections
+            if (!['dashboard', 'patents', 'publications', 'categories-insights', 'about', 'strategic-insights'].includes(pageId)) {
+                 window.scrollTo(0, 0); // Only scroll if it's a detail page
+            }
+
+
             document.querySelectorAll('.page-content').forEach(page => {
                 page.style.display = 'none';
             });
@@ -1990,22 +2067,35 @@
                     </div>
                 </div>
                 <!-- Strategic Heatmaps Section - Integrated Here -->
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <h3 class="mb-3 text-primary">Strategic Heatmaps</h3>
-                        <p class="lead">Explore market-focused heatmaps for various strategic alignments.</p>
+                <div class="row pt-4">
+                    <div class="col-md-3">
+                        <div class="filter-sidebar">
+                            <h5 class="filter-title">Heatmap Categories</h5>
+                            <div class="list-group" id="market-heatmap-nav">
+                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmapWithCloud('industry', this)">1. Industry Sector Strength</a>
+                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmapWithCloud('company', this)">2. Company Alignment Strength</a>
+                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmapWithCloud('productwise', this)">3. Product Application Strength</a>
+                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmapWithCloud('social', this)">4. Social Impact & Gov't Application Strength</a>
+                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmapWithCloud('sdg', this)">5. UN Sustainable Development Goal (SDG) Alignment</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12" id="market-view-heatmaps-container">
-                        <!-- All heatmaps will be rendered here -->
+                    <div class="col-md-9">
+                        <div id="market-view-heatmaps-content-area">
+                            <!-- Heatmap content will be loaded here by default -->
+                        </div>
                     </div>
                 </div>
             `;
             populateUseCaseWordCloud();
             renderMarketMetricsTiles(); // Render only Market Potential and Market Activity tiles
-            renderMarketViewHeatmaps(); // Render all heatmaps directly here
             setupMarketViewSearch(); // Setup search functionality for market view
+
+            // Automatically click the first heatmap category link
+            const firstHeatmapLink = document.querySelector('#market-heatmap-nav a');
+            if (firstHeatmapLink) {
+                firstHeatmapLink.click();
+            }
         }
 
         // Toggle cloud visibility (More/Less)
@@ -2764,7 +2854,7 @@
                 return `
                     <div class="col">
                         <div class="card h-100 list-tile-card">
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">${pub.Title || pub['Title of the Publication']}</h5>
                                 <p class="card-text mb-1">Authors: ${pub.Authors || 'N/A'}</p>
                                 <div class="badge-group">
@@ -3241,7 +3331,12 @@
         }
 
         // Modified showStrategicEntryDetail to handle direct fullDetails object from market search
-        function showStrategicEntryDetailFromMarketSearch(fullDetails, type) {
+        function showStrategicEntryDetailFromMarketSearch(fullDetails, type) { // Changed cloudItemKey to fullDetails directly
+            if (!fullDetails) {
+                console.error(`Full details not found for cloud item.`);
+                return;
+            }
+
             currentStrategicEntryDetail = { data: fullDetails, fileNamePrefix: type.replace(/\s/g, '_') + '_Details' };
 
             document.getElementById('strategicEntryDetailModalLabel').textContent = `${type} Details`;
@@ -3467,12 +3562,10 @@
                         </div>
                     `;
                 });
-                console.log('Global Search: Results HTML populated.');
             }
 
             const globalSearchResultsModal = new bootstrap.Modal(document.getElementById('globalSearchResultsModal'));
             globalSearchResultsModal.show();
-            console.log('Global Search: Modal show attempt.');
         }
 
         // --- Market View Search Functionality ---
@@ -3689,7 +3782,7 @@
                                     ${productsHtml ? `<p class="card-text mb-1">Products: ${productsHtml}</p>` : ''}
                                     ${sdgsHtml ? `<p class="card-text mb-1">SDGs: ${sdgsHtml}</p>` : ''}
                                     <div class="mt-auto">
-                                        <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="showStrategicEntryDetailFromMarketSearch(searchableData.find(d => d.id === '${item.id}').fullDetails, '${item.type}')">View Details</button>
+                                        <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="showStrategicEntryDetailFromMarketSearch(item.fullDetails, '${item.type}')">View Details</button>
                                     </div>
                                 </div>
                             </div>
@@ -3699,18 +3792,120 @@
             }
         }
 
-        // Render all heatmaps for the market view (this function is now called by renderMarketView)
-        function renderMarketViewHeatmaps() {
-            const marketViewHeatmapsDiv = document.getElementById('market-view-heatmaps-container'); // Changed target div
-            marketViewHeatmapsDiv.innerHTML = ''; // Clear previous content
+        // New function to render a heatmap and its associated word cloud in Market View
+        async function renderMarketHeatmapWithCloud(type, element) {
+            // Handle active state for the sidebar navigation
+            if (element) {
+                const navLinks = document.querySelectorAll('#market-heatmap-nav a');
+                navLinks.forEach(link => link.classList.remove('active'));
+                element.classList.add('active');
+            }
 
-            heatmapConfigs.forEach(config => {
-                marketViewHeatmapsDiv.innerHTML += generateHeatmapTable(config, 'market'); // Pass origin as 'market'
-            });
+            const marketHeatmapsContentArea = document.getElementById('market-view-heatmaps-content-area');
+            marketHeatmapsContentArea.innerHTML = '<div class="text-center mt-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><p class="mt-2">Loading insights...</p></div>';
+
+            const config = heatmapConfigs.find(c => c.type === type);
+
+            if (!config) {
+                marketHeatmapsContentArea.innerHTML = '<div class="alert alert-danger">Heatmap configuration not found for this type.</div>';
+                return;
+            }
+
+            let cloudHtml = '';
+            let cloudItems = []; // Will store { name: "Item Name", key: "type_ItemName" }
+            let cloudTitle = '';
+            let dataForCloud = strategicDataCache[type];
+
+            // Generate cloud items based on the heatmap type
+            switch (type) {
+                case 'industry':
+                    cloudTitle = 'Industry Sectors & Micro-Sectors Cloud';
+                    if (dataForCloud && dataForCloud.industry_sectors) {
+                        dataForCloud.industry_sectors.forEach(sector => {
+                            cloudItems.push({ name: sector.sector_name, fullDetails: sector, type: type });
+                            sector.micro_sectors.forEach(micro => cloudItems.push({ name: micro.name, fullDetails: micro, type: type }));
+                        });
+                    }
+                    break;
+                case 'company':
+                    cloudTitle = 'Company & Strategic Areas Cloud';
+                    if (dataForCloud && dataForCloud.companies) {
+                        dataForCloud.companies.forEach(company => {
+                            cloudItems.push({ name: company.name, fullDetails: company, type: type });
+                            company.strategic_areas.forEach(area => cloudItems.push({ name: area.Area, fullDetails: { companyName: company.name, ...area }, type: type }));
+                        });
+                    }
+                    break;
+                case 'productwise':
+                    cloudTitle = 'Product & Strategic Areas Cloud';
+                    if (dataForCloud) {
+                        for (const category in dataForCloud) {
+                            if (Array.isArray(dataForCloud[category])) {
+                                dataForCloud[category].forEach(product => {
+                                    cloudItems.push({ name: product.product_name, fullDetails: product, type: type });
+                                    product.strategic_areas.forEach(area => cloudItems.push({ name: area.name, fullDetails: { productName: product.product_name, ...area }, type: type }));
+                                });
+                            }
+                        }
+                    }
+                    break;
+                case 'social':
+                    cloudTitle = 'Social Impact Themes & Applications Cloud';
+                    if (dataForCloud && dataForCloud.application_themes) {
+                        dataForCloud.application_themes.forEach(theme => {
+                            cloudItems.push({ name: theme.theme_name, fullDetails: theme, type: type });
+                            theme.applications.forEach(app => cloudItems.push({ name: app.title, fullDetails: app, type: type }));
+                        });
+                    }
+                    break;
+                case 'sdg':
+                    cloudTitle = 'SDG Goals & Applications Cloud';
+                    if (dataForCloud && dataForCloud.sustainable_development_goals) {
+                        dataForCloud.sustainable_development_goals.forEach(sdg => {
+                            cloudItems.push({ name: sdg.title, fullDetails: sdg, type: type });
+                            sdg.applications.forEach(app => cloudItems.push({ name: app.application_name, fullDetails: app, type: type }));
+                        });
+                    }
+                    break;
+            }
+
+            // Sort cloud items alphabetically by name
+            const sortedCloudItems = cloudItems.sort((a, b) => a.name.localeCompare(b.name));
+
+            cloudHtml = `
+                <div class="card h-100 mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-center text-primary">${cloudTitle}</h5>
+                        <input type="text" class="form-control mb-2" placeholder="Search in cloud..." id="${type}CloudSearchInput" onkeyup="filterCloud('${type}WordCloud', this.value)">
+                        <div id="${type}WordCloud" class="cloud-container">
+                            ${sortedCloudItems.map(item => `
+                                <span class="tag-cloud-item" style="border-color: ${getBadgeColorClass(item.name)}; color: ${getBadgeColorClass(item.name)
+                                };" onclick="showStrategicEntryDetailFromMarketSearch(${JSON.stringify(item.fullDetails).replace(/"/g, '&quot;')}, '${item.type}')">
+                                    ${item.name}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <button class="btn btn-sm btn-outline-secondary toggle-cloud-btn" onclick="toggleCloud('${type}WordCloud')">View All ${cloudTitle.replace(' Cloud', '')}</button>
+                    </div>
+                </div>
+            `;
+
+            // Construct and display heatmap using the found config, passing 'market' as origin
+            const heatmapHtml = generateHeatmapTable(config, 'market');
+
+            marketHeatmapsContentArea.innerHTML = `
+                ${cloudHtml}
+                ${heatmapHtml}
+            `;
+
+            // Re-apply filters if any search term is present for the newly rendered cloud
+            const searchInput = document.getElementById(`${type}CloudSearchInput`);
+            if (searchInput && searchInput.value.trim() !== '') {
+                filterCloud(`${type}WordCloud`, searchInput.value);
+            }
         }
 
-
-        // Initial data load when the DOM is ready
+        // Initialize the app
         document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
