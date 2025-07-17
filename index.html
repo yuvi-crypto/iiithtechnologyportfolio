@@ -277,21 +277,23 @@
             text-align: left;
         }
         .heatmap-container th {
-            background-color: #f9fafb;
+            background-color: #f0f4f7; /* Lighter background for headers */
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.85rem; /* Slightly larger font */
             text-transform: uppercase;
             letter-spacing: 0.05em;
             position: sticky;
             top: 0;
             z-index: 10;
+            color: var(--secondary-color); /* Darker text for headers */
         }
         .heatmap-container td.row-header {
             font-weight: 500;
-            background-color: #f9fafb;
+            background-color: #f0f4f7; /* Lighter background for row headers */
             position: sticky;
             left: 0;
             border-right: 2px solid #e5e7eb;
+            color: var(--dark-text);
         }
         .heatmap-container .value-cell {
             text-align: center;
@@ -299,6 +301,7 @@
             font-size: 1rem;
             color: rgba(0,0,0,0.7);
             min-width: 80px;
+            transition: background-color 0.3s ease; /* Smooth transition for color changes */
         }
         .heatmap-container .value-cell.dark-text {
             color: rgba(255,255,255,0.95);
@@ -593,7 +596,7 @@
             transition: background-color 0.2s ease-in-out;
         }
         .heatmap-container th.clickable-header:hover {
-            background-color: #e0e0e0;
+            background-color: #dbe4eb; /* Lighter hover for header */
         }
         /* Removed clickable-cell as per request */
         /* .heatmap-container td.clickable-cell {
@@ -670,6 +673,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showPage('publications')">Publications Explorer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('strategic-insights')">Strategic Insights</a>
                     </li>
                 </ul>
                 <form class="d-flex" onsubmit="handleGlobalSearch(event)">
@@ -1143,9 +1149,22 @@
         }
 
         // --- Heatmap Helper Functions ---
+        // Improved getColorForValue for a better visual gradient
         function getColorForValue(value) {
-            if (value === 0) return '#ffffff';
-            const colors = ['#ecfdf5', '#d1fae5', '#a7f3d0', '#6ee7b7', '#34d399', '#10b981', '#059669', '#047857', '#064e3b'];
+            if (value === 0) return '#f8f9fa'; // Very light grey for zero
+            // A gradient from light primary to darker primary color
+            const colors = [
+                '#e0f2f1', // Very light teal
+                '#b2dfdb',
+                '#80cbc4',
+                '#4db6ac',
+                '#26a69a',
+                '#009688', // Primary color
+                '#00897b',
+                '#00796b',
+                '#00695c',
+                '#004d40'  // Darkest teal
+            ];
             const index = Math.min(value - 1, colors.length - 1); // Adjusted to be 0-indexed for array
             return colors[index];
         }
@@ -1168,14 +1187,11 @@
                                 ${rowHeaders.map(header => `
                                     <li>
                                         <div class="form-check">
-                                            <input class="form-check-input heatmap-row-filter" type="checkbox" value="${header}" id="rowFilter_${tableId}_${header.replace(/\s/g, '_').replace(/&/g, 'and')}" checked data-table-id="${tableId}">
+                                            <input class="form-check-input heatmap-row-filter" type="checkbox" value="${header}" id="rowFilter_${tableId}_${header.replace(/\s/g, '_').replace(/&/g, 'and')}" checked data-table-id="${tableId}" onchange="applyHeatmapFilters('${tableId}')">
                                             <label class="form-check-label" for="rowFilter_${tableId}_${header.replace(/\s/g, '_').replace(/&/g, 'and')}">${header}</label>
                                         </div>
                                     </li>
                                 `).join('')}
-                                <li><hr class="dropdown-divider"></li>
-                                <li><button class="btn btn-primary btn-sm w-100 mb-1" onclick="applyHeatmapFilters('${tableId}')">Apply Filters</button></li>
-                                <li><button class="btn btn-outline-secondary btn-sm w-100" onclick="clearHeatmapFilters('${tableId}')">Clear Filters</button></li>
                             </ul>
                         </div>
                         <div class="dropdown">
@@ -1186,16 +1202,14 @@
                                 ${columnHeaders.map(header => `
                                     <li>
                                         <div class="form-check">
-                                            <input class="form-check-input heatmap-col-filter" type="checkbox" value="${header}" id="colFilter_${tableId}_${header.replace(/\s/g, '_').replace(/&/g, 'and')}" checked data-table-id="${tableId}">
+                                            <input class="form-check-input heatmap-col-filter" type="checkbox" value="${header}" id="colFilter_${tableId}_${header.replace(/\s/g, '_').replace(/&/g, 'and')}" checked data-table-id="${tableId}" onchange="applyHeatmapFilters('${tableId}')">
                                             <label class="form-check-label" for="colFilter_${tableId}_${header.replace(/\s/g, '_').replace(/&/g, 'and')}">${header}</label>
                                         </div>
                                     </li>
                                 `).join('')}
-                                <li><hr class="dropdown-divider"></li>
-                                <li><button class="btn btn-primary btn-sm w-100 mb-1" onclick="applyHeatmapFilters('${tableId}')">Apply Filters</button></li>
-                                <li><button class="btn btn-outline-secondary btn-sm w-100" onclick="clearHeatmapFilters('${tableId}')">Clear Filters</button></li>
                             </ul>
                         </div>
+                        <button class="btn btn-outline-secondary" onclick="clearHeatmapFilters('${tableId}')">Clear All Filters</button>
                     </div>
                     <table id="${tableId}-table">
                         <thead>
@@ -1212,7 +1226,7 @@
                 const rowData = data[rowHeader] || Array(columnHeaders.length).fill(0);
                 rowData.forEach((value, colIndex) => {
                     const color = getColorForValue(value);
-                    const textColor = value > 5 ? 'dark-text' : '';
+                    const textColor = value > 5 ? 'dark-text' : ''; // Keep dark-text for higher values
                     const colHeader = columnHeaders[colIndex];
                     // Removed onclick from value-cell as per request
                     tableHtml += `<td class="value-cell ${textColor}" style="background-color: ${color};" 
@@ -1271,11 +1285,11 @@
         }
 
         function clearHeatmapFilters(tableId) {
-            // Uncheck all row filter checkboxes
+            // Check all row filter checkboxes
             document.querySelectorAll(`#rowHeaderFilterDropdown-${tableId} ~ .dropdown-menu .heatmap-row-filter`).forEach(cb => {
                 cb.checked = true;
             });
-            // Uncheck all column filter checkboxes
+            // Check all column filter checkboxes
             document.querySelectorAll(`#colHeaderFilterDropdown-${tableId} ~ .dropdown-menu .heatmap-col-filter`).forEach(cb => {
                 cb.checked = true;
             });
@@ -2022,17 +2036,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Removed Market Potential & Activity Metrics section -->
-                <!--
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <h5 class="card-title text-center text-primary">Market Potential & Activity Metrics</h5>
-                        <div class="row" id="marketMetricsTiles">
-                            <!-- Market Potential and Market Activity single tiles will be rendered here --
-                        </div>
-                    </div>
-                </div>
-                -->
                 <!-- New Market View Tiles -->
                 <div class="row mb-4">
                     <div class="col-12">
@@ -2042,37 +2045,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Strategic Heatmaps Section - Integrated Here -->
-                <div class="row pt-4">
-                    <div class="col-md-3">
-                        <div class="filter-sidebar">
-                            <h5 class="filter-title">Heatmap Categories</h5>
-                            <div class="list-group" id="market-heatmap-nav">
-                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmap('industry', this)">1. Industry Sector Strength</a>
-                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmap('company', this)">2. Company Alignment Strength</a>
-                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmap('productwise', this)">3. Product Application Strength</a>
-                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmap('social', this)">4. Social Impact & Gov't Application Strength</a>
-                                <a href="#" class="list-group-item list-group-item-action" onclick="renderMarketHeatmap('sdg', this)">5. UN Sustainable Development Goal (SDG) Alignment</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div id="market-view-heatmaps-content-area">
-                            <!-- Heatmap content will be loaded here by default -->
-                        </div>
-                    </div>
-                </div>
+                <!-- Strategic Heatmaps Section - REMOVED from Market View -->
             `;
             populateUseCaseWordCloud();
-            // Removed call to renderMarketMetricsTiles();
             renderMarketApplicationTiles(); // Render the new application tiles
             setupMarketViewSearch(); // Setup search functionality for market view
-
-            // Automatically click the first heatmap category link
-            const firstHeatmapLink = document.querySelector('#market-heatmap-nav a');
-            if (firstHeatmapLink) {
-                firstHeatmapLink.click();
-            }
         }
 
         // Removed toggleCloud function as buttons are removed and clouds are fixed size.
@@ -2272,7 +2249,7 @@
             const tileConfigs = [
                 {
                     title: 'Sustainable Development Goals (SDG) Tiles',
-                    icon: '�',
+                    icon: '',
                     dataKey: 'sdg',
                     countField: 'sustainable_development_goals', // Corrected to top-level array
                     descriptionField: 'description',
@@ -2316,20 +2293,12 @@
                 },
                 {
                     title: 'Industry Sector Application Tiles',
-                    icon: '🏭',
+                    icon: '�',
                     dataKey: 'industry',
                     countField: 'industry_sectors', // Corrected to top-level array
                     descriptionField: 'report_description', // Use report_description from top level
                     detailPageType: 'industry',
                     summaryText: 'Each tile can highlight: Sector Overview, Micro-sectors (2–3), Problem, Product Concept, Core Tech.'
-                },
-                {
-                    title: 'Cross-Cutting Feature Tiles', // This will be a summary, not from a specific file
-                    icon: '🔍',
-                    count: 'View Insights', // Placeholder, will be a button
-                    description: 'AI Research Impact Map, Technology Type Frequency, Patent & Publication Dashboard, Language & Accessibility Focus, Energy & Sustainability Solutions.',
-                    detailPageType: 'cross-cutting', // Custom type for this
-                    summaryText: 'Can be derived from all files: AI Research Impact Map – Count of applications using AI/ML per domain, Technology Type Frequency – Heatmap of ML, CV, NLP, IoT usage, Patent & Publication Dashboard – Linked to applications/products, Language & Accessibility Focus – ASR, Sign Language, OCR in Indian languages, Energy & Sustainability Solutions – Green tech across domains.'
                 }
             ];
 
@@ -2503,7 +2472,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <h3 class="mb-3 text-primary">Patents Explorer (<span id="patentCount">0</span> results)</h3>
+                        <h3 class="mb-3 text-primary">Patents Explorer (<span id="patentCount">0</span>)</h3>
                         <div id="patentsList" class="row row-cols-1 g-4">
                             <!-- Patents will be loaded here -->
                         </div>
@@ -2568,7 +2537,7 @@
             useCaseCheckboxList.innerHTML = Array.from(useCaseSet).sort().map(uc => `
                 <li>
                     <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="${uc}" id="patentUseCaseCheckbox_${uc.replace(/\s/g, '_')}">
+                        <input class="form-check-input" type="checkbox" value="${uc}" id="patentUseCaseCheckbox_${uc.replace(/\s/g, '_')}" onchange="applyPatentFilters()">
                         <label class="form-check-label" for="patentUseCaseCheckbox_${uc.replace(/\s/g, '_')}">
                             ${uc}
                         </label>
@@ -2581,7 +2550,7 @@
                 <li>
 
                     <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="${tech}" id="patentTechCheckbox_${tech.replace(/\s/g, '_')}">
+                        <input class="form-check-input" type="checkbox" value="${tech}" id="patentTechCheckbox_${tech.replace(/\s/g, '_')}" onchange="applyPatentFilters()">
                         <label class="form-check-label" for="patentTechCheckbox_${tech.replace(/\s/g, '_')}">
                             ${tech}
                         </label>
@@ -2778,7 +2747,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <h3 class="mb-3 text-primary">Publications Explorer (<span id="publicationCount">0</span> results)</h3>
+                        <h3 class="mb-3 text-primary">Publications Explorer (<span id="publicationCount">0</span>)</h3>
                         <div id="publicationsList" class="row row-cols-1 g-4">
                             <!-- Publications will be loaded here -->
                         </div>
@@ -2840,7 +2809,7 @@
             useCaseCheckboxList.innerHTML = Array.from(useCaseSet).sort().map(uc => `
                 <li>
                     <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="${uc}" id="pubUseCaseCheckbox_${uc.replace(/\s/g, '_')}">
+                        <input class="form-check-input" type="checkbox" value="${uc}" id="pubUseCaseCheckbox_${uc.replace(/\s/g, '_')}" onchange="applyPublicationFilters()">
                         <label class="form-check-label" for="pubUseCaseCheckbox_${uc.replace(/\s/g, '_')}">
                             ${uc}
                         </label>
@@ -2852,7 +2821,7 @@
             technologyCheckboxList.innerHTML = Array.from(technologySet).sort().map(tech => `
                 <li>
                     <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="${tech}" id="pubTechCheckbox_${tech.replace(/\s/g, '_')}">
+                        <input class="form-check-input" type="checkbox" value="${tech}" id="pubTechCheckbox_${tech.replace(/\s/g, '_')}" onchange="applyPublicationFilters()">
                         <label class="form-check-label" for="pubTechCheckbox_${tech.replace(/\s/g, '_')}">
                             ${tech}
                         </label>
@@ -3396,6 +3365,7 @@
                 ${heatmapHtml}
                 <div class="text-center my-4">
                     ${summaryHtml}
+                    <button class="btn btn-primary mt-3" onclick="showStrategicDetailPage('${type}', 'strategic-insights')">View Full Report</button>
                 </div>
             `;
             // Ensure scroll position is at the top of the heatmap container
