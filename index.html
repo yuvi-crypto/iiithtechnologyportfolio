@@ -652,6 +652,12 @@
             font-weight: 600;
             color: var(--dark-text);
         }
+        /* Added for percentage display */
+        .single-metric-tile ul li .percentage {
+            font-size: 0.85em;
+            color: #6c757d; /* Muted color for percentage */
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
@@ -698,14 +704,14 @@
                         <h2 class="text-center" style="color: var(--secondary-color);">Welcome to the IIIT-H Technology Portfolio</h2>
                         <p class="lead text-center">Your comprehensive guide to the innovative research and intellectual property from IIIT Hyderabad.</p>
 
-                        <h4>How to Use This Portfolio</h4>
-                        <p>This interactive platform showcases technologies developed at IIIT Hyderabad. Use the top navigation bar to explore:</p>
+                        <h5>🔍 What You'll Find</h5>
+                        <p>Explore cutting-edge technologies aligned with real-world market potential, TRLs, and trends. This platform offers:</p>
                         <ul>
-                            <li><strong>Dashboard:</strong> Visual overview of tech trends, market potential, and readiness.</li>
-                            <li><strong>Patents Explorer:</strong> Browse patents with filters for trends, market fit, and readiness.</li>
-                            <li><strong>Publications Explorer:</strong> Find research papers using similar filters.</li>
-                            <li><strong>Strategic Insights:</strong> View heatmaps linking technologies to industries, companies, social impact, and UN SDGs.</li>
-                            <li><strong>Global Search:</strong> Find patents or publications by keyword, author, or topic.</li>
+                            <li><strong>Dashboard:</strong> A visual overview of key technology metrics and trends.</li>
+                            <li><strong>Patents Explorer:</strong> Detailed insights into IIIT-H's patent portfolio with advanced filtering.</li>
+                            <li><strong>Publications Explorer:</strong> Access to research papers, filterable by various criteria.</li>
+                            <li><strong>Strategic Insights:</strong> Heatmaps illustrating technology alignment with industries, companies, social impact, and UN SDGs.</li>
+                            <li><strong>Global Search:</strong> Quickly find relevant patents or publications by keyword, author, or topic.</li>
                         </ul>
 
                         <h4>How the Data is Organized</h4>
@@ -746,8 +752,9 @@
                             <a href="#" class="list-group-item list-group-item-action active" onclick="renderStrategicHeatmap('industry', this)">1. Industry Sector Strength</a>
                             <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('company', this)">2. Company Alignment Strength</a>
                             <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('productwise', this)">3. Product Application Strength</a>
-                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('social', this)">4. Social Impact & Gov't Application Strength</a>
+                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('social', this)">4. Social Impact & Govt Application Strength</a>
                             <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('sdg', this)">5. UN Sustainable Development Goal (SDG) Alignment</a>
+                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('lm', this)">6. Learning Management</a>
                         </div>
                     </div>
                 </div>
@@ -764,6 +771,7 @@
         <div id="social-detail-page" class="page-content" style="display:none;"></div>
         <div id="industry-detail-page" class="page-content" style="display:none;"></div>
         <div id="company-detail-page" class="page-content" style="display:none;"></div>
+        <div id="lm-detail-page" class="page-content" style="display:none;"></div>
         <div id="search-results-page" class="page-content" style="display:none;"></div>
     </div>
 
@@ -1104,6 +1112,15 @@
                 columnHeaders: ['Health Tech', 'Assistive Tech', 'Education Tech', 'Sustainable & Green AI', 'Fairness & Inclusion', 'Infrastructure & Smart Cities', 'Blockchain & Governance'],
                 data: { 'SDG 3: Good Health': [6, 2, 0, 0, 1, 0, 0], 'SDG 4: Quality Education': [0, 1, 4, 0, 1, 0, 0], 'SDG 7: Clean Energy': [0, 0, 0, 1, 0, 3, 0], 'SDG 9: Infrastructure': [0, 0, 0, 1, 0, 6, 1], 'SDG 10: Reduced Inequalities': [1, 5, 1, 0, 5, 0, 1], 'SDG 11: Sustainable Cities': [1, 0, 0, 1, 2, 7, 1], 'SDG 12: Sustainability': [0, 0, 0, 4, 1, 0, 0], 'SDG 16: Peace & Justice': [0, 0, 0, 0, 3, 1, 5] },
                 paperMapping: { 'SDG 11: Sustainable Cities': { 'Infrastructure & Smart Cities': ["City-Scale Pollution Aware Traffic", "Open-World Object Detection", "Understanding Dynamic Scenes", "Combinatorial Civic Crowdfunding", "Exploratory Study of oneM2M-based", "Automated Infrastructure Auditing", "Topological Mapping for Manhattan-like"] } }
+            },
+            {
+                type: 'lm',
+                title: '6. Learning Management',
+                tableId: 'lm-heatmap',
+                rowHeaders: [], // Will be populated dynamically from Learning_Management.json micro_sectors
+                columnHeaders: ['AI/ML for Education', 'Language Learning', 'Robotics & Control', 'Knowledge Extraction', 'NLP & Summarization', 'Skill Assessment', 'Personalized Learning', 'Document Intelligence'],
+                data: {}, // Will be populated dynamically
+                paperMapping: {} // Will be populated dynamically
             }
         ];
 
@@ -1571,6 +1588,56 @@
             return html;
         }
 
+        // New function for Learning Management Insights HTML
+        function getLearningManagementInsightsHtml(data, originPage) {
+            const backButtonAction = originPage === 'market' ? `showPage('dashboard', { view: 'market' })` : `showPage('strategic-insights')`;
+            const backButtonText = originPage === 'market' ? 'Back to Dashboard (Market View)' : 'Back to Strategic Insights';
+
+            let html = `
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <button class="btn btn-outline-secondary" onclick="${backButtonAction}"><i class="fas fa-arrow-left"></i> ${backButtonText}</button>
+                    <h2 class="text-secondary mb-0">Learning Management Insights</h2>
+                    <button class="btn btn-primary" onclick="downloadPDF('lm')">Download PDF</button>
+                </div>
+                <p class="lead">Detailed analysis of technologies and product concepts within the Learning Management domain.</p>
+            `;
+            if (data && data.micro_sectors && Array.isArray(data.micro_sectors)) {
+                data.micro_sectors.forEach(sector => {
+                    html += `
+                        <div class="col-12 mb-4 detail-section-separator">
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <h5 class="card-title mb-0">${sector.title}</h5>
+                                    <p class="card-text text-muted">${sector.micro_sector_overview || 'N/A'}</p>
+                                </div>
+                                <div class="card-body">
+                                    <h6>Product Concept: ${sector.product_concept?.name || 'N/A'}</h6>
+                                    <p class="mb-1"><strong>Problem:</strong> ${sector.product_concept?.problem || 'N/A'}</p>
+                                    <p class="mb-1"><strong>Core Technologies:</strong> ${sector.product_concept?.core_technologies || 'N/A'}</p>
+                                    <h6 class="mt-3">Relevant Research:</h6>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><strong>Publications:</strong>
+                                            <ul>
+                                                ${sector.research?.publications && Array.isArray(sector.research.publications) ? sector.research.publications.map(pub => `<li>${pub}</li>`).join('') : '<li>N/A</li>'}
+                                            </ul>
+                                        </li>
+                                        <li class="list-group-item"><strong>Patents:</strong>
+                                            <ul>
+                                                ${sector.research?.patents && Array.isArray(sector.research.patents) ? sector.research.patents.map(pat => `<li>${pat}</li>`).join('') : '<li>N/A</li>'}
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                html += `<div class="alert alert-info" role="alert">No Learning Management insights data available.</div>`;
+            }
+            return html;
+        }
+
         // --- Data Loading ---
         async function loadData() {
             try {
@@ -1594,6 +1661,8 @@
 
                 // Load strategic data for market view search
                 await loadStrategicDataForSearch();
+                // Populate LM heatmap config after LM data is loaded
+                populateLmHeatmapConfig();
 
                 // Initial render of the dashboard
                 renderDashboard(); // This will default to Technology Portfolio View
@@ -1617,7 +1686,8 @@
                 company: 'Companywise_TechUse.json',
                 productwise: 'Productwise_TechUse.json',
                 sdg: 'SDG_TechUse.json',
-                social: 'Social_impact_&_Government_Applications_TechUse.json' // Corrected filename
+                social: 'Social_impact_&_Government_Applications_TechUse.json', // Corrected filename
+                lm: 'Learning_Management.json' // Added Learning Management JSON
             };
 
             for (const key in files) {
@@ -1630,6 +1700,49 @@
                 }
             }
             populateSearchableData(); // Populate the unified searchableData array after all strategic data is loaded
+        }
+
+        // Function to populate the Learning Management heatmap configuration
+        function populateLmHeatmapConfig() {
+            const lmConfig = heatmapConfigs.find(c => c.type === 'lm');
+            if (!lmConfig || !strategicDataCache.lm) return;
+
+            const microSectors = strategicDataCache.lm.micro_sectors;
+            lmConfig.rowHeaders = microSectors.map(ms => ms.title);
+
+            // Dynamically calculate data and paper mapping
+            lmConfig.data = {};
+            lmConfig.paperMapping = {};
+
+            const columnTechKeywords = lmConfig.columnHeaders.map(h => h.toLowerCase());
+
+            microSectors.forEach(microSector => {
+                const rowData = Array(lmConfig.columnHeaders.length).fill(0);
+                const rowPaperMapping = {};
+
+                const allResearchItems = [
+                    ...(microSector.research?.publications || []),
+                    ...(microSector.research?.patents || [])
+                ];
+
+                lmConfig.columnHeaders.forEach((colHeader, colIndex) => {
+                    const matchingPapers = [];
+                    allResearchItems.forEach(item => {
+                        // Simple keyword matching for demonstration.
+                        // In a real scenario, this would involve more sophisticated NLP.
+                        if (item.toLowerCase().includes(colHeader.toLowerCase().split(' ')[0])) { // Match first word of column header
+                            matchingPapers.push(item);
+                        }
+                    });
+                    rowData[colIndex] = matchingPapers.length;
+                    if (matchingPapers.length > 0) {
+                        rowPaperMapping[colHeader] = matchingPapers;
+                    }
+                });
+                lmConfig.data[microSector.title] = rowData;
+                lmConfig.paperMapping[microSector.title] = rowPaperMapping;
+            });
+            console.log("Learning Management Heatmap Config Populated:", lmConfig);
         }
 
 
@@ -1829,6 +1942,40 @@
                     });
                 });
             }
+
+            // Process Learning Management Data
+            if (strategicDataCache.lm && strategicDataCache.lm.micro_sectors) {
+                strategicDataCache.lm.micro_sectors.forEach(microSector => {
+                    const pubTech = extractTechnologiesLocal(microSector.research?.publications?.join(', ') || '');
+                    const patentTech = extractTechnologiesLocal(microSector.research?.patents?.join(', ') || '');
+                    const allTech = [...new Set([...pubTech, ...patentTech])];
+
+                    searchableData.push({
+                        id: `market-item-${idCounter++}`,
+                        title: microSector.title,
+                        summary: microSector.micro_sector_overview,
+                        type: 'Learning Management Micro-Sector',
+                        technologies: allTech,
+                        sectors: ['Learning Management'],
+                        companies: [],
+                        products: [microSector.product_concept?.name].filter(Boolean),
+                        sdgs: [],
+                        use_cases: [microSector.product_concept?.problem].filter(Boolean),
+                        fullDetails: {
+                            type: 'Learning Management Micro-Sector',
+                            microSectorTitle: microSector.title,
+                            overview: microSector.micro_sector_overview,
+                            productConceptName: microSector.product_concept?.name,
+                            problem: microSector.product_concept?.problem,
+                            coreTechnologies: microSector.product_concept?.core_technologies,
+                            publications: microSector.research?.publications,
+                            patents: microSector.research?.patents,
+                            relevantTechnologies: allTech
+                        }
+                    });
+                });
+            }
+
             console.log("Market View Searchable Data loaded:", searchableData.length, "items");
             console.log("Sample Market View Searchable Data:", searchableData.slice(0, 5)); // Log a few samples
         }
@@ -1930,6 +2077,13 @@
         function renderTechnologyPortfolioView() {
             const techPortfolioView = document.getElementById('technology-portfolio-view');
             techPortfolioView.innerHTML = `
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <button class="btn btn-outline-primary mb-3" onclick="showPage('dashboard')">
+                            ← Back to Dashboard
+                        </button>
+                    </div>
+                </div>
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="card h-100">
@@ -2001,6 +2155,13 @@
         function renderMarketView() {
             const marketView = document.getElementById('market-view');
             marketView.innerHTML = `
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <button class="btn btn-outline-primary mb-3" onclick="showPage('dashboard')">
+                            ← Back to Dashboard
+                        </button>
+                    </div>
+                </div>
                 <div class="market-view-search-bar-section">
                     <h1>Explore Market Insights [Under Testing]</h1>
                     <div class="input-group market-view-search-input-group">
@@ -2016,6 +2177,7 @@
                             <li><a class="dropdown-item market-view-search-classification-item" href="#" data-classification="product">Product</a></li>
                             <li><a class="dropdown-item market-view-search-classification-item" href="#" data-classification="sdg">SDG</a></li>
                             <li><a class="dropdown-item market-view-search-classification-item" href="#" data-classification="social">Social Impact</a></li>
+                            <li><a class="dropdown-item market-view-search-classification-item" href="#" data-classification="lm">Learning Management</a></li>
                         </ul>
                         <div id="marketViewSearchResultsSuggestions" class="market-view-search-suggestions d-none"></div>
                     </div>
@@ -2031,7 +2193,7 @@
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">Use Case Cloud</h5>
-                                <input type="text" class="form-control mb-2" placeholder="Search use cases (e.g., healthcare, finance)" id="useCaseCloudSearchInput" onkeyup="filterCloud('useCaseWordCloud', this.value)">
+                                <input type="text" class="form-control mb-2" placeholder="Explore use cases (e.g., healthcare, finance)" id="useCaseCloudSearchInput" onkeyup="filterCloud('useCaseWordCloud', this.value)">
                                 <div id="useCaseWordCloud" class="cloud-container"></div>
                             </div>
                         </div>
@@ -2183,8 +2345,15 @@
 
             summaryData.forEach(category => {
                 let listItems = '';
+                let total = 0;
                 for (const key in category.data) {
-                    listItems += `<li><strong>${key}:</strong> <span>${category.data[key]}</span></li>`;
+                    total += category.data[key];
+                }
+
+                for (const key in category.data) {
+                    const count = category.data[key];
+                    const percentage = total > 0 ? ((count / total) * 100).toFixed(0) : 0;
+                    listItems += `<li><strong>${key}:</strong> <span>${count} <span class="percentage">(${percentage}%)</span></span></li>`;
                 }
                 technologyDashboardTiles.innerHTML += `
                     <div class="col-lg-3 col-md-6 col-sm-12">
@@ -2250,37 +2419,41 @@
 
             const tileConfigs = [
                 {
-                    title: 'Sustainable Development Goals (SDG) Tiles',
-                    icon: '',
+                    title: '🌍 SDG Alignment',
                     dataKey: 'sdg',
-                    countField: 'sustainable_development_goals', // Corrected to top-level array
-                    descriptionField: 'description',
+                    countField: 'sustainable_development_goals',
+                    summaryText: (data) => {
+                        const count = data?.sustainable_development_goals?.length || 0;
+                        const totalApplications = data?.sustainable_development_goals?.reduce((sum, sdg) => sum + (sdg.applications?.length || 0), 0) || 0;
+                        return `Our technologies contribute to <strong>${count} global goals</strong> with <strong>${totalApplications}+ applications</strong>. Explore specific contributions to health, education, and sustainable cities.`;
+                    },
                     detailPageType: 'sdg',
-                    summaryText: 'Each tile represents an SDG and includes: SDG Title & Description, Number of Applications, Top Applications with Summary & Research.'
                 },
                 {
-                    title: 'Government and Social Impact Application Tiles',
-                    icon: '🏛️',
+                    title: '🏛 Government Tech Impact',
                     dataKey: 'social',
-                    countField: 'application_themes', // Corrected to top-level array
-                    descriptionField: 'report_description', // Use report_description from top level
+                    countField: 'application_themes',
+                    summaryText: (data) => {
+                        const count = data?.application_themes?.length || 0;
+                        const totalApplications = data?.application_themes?.reduce((sum, theme) => sum + (theme.applications?.length || 0), 0) || 0;
+                        return `Discover <strong>${totalApplications}+ public use cases</strong> across <strong>${count} key themes</strong>, including public health, accessibility, and governance.`;
+                    },
                     detailPageType: 'social',
-                    summaryText: 'Grouped by theme, these tiles can include: Theme Summary, Application Count, Sample Use Cases + Relevant Research.'
                 },
                 {
-                    title: 'Company-wise Technology Usage Tiles',
-                    icon: '🏢',
+                    title: '🏢 Company Alignment',
                     dataKey: 'company',
-                    countField: 'companies', // Corrected to top-level array
-                    descriptionField: 'report_description', // Use report_description from top level
+                    countField: 'companies',
+                    summaryText: (data) => {
+                        const count = data?.companies?.length || 0;
+                        return `See how <strong>${count} leading companies</strong> leverage IIIT-H tech in strategic AI domains. View their core problems and our aligned research.`;
+                    },
                     detailPageType: 'company',
-                    summaryText: 'Each tile for a company with: Strategy Summary, 2–3 Strategic Areas, Key Problems, Technologies, Publications & Patents.'
                 },
                 {
-                    title: 'Product-wise Technology Integration Tiles',
-                    icon: '📦',
+                    title: '📦 Product Integration',
                     dataKey: 'productwise',
-                    countFunction: (data) => { // Custom count function for productwise
+                    countFunction: (data) => {
                         let count = 0;
                         for (const key in data) {
                             if (Array.isArray(data[key])) {
@@ -2289,24 +2462,35 @@
                         }
                         return count;
                     },
-                    descriptionField: 'description', // This will be per product, not overall
+                    summaryText: (data, itemCount) => `Explore <strong>${itemCount}+ consumer and industrial products</strong> embedding IIIT-H IP. See key use-cases and core technologies.`,
                     detailPageType: 'productwise',
-                    summaryText: 'Each product category gets a tile with: Key Use-Cases, Embedded Core Technologies, Innovations (Publications/Patents).'
                 },
                 {
-                    title: 'Industry Sector Application Tiles',
-                    icon: '�',
+                    title: '🏭 Industry Adoption',
                     dataKey: 'industry',
-                    countField: 'industry_sectors', // Corrected to top-level array
-                    descriptionField: 'report_description', // Use report_description from top level
+                    countField: 'industry_sectors',
+                    summaryText: (data) => {
+                        const count = data?.industry_sectors?.length || 0;
+                        return `Gain insights across <strong>${count} diverse industrial sectors</strong>, from robotics to FinTech, and understand technology opportunities.`;
+                    },
                     detailPageType: 'industry',
-                    summaryText: 'Each tile can highlight: Sector Overview, Micro-sectors (2–3), Problem, Product Concept, Core Tech.'
+                },
+                {
+                    title: '🎓 Learning Management', // New tile for Learning Management
+                    dataKey: 'lm',
+                    countField: 'themes', // Assuming 'themes' array in LM data
+                    summaryText: (data) => {
+                        const count = data?.themes?.length || 0;
+                        const totalApplications = data?.themes?.reduce((sum, theme) => sum + (theme.applications?.length || 0), 0) || 0;
+                        return ` Discover AI-powered tutoring, robotic skill acquisition, and enterprise knowledge systems.`;
+                    },
+                    detailPageType: 'lm',
                 }
             ];
 
             tileConfigs.forEach(config => {
                 let itemCount = 0;
-                let description = config.summaryText; // Use predefined summary text
+                let description = '';
 
                 if (config.dataKey && strategicDataCache[config.dataKey]) {
                     const data = strategicDataCache[config.dataKey];
@@ -2315,6 +2499,9 @@
                     } else if (data[config.countField] && Array.isArray(data[config.countField])) {
                         itemCount = data[config.countField].length;
                     }
+                    description = config.summaryText(data, itemCount); // Pass data and itemCount to summaryText function
+                } else {
+                    description = `No data available for ${config.title}.`;
                 }
 
                 const onClickAction = config.detailPageType ? `showStrategicDetailPage('${config.detailPageType}', 'market')` : `alert('Details for ${config.title} not yet implemented.')`;
@@ -2323,10 +2510,9 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${config.icon} ${config.title}</h5>
+                                <h5 class="card-title">${config.title}</h5>
                                 <p class="card-text text-muted flex-grow-1">${description}</p>
                                 <div class="mt-auto d-flex justify-content-between align-items-center">
-                                    <span class="text-primary fw-bold">${typeof itemCount === 'number' ? `${itemCount} Items` : config.count}</span>
                                     <button class="btn btn-primary btn-sm" onclick="${onClickAction}">View Full Report</button>
                                 </div>
                             </div>
@@ -2397,6 +2583,13 @@
         function renderPatentsPage(filteredPatents = allPatents) { // Default to allPatents on initial render
             const patentsPage = document.getElementById('patents-page');
             patentsPage.innerHTML = `
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <button class="btn btn-outline-primary mb-3" onclick="showPage('dashboard')">
+                            ← Back to Dashboard
+                        </button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="filter-sidebar">
@@ -2672,6 +2865,13 @@
         function renderPublicationsPage(filteredPublications = currentPublications) {
             const publicationsPage = document.getElementById('publications-page');
             publicationsPage.innerHTML = `
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <button class="btn btn-outline-primary mb-3" onclick="showPage('dashboard')">
+                            ← Back to Dashboard
+                        </button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="filter-sidebar">
@@ -3071,6 +3271,13 @@
             currentCategoryFilter = categoryTerm; // Store the current category filter
             const categoriesInsightsPage = document.getElementById('categories-insights-page');
             categoriesInsightsPage.innerHTML = `
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <button class="btn btn-outline-primary mb-3" onclick="showPage('dashboard')">
+                            ← Back to Dashboard
+                        </button>
+                    </div>
+                </div>
                 <div class="row pt-4">
                     <div class="col-md-3">
                         <div class="filter-sidebar">
@@ -3358,6 +3565,7 @@
                 case 'social': summaryHtml = '<p class="lead">Discover the social impact and government applications of various technologies.</p>'; break;
                 case 'industry': summaryHtml = '<p class="lead">Analyze technology and product opportunities across different industry sectors.</p>'; break;
                 case 'company': summaryHtml = '<p class="lead">Examine the technology and research alignment of key companies.</p>'; break;
+                case 'lm': summaryHtml = '<p class="lead">View how different technologies contribute to UN Sustainable Development Goals.</p>'; break; // Placeholder, will be replaced by specific LM summary
             }
 
             // Construct and display heatmap using the found config, passing 'strategic-insights' as origin
@@ -3409,6 +3617,10 @@
                 case 'company':
                     fullDetails = strategicDataCache.company;
                     if (fullDetails) htmlContent = getCompanyInsightsHtml(fullDetails, originPage);
+                    break;
+                case 'lm':
+                    fullDetails = strategicDataCache.lm;
+                    if (fullDetails) htmlContent = getLearningManagementInsightsHtml(fullDetails, originPage);
                     break;
                 default:
                     htmlContent = `<div class="alert alert-info" role="alert">Details not available for this type.</div>`;
@@ -3523,6 +3735,19 @@
                         description = detailData?.description || 'No description available.';
                         relevantItems = detailData?.applications?.map(a => a.application_name) || [];
                     } else { // Technology (Column) - same as industry
+                        description = `Technologies related to ${header}.`;
+                        relevantItems = allData.filter(item => {
+                            const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
+                            return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
+                        }).map(item => item.title || item.Title || item['Title of the Publication']);
+                    }
+                    break;
+                case 'lm': // Learning Management
+                    if (headerType === 'row') { // Micro-sector Title
+                        detailData = strategicDataCache.lm?.micro_sectors?.find(ms => ms.title === header);
+                        description = detailData?.micro_sector_overview || 'No overview available.';
+                        relevantItems = [detailData?.product_concept?.name].filter(Boolean) || [];
+                    } else { // Technology (Column) - same as other tech columns
                         description = `Technologies related to ${header}.`;
                         relevantItems = allData.filter(item => {
                             const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
@@ -3684,7 +3909,7 @@
                 filename = `${currentHeatmapHeaderCellDetail.fileNamePrefix || 'Heatmap_Detail'}_Details.pdf`;
                 dataToPrint = currentHeatmapHeaderCellDetail.data;
             }
-            else { // For full strategic reports (productwise, sdg, social, industry, company)
+            else { // For full strategic reports (productwise, sdg, social, industry, company, lm)
                 // We need to re-generate the content for the PDF to ensure it's complete and styled correctly
                 // as the page might not be visible or fully rendered when the PDF is requested.
                 dataToPrint = strategicDataCache[type];
@@ -3723,6 +3948,9 @@
                         break;
                     case 'company':
                         tempDiv.innerHTML = getCompanyInsightsHtml(dataToPrint, 'pdf-export');
+                        break;
+                    case 'lm':
+                        tempDiv.innerHTML = getLearningManagementInsightsHtml(dataToPrint, 'pdf-export');
                         break;
                     default:
                         tempDiv.innerHTML = `<p>Error: Content for ${type} not found for PDF export.</p>`;
@@ -3977,6 +4205,9 @@
                     // Social impact items are generally covered by title/summary matching
                     matches = matches || (item.type === 'Social Impact Application' && (item.title.toLowerCase().includes(lowerCaseSearchTerm) || item.summary.toLowerCase().includes(lowerCaseSearchTerm)));
                 }
+                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'lm') {
+                    matches = matches || (item.type === 'Learning Management Micro-Sector' && (item.title.toLowerCase().includes(lowerCaseSearchTerm) || item.summary.toLowerCase().includes(lowerCaseSearchTerm)));
+                }
 
                 // Always include title match for 'all' or if no specific classification matched yet
                 if (currentMarketSearchClassification === 'all' && item.title && item.title.toLowerCase().includes(lowerCaseSearchTerm)) {
@@ -4043,6 +4274,7 @@
                 case 'social': summaryHtml = '<p class="lead">Discover the social impact and government applications of various technologies.</p>'; break;
                 case 'industry': summaryHtml = '<p class="lead">Analyze technology and product opportunities across different industry sectors.</p>'; break;
                 case 'company': summaryHtml = '<p class="lead">Examine the technology and research alignment of key companies.</p>'; break;
+                case 'lm': summaryHtml = '<p class="lead">Explore technologies and product concepts for education, training, and knowledge management.</p>'; break;
             }
 
             // Construct and display heatmap using the found config, passing 'market' as origin
