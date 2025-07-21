@@ -1,0 +1,111 @@
+{
+    "micro_sectors": [
+      {
+        "id": 1,
+        "title": "AI for Education & Language Learning",
+        "micro_sector_overview": "Technologies directly applicable to student education and professional language coaching. This is a massive global market with a strong need for personalized, scalable, and data-driven solutions.",
+        "product_concept": {
+          "name": "An 'AI-Powered Language & STEM Tutoring Platform'",
+          "problem": "Students need personalized, real-time feedback to effectively learn everything from English pronunciation to solving complex math problems, but human tutors are not always accessible or affordable.",
+          "core_technologies": "The platform's language coaching module would be built on a deep linguistic analysis of Indian English and use models for accurate syllable stress detection to provide accent-aware pronunciation feedback. The STEM module would use hybrid tokenization for Math Word Problem solvers to understand and explain solutions, with its robustness checked by an adversarial evaluation framework. The overall user experience would be guided by research on effective gamification to ensure sustainable engagement. The core of the platform would be a patented AI engine that analyzes a student's performance and automatically generates a customized curriculum, while a patented method for emotional prosody would give the AI tutor an encouraging and empathetic voice."
+        },
+        "research": {
+          "publications": [
+            "An Investigation of Indian Native Language Phonemic Influences...",
+            "A comparative analysis of sequential models...",
+            "Hybrid Tokenization and Datasets for Solving Mathematics and Science Problems...",
+            "Adversarial Examples for Evaluating Math Word Problem Solvers",
+            "More Gamification Is Not Always Better..."
+          ],
+          "patents": [
+            "System for Personalized Learning Path Generation",
+            "Method for Generating Speech with Controllable Emotional Prosody"
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "title": "Machine & Robotic Skill Acquisition",
+        "micro_sector_overview": "Technologies that enable robots and AI agents to learn complex tasks from observation or interaction, a critical need for the next generation of automation.",
+        "product_concept": {
+          "name": "A 'Robotic Learn-from-Demonstration' Software Suite",
+          "problem": "Programming industrial and service robots to perform new manipulation tasks is a complex, time-consuming, and expert-driven process, which severely limits their flexibility.",
+          "core_technologies": "The suite would allow a robot to learn from a single video of a human performing a task. It would use Differentiable Physics to extract physically plausible trajectories and leverage Egocentric Video Learning for a clearer view of manipulation. The research on Modular Reinforcement Learning would allow the robot to combine simple learned skills into more complex, long-horizon tasks. The core of the robot's perception and control would be enhanced with a patented apparatus for adaptive robotic grasping using tactile feedback, making the learned skill much more robust. A patented system for automated mission planning can be used to sequence the learned skills into a complete, optimized mission."
+        },
+        "research": {
+          "publications": [
+            "Learning Object Manipulation Skills from Video...",
+            "My View is the Best View...",
+            "Action Selection For Composable Modular..."
+          ],
+          "patents": [
+            "Apparatus for Adaptive Robotic Grasping using Tactile Feedback",
+            "System for Automated Mission Planning for Autonomous Vehicles"
+          ]
+        }
+      },
+      {
+        "id": 3,
+        "title": "Enterprise Knowledge & Training Systems",
+        "micro_sector_overview": "B2B solutions that help large organizations to train their employees, manage institutional knowledge, and automate documentation.",
+        "product_concept": {
+          "name": "An 'Intelligent Enterprise Knowledge & Skilling Platform'",
+          "problem": "Large organizations have vast, siloed repositories of knowledge and a constant need to onboard and upskill their employees.",
+          "core_technologies": "The platform would use Similar Question Retrieval to power a unified search across all of a company's internal documents and Q&A forums. For software teams, research on automated code refactoring and LLM-based architectural decision generation would provide tools to automatically document and improve their codebase. The platform would be built around two core patented technologies: a system for creating customized onboarding and upskilling plans for each employee, and a system that automatically ingests and structures the company's vast, messy knowledge base."
+        },
+        "research": {
+          "publications": [
+            "Principle-to-Program: Neural Methods for Similar Question Retrieval...",
+            "Automated Code Refactoring with Machine Learning",
+            "Can LLMs Generate Architectural Design Decisions?"
+          ],
+          "patents": [
+            "System for Personalized Learning Path Generation",
+            "System for Automated Information Extraction from Unstructured Documents"
+          ]
+        }
+      },
+      {
+        "id": 4,
+        "title": "High-Stakes Professional & Clinical Training",
+        "micro_sector_overview": "Specialized training systems for complex, real-world skills where the cost of error is high, such as surgery and professional driving.",
+        "product_concept": {
+          "name": "A 'Data-Driven Surgical & Piloting Skill Assessment Platform'",
+          "problem": "Assessing the skills of professionals in high-stakes domains is often subjective and relies on limited observation. There is a need for objective, data-driven tools to augment training and certification.",
+          "core_technologies": "For surgical training, the platform can analyze recordings of surgeries from the surgeon's point of view to create a 'gold standard' model of expert technique. For driver training, it can analyze a driver's gaze patterns to ensure they are scanning for hazards correctly. The platform would analyze a professional's performance in a simulator, identify their specific weaknesses using these models, and then generate a personalized curriculum of simulation exercises. A patented method for real-time anomaly detection can be used to flag critical errors during a simulated procedure in real-time."
+        },
+        "research": {
+          "publications": [
+            "Procedure Learning from Egocentric Videos",
+            "DGAZE: Driver Gaze Mapping on Road",
+            "Evidence-Driven Differential Diagnosis of Malignant Melanoma"
+          ],
+          "patents": [
+            "System for Personalized Learning Path Generation",
+            "Method for Real-Time Anomaly Detection in Sensor Streams"
+          ]
+        }
+      },
+      {
+        "id": 5,
+        "title": "Automated Knowledge Extraction & Summarization",
+        "micro_sector_overview": "Technologies that distill vast amounts of unstructured information into human-readable summaries and structured knowledge, forming the basis of many learning and analytics systems.",
+        "product_concept": {
+          "name": "A 'Domain-Specific Intelligence Platform'",
+          "problem": "Professionals in fields like finance and law need to stay on top of a massive amount of long-form, unstructured text (e.g., financial reports, legal filings). Manually reading and extracting key information is a major bottleneck.",
+          "core_technologies": "The platform would offer summarization services tailored to specific professional needs. It would use Goal-Directed Summarization to extract the most stock market-relevant sentences from a financial report, and adapt research on 'Layman and Long Summarization' to provide both a high-level executive summary and a detailed technical summary. Major Entity Identification (MEI) would be used to build a knowledge graph of key entities. The platform's robust, defensible core engine would ingest and parse a wide variety of document formats, and a patented reinforcement learning method would create a personalized 'intelligence feed' for each user."
+        },
+        "research": {
+          "publications": [
+            "Goal-Directed Extractive Summarization of Financial Reports",
+            "Scientific Document Summarization for LaySumm'20 and LongSumm'20",
+            "Major Entity Identification: A Generalizable Alternative to Coreference Resolution"
+          ],
+          "patents": [
+            "System for Automated Information Extraction from Unstructured Documents",
+            "Method for Personalized Search Ranking using Reinforcement Learning"
+          ]
+        }
+      }
+    ]
+  }
