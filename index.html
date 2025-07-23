@@ -147,12 +147,18 @@
             border-radius: 20px;
             margin: 5px;
             cursor: pointer;
-            transition: background-color 0.2s, color 0.2s;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s; /* Added border-color to transition */
             border: 1px solid; /* For outline effect */
         }
         .tag-cloud-item:hover {
             background-color: var(--accent-color-2);
             color: white;
+            border-color: var(--accent-color-2); /* Change border color on hover */
+        }
+        .tag-cloud-item.selected {
+            background-color: var(--primary-color); /* Highlight selected items */
+            color: var(--light-text);
+            border-color: var(--primary-color);
         }
         .search-results-section {
             padding: 20px;
@@ -505,20 +511,37 @@
             }
         }
 
-        /* Dashboard View Toggles */
-        .dashboard-toggle-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            margin-top: 20px;
-        }
-        .dashboard-toggle-buttons .btn {
-            min-width: 200px;
+        /* Dashboard View Toggles (now tabs) */
+        .dashboard-tabs .nav-link {
             padding: 12px 20px;
             font-size: 1.1rem;
             font-weight: 600;
-            border-radius: 10px;
+            border-radius: 10px 10px 0 0; /* Rounded top corners */
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            border-bottom: none; /* No bottom border for tabs */
+            margin-right: 5px; /* Space between tabs */
+            background-color: #e9ecef; /* Light background for inactive tabs */
+            transition: all 0.2s ease-in-out;
+        }
+        .dashboard-tabs .nav-link.active {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-color: var(--primary-color);
+            border-bottom-color: var(--primary-color); /* Active tab has a bottom border matching its color */
+        }
+        .dashboard-tabs .nav-link:hover:not(.active) {
+            background-color: rgba(42, 157, 143, 0.1); /* Light primary color background on hover */
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        .dashboard-tab-content {
+            border: 1px solid var(--primary-color);
+            border-top: none; /* No top border as it connects to active tab */
+            padding: 20px;
+            border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,.05);
         }
 
         /* Market View Search Bar Specific Styles */
@@ -529,10 +552,6 @@
             text-align: center;
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,.1);
-        }
-        .market-view-search-bar-section h1 {
-            color: var(--light-text);
-            margin-bottom: 20px;
         }
         .market-view-search-input-group {
             max-width: 700px;
@@ -728,14 +747,20 @@
 
             <div class="row pt-4">
                 <div class="col-12">
-                    <div class="dashboard-toggle-buttons">
-                        <button class="btn btn-primary" onclick="showDashboardView('technology')">Technology Portfolio View</button>
-                        <button class="btn btn-outline-primary" onclick="showDashboardView('market')">Market View</button>
+                    <ul class="nav nav-tabs justify-content-center dashboard-tabs mb-3" id="dashboardTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="technology-tab" data-bs-toggle="tab" data-bs-target="#technology-portfolio-view" type="button" role="tab" aria-controls="technology-portfolio-view" aria-selected="true" onclick="showDashboardView('technology')">Technology Portfolio View</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="market-tab" data-bs-toggle="tab" data-bs-target="#market-view" type="button" role="tab" aria-controls="market-view" aria-selected="false" onclick="showDashboardView('market')">Market View</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content dashboard-tab-content" id="dashboardTabContent">
+                        <div class="tab-pane fade show active" id="technology-portfolio-view" role="tabpanel" aria-labelledby="technology-tab"></div>
+                        <div class="tab-pane fade" id="market-view" role="tabpanel" aria-labelledby="market-tab"></div>
                     </div>
                 </div>
             </div>
-            <div id="technology-portfolio-view" class="dashboard-view"></div>
-            <div id="market-view" class="dashboard-view" style="display:none;"></div>
         </div>
 
         <div id="patents-page" class="page-content" style="display:none;"></div>
@@ -749,12 +774,14 @@
                     <div class="filter-sidebar">
                         <h5 class="filter-title">Strategic Insights Categories</h5>
                         <div class="list-group" id="strategic-nav">
-                            <a href="#" class="list-group-item list-group-item-action active" onclick="renderStrategicHeatmap('industry', this)">1. Industry Sector Strength</a>
-                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('company', this)">2. Company Alignment Strength</a>
-                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('productwise', this)">3. Product Application Strength</a>
-                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('social', this)">4. Social Impact & Govt Application Strength</a>
-                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('sdg', this)">5. UN Sustainable Development Goal (SDG) Alignment</a>
-                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('lm', this)">6. Learning Management</a>
+                            <a href="#" class="list-group-item list-group-item-action active" onclick="renderStrategicHeatmap('industry', this)">Industry Sector Strength</a>
+                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('company', this)">Company Alignment Strength</a>
+                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('productwise', this)">Product Application Strength</a>
+                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('social', this)">Social Impact & Govt Application Strength</a>
+                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('sdg', this)">UN Sustainable Development Goal (SDG) Alignment</a>
+                           <!--
+                            <a href="#" class="list-group-item list-group-item-action" onclick="renderStrategicHeatmap('lm', this)">Learning Management</a>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -1026,7 +1053,7 @@
         let currentPatents = [];
         let currentPublications = [];
         let currentChartInstances = {}; // To manage chart instances (no longer needed for charts, but kept for consistency if charts are re-introduced)
-        let currentCategoryFilter = ''; // Used for Category Insights page
+        let currentCategoryFilter = []; // Changed to array for multi-selection
         let currentFilters = { // New filter for categories page
             patents: {},
             publications: {},
@@ -1045,7 +1072,7 @@
         const heatmapConfigs = [
             {
                 type: 'industry', // Used for navigation and detail page lookup
-                title: '1. Industry Sector Strength',
+                title: 'Industry Sector Strength',
                 tableId: 'industry-heatmap',
                 rowHeaders: ['Robotics & Industrial Automation', 'Automotive & Future Mobility', 'Healthcare & MedTech', 'Media & Entertainment', 'FinTech & BFSI', 'E-commerce & Retail', 'Software Dev & MLOps', 'Cybersecurity', 'EdTech', 'Smart Cities & Infrastructure', 'Drugs & Pharmaceuticals'],
                 columnHeaders: ['3D Vision & NeRFs', 'Robotic Planning & Control', 'Autonomous Navigation & SLAM', 'Document Intelligence', 'Generative Models (NLG/TTS/Vision)', 'Fairness, Trust & Privacy', 'Blockchain & Game Theory', 'HPC & Compilers'],
@@ -1060,7 +1087,7 @@
             },
             {
                 type: 'company',
-                title: '2. Company Alignment Strength',
+                title: 'Company Alignment Strength',
                 tableId: 'company-heatmap',
                 rowHeaders: ['Google', 'Microsoft', 'Amazon', 'Nvidia', 'Apple', 'Salesforce', 'SAP', 'Adobe', 'Flipkart', 'Zomato & Swiggy', 'Qualcomm', 'Oracle', 'Intel', 'Intuit', 'MakeMyTrip', 'Zoho', 'Freshworks', 'Postman', 'BrowserStack', 'Atlassian'],
                 columnHeaders: ['Autonomous Systems', 'Cloud AI & MLOps', '3D Vision & AR/VR', 'Document Intelligence', 'Generative AI', 'Speech & NLP', 'Fairness & Trust', 'Robotics', 'Cybersecurity & Blockchain'],
@@ -1069,7 +1096,7 @@
             },
             {
                 type: 'productwise',
-                title: '3. Product Application Strength',
+                title: 'Product Application Strength',
                 tableId: 'product-heatmap',
                 rowHeaders: ['Smartphone', 'Laptop', 'Smart TV', 'Wireless Earbuds', 'Refrigerator', 'Air Conditioner', 'Washing Machine', 'Robotic Vacuum Cleaner', 'Sedan Car (e.g., Honda City / Hyundai Verna)', 'Electric Scooter (e.g., Ather / Ola S1)', 'Running Shoe', 'T-Shirt', 'Backpack', 'Packaged Milk', 'Instant Noodles', 'Bottled Water', 'Toothbrush (Electric / Smart Variant)', 'Air Purifier', 'Toy Drone', 'Board Game (e.g., Ludo, Chess)'],
                 columnHeaders: ['Generative AI', '3D Vision & NeRFs', 'Robotics & SLAM', 'NLP & Summarization', 'Fairness & Trust', 'Document Intelligence', 'HPC & Compilers', 'Adversarial ML', 'Game Theory & Blockchain'],
@@ -1097,7 +1124,7 @@
             },
             {
                 type: 'social',
-                title: '4. Social Impact & Gov\'t Application Strength',
+                title: 'Social Impact & Gov\'t Application Strength',
                 tableId: 'social-heatmap',
                 rowHeaders: ['Public Health & Safety', 'Accessibility & Inclusion', 'Governance & Infrastructure', 'Public Policy & Education'],
                 columnHeaders: ['Health Diagnostics', 'Assistive Tech (Speech/Sign)', 'NLP for Social Good', 'Robotics & Drones', 'Fairness & Social Choice', 'Cybersecurity & Blockchain', 'Infrastructure & Smart Cities'],
@@ -1106,22 +1133,24 @@
             },
             {
                 type: 'sdg',
-                title: '5. UN Sustainable Development Goal (SDG) Alignment',
+                title: 'UN Sustainable Development Goal (SDG) Alignment',
                 tableId: 'sdg-heatmap',
                 rowHeaders: ['SDG 3: Good Health', 'SDG 4: Quality Education', 'SDG 7: Clean Energy', 'SDG 9: Infrastructure', 'SDG 10: Reduced Inequalities', 'SDG 11: Sustainable Cities', 'SDG 12: Sustainability', 'SDG 16: Peace & Justice'],
                 columnHeaders: ['Health Tech', 'Assistive Tech', 'Education Tech', 'Sustainable & Green AI', 'Fairness & Inclusion', 'Infrastructure & Smart Cities', 'Blockchain & Governance'],
                 data: { 'SDG 3: Good Health': [6, 2, 0, 0, 1, 0, 0], 'SDG 4: Quality Education': [0, 1, 4, 0, 1, 0, 0], 'SDG 7: Clean Energy': [0, 0, 0, 1, 0, 3, 0], 'SDG 9: Infrastructure': [0, 0, 0, 1, 0, 6, 1], 'SDG 10: Reduced Inequalities': [1, 5, 1, 0, 5, 0, 1], 'SDG 11: Sustainable Cities': [1, 0, 0, 1, 2, 7, 1], 'SDG 12: Sustainability': [0, 0, 0, 4, 1, 0, 0], 'SDG 16: Peace & Justice': [0, 0, 0, 0, 3, 1, 5] },
                 paperMapping: { 'SDG 11: Sustainable Cities': { 'Infrastructure & Smart Cities': ["City-Scale Pollution Aware Traffic", "Open-World Object Detection", "Understanding Dynamic Scenes", "Combinatorial Civic Crowdfunding", "Exploratory Study of oneM2M-based", "Automated Infrastructure Auditing", "Topological Mapping for Manhattan-like"] } }
             },
-            {
-                type: 'lm',
-                title: '6. Learning Management',
-                tableId: 'lm-heatmap',
-                rowHeaders: [], // Will be populated dynamically from Learning_Management.json micro_sectors
-                columnHeaders: ['AI/ML for Education', 'Language Learning', 'Robotics & Control', 'Knowledge Extraction', 'NLP & Summarization', 'Skill Assessment', 'Personalized Learning', 'Document Intelligence'],
-                data: {}, // Will be populated dynamically
-                paperMapping: {} // Will be populated dynamically
-            }
+            
+            //{
+            //    type: 'lm',
+            //    title: 'Learning Management',
+            //    tableId: 'lm-heatmap',
+            //    rowHeaders: [], // Will be populated dynamically from Learning_Management.json micro_sectors
+            //    columnHeaders: ['AI/ML for Education', 'Language Learning', 'Robotics & Control', 'Knowledge Extraction', 'NLP & Summarization', 'Skill Assessment', 'Personalized Learning', 'Document Intelligence'],
+           //     data: {}, // Will be populated dynamically
+            //    paperMapping: {} // Will be populated dynamically
+           // }
+            
         ];
 
 
@@ -2011,13 +2040,17 @@
 
             // Re-render content when page is shown
             if (pageId === 'dashboard') {
+                // Activate the correct tab
+                const tabTrigger = new bootstrap.Tab(document.getElementById(`${filterParams.view || 'technology'}-tab`));
+                tabTrigger.show();
                 showDashboardView(filterParams.view || 'technology'); // Default to Technology Portfolio View, or specified view
             } else if (pageId === 'patents') {
                 renderPatentsPage();
             } else if (pageId === 'publications') {
                 renderPublicationsPage();
             } else if (pageId === 'categories-insights') {
-                renderCategoriesInsights(filterParams.category || '');
+                // Pass the array of terms directly
+                renderCategoriesInsights(filterParams.categories || []);
             } else if (pageId === 'strategic-insights') {
                 // When strategic-insights is clicked, ensure the first heatmap is rendered and active
                 const firstStrategicLink = document.querySelector('#strategic-nav a');
@@ -2036,41 +2069,14 @@
         }
 
         function showDashboardView(viewType) {
-            document.querySelectorAll('.dashboard-view').forEach(view => {
-                view.style.display = 'none';
-            });
-
-            let targetViewId;
-            if (viewType === 'technology') {
-                targetViewId = 'technology-portfolio-view';
-            } else if (viewType === 'market') {
-                targetViewId = 'market-view';
-            } else {
-                console.error(`Invalid viewType: ${viewType}`);
-                return;
-            }
-
-            const targetView = document.getElementById(targetViewId);
-            if (targetView) {
-                targetView.style.display = 'block';
-            } else {
-                console.error(`Dashboard view element with ID '${targetViewId}' not found.`);
-                return;
-            }
-
-            document.querySelectorAll('.dashboard-toggle-buttons .btn').forEach(btn => {
-                btn.classList.remove('btn-primary', 'btn-outline-primary');
-                if (btn.textContent.toLowerCase().includes(viewType)) {
-                    btn.classList.add('btn-primary');
-                } else {
-                    btn.classList.add('btn-outline-primary');
-                }
-            });
-
+            // No need to manually hide/show tab panes, Bootstrap handles it.
+            // Just ensure the content is rendered for the active tab.
             if (viewType === 'technology') {
                 renderTechnologyPortfolioView();
             } else if (viewType === 'market') {
                 renderMarketView();
+            } else {
+                console.error(`Invalid viewType: ${viewType}`);
             }
         }
 
@@ -2089,7 +2095,10 @@
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">Technology Cloud</h5>
-                                <input type="text" class="form-control mb-2" placeholder="Search technologies (e.g., AI, ML, NLP)" id="techCloudSearchInput" onkeyup="filterCloud('technologyCloud', this.value)">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" placeholder="Search technologies (e.g., AI, ML, NLP)" id="techCloudSearchInput" onkeyup="filterCloud('technologyCloud', this.value)">
+                                    <button class="btn btn-primary" onclick="applyCloudFilter('technologyCloud')">Filter</button>
+                                </div>
                                 <div id="technologyCloud" class="cloud-container"></div>
                             </div>
                         </div>
@@ -2178,7 +2187,6 @@
                             <li><a class="dropdown-item market-view-search-classification-item" href="#" data-classification="product">Product</a></li>
                             <li><a class="dropdown-item market-view-search-classification-item" href="#" data-classification="sdg">SDG</a></li>
                             <li><a class="dropdown-item market-view-search-classification-item" href="#" data-classification="social">Social Impact</a></li>
-                            <li><a class="dropdown-item market-view-search-classification-item" href="#" data-classification="lm">Learning Management</a></li>
                         </ul>
                         <div id="marketViewSearchResultsSuggestions" class="market-view-search-suggestions d-none"></div>
                     </div>
@@ -2195,7 +2203,10 @@
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">Use Case Cloud</h5>
-                                <input type="text" class="form-control mb-2" placeholder="Explore use cases (e.g., healthcare, finance)" id="useCaseCloudSearchInput" onkeyup="filterCloud('useCaseWordCloud', this.value)">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" placeholder="Explore use cases (e.g., healthcare, finance)" id="useCaseCloudSearchInput" onkeyup="filterCloud('useCaseWordCloud', this.value)">
+                                    <button class="btn btn-primary" onclick="applyCloudFilter('useCaseWordCloud')">Filter</button>
+                                </div>
                                 <div id="useCaseWordCloud" class="cloud-container"></div>
                             </div>
                         </div>
@@ -2221,7 +2232,7 @@
         // Removed toggleCloud function as buttons are removed and clouds are fixed size.
         // function toggleCloud(cloudId) { ... }
 
-        // Modified filterCloud to handle multiple keywords
+        // Modified filterCloud to handle multiple keywords and toggle 'selected' class
         function filterCloud(cloudId, searchTerm) {
             const cloudContainer = document.getElementById(cloudId);
             const tags = cloudContainer.querySelectorAll('.tag-cloud-item');
@@ -2246,6 +2257,33 @@
                     tag.style.display = 'none'; // Hide if no match
                 }
             });
+        }
+
+        // New function to handle clicking on a cloud item (toggle selection and update search bar)
+        function toggleCloudItemSelection(element, inputId) {
+            element.classList.toggle('selected');
+            const inputField = document.getElementById(inputId);
+            let currentTerms = inputField.value.split(',').map(t => t.trim()).filter(t => t !== '');
+
+            const term = element.textContent;
+            if (element.classList.contains('selected')) {
+                if (!currentTerms.includes(term)) {
+                    currentTerms.push(term);
+                }
+            } else {
+                currentTerms = currentTerms.filter(t => t !== term);
+            }
+            inputField.value = currentTerms.join(', ');
+        }
+
+        // New function to apply filters based on selected cloud items
+        function applyCloudFilter(cloudId) {
+            const inputId = cloudId === 'technologyCloud' ? 'techCloudSearchInput' : 'useCaseCloudSearchInput';
+            const inputField = document.getElementById(inputId);
+            const selectedTerms = inputField.value.split(',').map(t => t.trim()).filter(t => t !== '');
+
+            // Navigate to categories-insights page with selected terms
+            showPage('categories-insights', { categories: selectedTerms });
         }
 
         function populateTechnologyCloud() {
@@ -2273,8 +2311,8 @@
                 span.textContent = tech;
                 span.style.borderColor = getBadgeColorClass(tech);
                 span.style.color = getBadgeColorClass(tech);
-                // Corrected onclick to call renderCategoriesInsights directly
-                span.onclick = () => showPage('categories-insights', { category: tech });
+                // Modified onclick to toggle selection and update search bar
+                span.onclick = () => toggleCloudItemSelection(span, 'techCloudSearchInput');
                 technologyCloudDiv.appendChild(span);
             });
         }
@@ -2307,8 +2345,8 @@
                 span.textContent = uc;
                 span.style.borderColor = getBadgeColorClass(uc);
                 span.style.color = getBadgeColorClass(uc);
-                // Corrected onclick to call renderCategoriesInsights directly
-                span.onclick = () => showPage('categories-insights', { category: uc });
+                // Modified onclick to toggle selection and update search bar
+                span.onclick = () => toggleCloudItemSelection(span, 'useCaseCloudSearchInput');
                 useCaseWordCloudDiv.appendChild(span);
             });
         }
@@ -2338,11 +2376,39 @@
                 if (pub['Market Activity Category']) marketActivity[pub['Market Activity Category']] = (marketActivity[pub['Market Activity Category']] || 0) + 1;
             });
 
+            // Function to process and limit categories to top 2 + "Others"
+            const processCategories = (data, topN = 2) => {
+                const sortedEntries = Object.entries(data).sort(([, a], [, b]) => b - a);
+                let processed = {};
+                let othersCount = 0;
+
+                if (sortedEntries.length > topN) {
+                    for (let i = 0; i < topN; i++) {
+                        processed[sortedEntries[i][0]] = sortedEntries[i][1];
+                    }
+                    for (let i = topN; i < sortedEntries.length; i++) {
+                        othersCount += sortedEntries[i][1];
+                    }
+                    if (othersCount > 0) {
+                        processed['Others'] = othersCount;
+                    }
+                } else {
+                    processed = data; // If 2 or fewer categories, use them as is
+                }
+                return processed;
+            };
+
+            const limitedTechTrends = processCategories(techTrends);
+            const limitedTechReadiness = processCategories(techReadiness);
+            const limitedMarketPotential = processCategories(marketPotential);
+            const limitedMarketActivity = processCategories(marketActivity);
+
+
             const summaryData = [
-                { title: 'Technology Trends', data: techTrends, icon: 'fas fa-chart-line' },
-                { title: 'Technology Readiness', data: techReadiness, icon: 'fas fa-flask' },
-                { title: 'Market Potential', data: marketPotential, icon: 'fas fa-dollar-sign' },
-                { title: 'Market Activity', data: marketActivity, icon: 'fas fa-chart-bar' }
+                { title: 'Technology Trends', data: limitedTechTrends, icon: 'fas fa-chart-line' },
+                { title: 'Technology Readiness', data: limitedTechReadiness, icon: 'fas fa-flask' },
+                { title: 'Market Potential', data: limitedMarketPotential, icon: 'fas fa-dollar-sign' },
+                { title: 'Market Activity', data: limitedMarketActivity, icon: 'fas fa-chart-bar' }
             ];
 
             summaryData.forEach(category => {
@@ -2358,7 +2424,7 @@
                     listItems += `<li><strong>${key}:</strong> <span>${count} <span class="percentage">(${percentage}%)</span></span></li>`;
                 }
                 technologyDashboardTiles.innerHTML += `
-                    <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="col-lg-6 col-md-6 col-sm-12"> <!-- Adjusted column classes for larger tiles -->
                         <div class="single-metric-tile">
                             <h5><i class="${category.icon}"></i>${category.title}</h5>
                             <ul>
@@ -2476,18 +2542,18 @@
                         return `Gain insights across <strong>${count} diverse industrial sectors</strong>, from robotics to FinTech, and understand technology opportunities.`;
                     },
                     detailPageType: 'industry',
-                },
-                {
-                    title: '🎓 Learning Management', // New tile for Learning Management
-                    dataKey: 'lm',
-                    countField: 'themes', // Assuming 'themes' array in LM data
-                    summaryText: (data) => {
-                        const count = data?.themes?.length || 0;
-                        const totalApplications = data?.themes?.reduce((sum, theme) => sum + (theme.applications?.length || 0), 0) || 0;
-                        return ` Discover AI-powered tutoring, robotic skill acquisition, and enterprise knowledge systems.`;
-                    },
-                    detailPageType: 'lm',
                 }
+                //{
+                //    title: '🎓 Learning Management', // New tile for Learning Management
+                //    dataKey: 'lm',
+                //    countField: 'themes', // Assuming 'themes' array in LM data
+                //    summaryText: (data) => {
+                //        const count = data?.themes?.length || 0;
+                //        const totalApplications = data?.themes?.reduce((sum, theme) => sum + (theme.applications?.length || 0), 0) || 0;
+                //        return ` Discover AI-powered tutoring, robotic skill acquisition, and enterprise knowledge systems.`;
+                //    },
+                //    detailPageType: 'lm',
+                //}
             ];
 
             tileConfigs.forEach(config => {
@@ -2509,7 +2575,7 @@
                 const onClickAction = config.detailPageType ? `showStrategicDetailPage('${config.detailPageType}', 'market')` : `alert('Details for ${config.title} not yet implemented.')`;
 
                 marketApplicationTiles.innerHTML += `
-                    <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="col-lg-4 col-md-6 mb-4"> <!-- Adjusted column classes for larger tiles -->
                         <div class="card h-100">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">${config.title}</h5>
@@ -3269,8 +3335,9 @@
         }
 
         // --- Categories & Insights Page ---
-        function renderCategoriesInsights(categoryTerm = '') {
-            currentCategoryFilter = categoryTerm; // Store the current category filter
+        // Modified to accept an array of terms
+        function renderCategoriesInsights(categoryTerms = []) {
+            currentCategoryFilter = categoryTerms; // Store the current category filter (now an array)
             const categoriesInsightsPage = document.getElementById('categories-insights-page');
             categoriesInsightsPage.innerHTML = `
                 <div class="row mb-3">
@@ -3290,7 +3357,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <h2 class="text-primary mb-4">Categories & Insights: <span id="currentCategoryTerm">${categoryTerm || 'All Categories'}</span></h2>
+                        <h2 class="text-primary mb-4">Categories & Insights: <span id="currentCategoryTerm">${categoryTerms.join(', ') || 'All Categories'}</span></h2>
                         <div class="mb-3">
                             <label for="categoryDisplayFilter" class="form-label">Display</label>
                             <select id="categoryDisplayFilter" class="form-select" onchange="applyCategoryInsightsFilters()">
@@ -3304,7 +3371,7 @@
                 </div>
             `;
             populateCategoryInsightsFilters();
-            displayCategoryInsights(categoryTerm);
+            displayCategoryInsights(categoryTerms); // Pass the array
         }
 
         function populateCategoryInsightsFilters() {
@@ -3329,7 +3396,21 @@
                     uniqueValues = ['patent', 'publication'];
                 } else {
                     // Collect unique values from both patents and publications for the respective fields
-                    const patentValues = allPatents.map(p => p[fieldName]).filter(Boolean);
+                    const patentValues = allData
+                        .filter(item => item.type === 'patent')
+                        .map(p => {
+                            let value = p;
+                            fieldName.split('.').forEach(key => {
+                                if (value && value[key] !== undefined) {
+                                    value = value[key];
+                                } else {
+                                    value = undefined;
+                                }
+                            });
+                            return value;
+                        })
+                        .filter(Boolean);
+
                     let publicationEquivalentField;
                     if (fieldName === 'technology_trends_summary') publicationEquivalentField = 'Technology Trends Classification';
                     else if (fieldName === 'technology_readiness') publicationEquivalentField = 'Technology Readiness Key Applications';
@@ -3339,966 +3420,988 @@
                     else if (fieldName === 'innovation_level_summary') publicationEquivalentField = 'Depth';
                     // Add other mappings as needed
 
-                    const publicationValues = allPublications.map(pub => pub[publicationEquivalentField]).filter(Boolean);
+                    const publicationValues = allData
+                        .filter(item => item.type === 'publication')
+                        .map(pub => pub[publicationEquivalentField])
+                        .filter(Boolean);
+
                     uniqueValues = [...new Set([...patentValues, ...publicationValues])];
                 }
                 uniqueValues.sort();
 
                 let selectHtml = `
-                    <div class="mb-3">
-                        <label for="categoryFilter-${fieldName}" class="form-label">${displayLabel}</label>
-                        <select id="categoryFilter-${fieldName}" class="form-select category-insights-filter-select" data-field="${fieldName}" onchange="applyCategoryInsightsFilters()">
-                            <option value="">All</option>
+                    <div class="mb-3 filter-dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="categoryFilterDropdown-${fieldName}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                            Filter by ${displayLabel}
+                        </button>
+                        <ul class="dropdown-menu p-3" aria-labelledby="categoryFilterDropdown-${fieldName}" style="max-height: 300px; overflow-y: auto;">
                 `;
                 uniqueValues.forEach(value => {
-                    const isSelected = currentFilters.categories[fieldName] && currentFilters.categories[fieldName].includes(value) ? 'selected' : '';
-                    selectHtml += `<option value="${value}" ${isSelected}>${value}</option>`;
+                    const isChecked = currentFilters.categories[fieldName] && currentFilters.categories[fieldName].includes(value) ? 'checked' : '';
+                    selectHtml += `
+                        <li>
+                            <div class="form-check dropdown-item">
+                                <input class="form-check-input category-insights-filter-checkbox" type="checkbox" value="${value}" id="categoryFilter_${fieldName}_${value.replace(/\s/g, '_').replace(/&/g, 'and')}" ${isChecked} data-field="${fieldName}" onchange="applyCategoryInsightsFilters()">
+                                <label class="form-check-label" for="categoryFilter_${fieldName}_${value.replace(/\s/g, '_').replace(/&/g, 'and')}">
+                                    ${value}
+                                </label>
+                            </div>
+                        </li>
+                    `;
                 });
-                selectHtml += `</select></div>`;
+                selectHtml += `</ul></div>`;
                 filterSidebarOptions.innerHTML += selectHtml;
             }
         }
 
         function applyCategoryInsightsFilters() {
-            currentFilters.categories = {}; // Clear previous selections for dropdowns
+            // Clear previous selections for checkbox filters
+            currentFilters.categories = {};
 
-            document.querySelectorAll('.category-insights-filter-select').forEach(select => {
-                const field = select.dataset.field;
-                const value = select.value;
-                if (value !== "") {
-                    currentFilters.categories[field] = [value];
+            // Collect selected values from all checkbox filters
+            document.querySelectorAll('.category-insights-filter-checkbox:checked').forEach(checkbox => {
+                const field = checkbox.dataset.field;
+                const value = checkbox.value;
+                if (!currentFilters.categories[field]) {
+                    currentFilters.categories[field] = [];
                 }
+                currentFilters.categories[field].push(value);
             });
+
             displayCategoryInsights(currentCategoryFilter);
         }
 
         function clearCategoryInsightsFilters() {
             currentFilters.categories = {}; // Clear all filters
-            document.querySelectorAll('.category-insights-filter-select').forEach(select => {
-                select.value = ''; // Reset dropdowns
+            document.querySelectorAll('.category-insights-filter-checkbox').forEach(cb => {
+                cb.checked = false; // Uncheck all checkboxes
             });
             document.getElementById('categoryDisplayFilter').value = 'all'; // Reset display filter
-            displayCategoryInsights(''); // Clear the category term as well
+            currentCategoryFilter = []; // Clear the category terms
+            document.getElementById('currentCategoryTerm').textContent = 'All Categories'; // Update display
+            displayCategoryInsights(currentCategoryFilter); // Re-render with no filters
         }
 
-
-        function displayCategoryInsights(term) {
+        // Modified displayCategoryInsights to handle an array of terms and new filters
+        function displayCategoryInsights(terms = []) {
             const contentDiv = document.getElementById('categoryInsightsContent');
             contentDiv.innerHTML = '';
+            
+            // Ensure terms is always an array
+if (!Array.isArray(terms)) {
+    terms = terms ? [terms] : [];
+}
+currentCategoryFilter = terms; // Store the current category filter (now an array)
 
-            const displayFilter = document.getElementById('categoryDisplayFilter').value;
+const displayFilter = document.getElementById('categoryDisplayFilter').value;
 
-            let filteredItems = allData.filter(item => {
-                // First, filter by the category term (Technology or Use Case)
-                let matchesCategory = false;
-                if (term === '') { // If no specific term is selected from cloud, show all
-                    matchesCategory = true;
-                } else {
-                    if (item.type === 'patent') {
-                        if (item.technologies_used && item.technologies_used.toLowerCase().includes(term.toLowerCase())) {
-                            matchesCategory = true;
-                        }
-                        if (item.use_case_mapping) { // Check if use_case_mapping exists
-                            matchesCategory = matchesCategory || item.use_case_mapping.some(uc => uc.use_case.toLowerCase().includes(term.toLowerCase()));
-                        }
-                    } else if (item.type === 'publication') {
-                        if (item['Technologies Used'] && item['Technologies Used'].toLowerCase().includes(term.toLowerCase())) {
-                            matchesCategory = true;
-                        }
-                        if (item.Use_Cases) { // Check if Use_Cases exists
-                            matchesCategory = matchesCategory || Object.values(item.Use_Cases).flat().some(uc => uc.toLowerCase().includes(term.toLowerCase()));
-                        }
-                    }
-                }
-                
-                if (!matchesCategory) return false; // If a term is provided and it doesn't match, filter out
-
-                // Second, apply the additional filters from the sidebar
-                for (const field in currentFilters.categories) {
-                    if (currentFilters.categories[field].length > 0) {
-                        let itemValue;
-                        if (item.type === 'patent') {
-                            // Handle nested property for market_opportunity.category
-                            if (field.includes('.')) {
-                                let nestedValue = item;
-                                field.split('.').forEach(key => {
-                                    if (nestedValue && nestedValue[key] !== undefined) {
-                                        nestedValue = nestedValue[key];
-                                    } else {
-                                        nestedValue = undefined;
-                                    }
-                                });
-                                itemValue = nestedValue;
-                            } else {
-                                itemValue = item[field];
-                            }
-                        } else if (item.type === 'publication') {
-                            // Map publication fields to their patent equivalents for filtering
-                            if (field === 'type') {
-                                itemValue = 'publication';
-                            } else if (field === 'technology_trends_summary') {
-                                itemValue = item['Technology Trends Classification'];
-                            } else if (field === 'technology_readiness') {
-                                itemValue = item['Technology Readiness Key Applications'];
-                            } else if (field === 'market_potential_summary') {
-                                itemValue = item['Market Potential Category'];
-                            } else if (field === 'market_activity') {
-                                itemValue = item['Market Activity Category'];
-                            } else if (field === 'depth_of_technology_summary') {
-                                itemValue = item['Depth of Technology Category'];
-                            } else if (field === 'innovation_level_summary') {
-                                itemValue = item['Depth'];
-                            } else {
-                                itemValue = item[field]; // Fallback if no specific mapping
-                            }
-                        }
-
-                        if (!currentFilters.categories[field].includes(itemValue)) {
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            });
-
-            let matchedPatents = filteredItems.filter(item => item.type === 'patent');
-            let matchedPublications = filteredItems.filter(item => item.type === 'publication');
-
-            document.getElementById('currentCategoryTerm').textContent = term || 'All Categories';
-
-            if (displayFilter === 'patents') {
-                matchedPublications = [];
-            } else if (displayFilter === 'publications') {
-                matchedPatents = [];
-            }
-
-            contentDiv.innerHTML += `
-                <h4 class="mt-4">Matched Patents (${matchedPatents.length})</h4>
-                <div class="row row-cols-1 g-4" id="categoryPatentsGrid"></div>
-                <h4 class="mt-4">Matched Publications (${matchedPublications.length})</h4>
-                <div class="row row-cols-1 g-4" id="categoryPublicationsGrid"></div>
-            `;
-
-            const categoryPatentsGrid = document.getElementById('categoryPatentsGrid');
-            matchedPatents.forEach(patent => {
-                const technologies = patent.technologies_used ? patent.technologies_used.split(',').map(t => t.trim()).slice(0, 3) : [];
-                const summarySnippet = patent.summary ? (patent.summary.length > 180 ? patent.summary.substring(0, 180) + '...' : patent.summary) : 'N/A'; // ~3 lines
-                const inventorsShort = patent.inventors ? (patent.inventors.split(',')[0] + (patent.inventors.includes(',') ? ' et al.' : '')) : 'N/A';
-
-                categoryPatentsGrid.innerHTML += `
-                    <div class="col">
-                        <div class="card h-100 list-tile-card">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${patent.title}</h5>
-                                <p class="card-text text-muted">Inventors: ${inventorsShort}</p>
-                                <div class="badge-group">
-                                    ${technologies.map((tech, index) => `<span class="badge" style="border-color: ${getBadgeColorClass(tech)}; color: ${getBadgeColorClass(tech)};">${tech}</span>`).join('')}
-                                </div>
-                                <p class="card-text flex-grow-1">${summarySnippet}</p>
-                                <div class="mt-auto">
-                                    <button class="btn btn-sm btn-outline-primary rounded-pill mt-2" onclick="showPatentDetail(${patent.id})">View Full Details</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-
-            const categoryPublicationsGrid = document.getElementById('categoryPublicationsGrid');
-            matchedPublications.forEach(publication => {
-                const technologies = publication['Technologies Used'] ? publication['Technologies Used'].split(',').map(t => t.trim()).slice(0, 3) : [];
-                const summarySnippet = publication.Summary ? (publication.Summary.length > 180 ? publication.Summary.substring(0, 180) + '...' : publication.Summary) : 'N/A'; // ~3 lines
-                const authorsShort = publication.Authors ? (publication.Authors.split(',')[0] + (publication.Authors.includes(',') ? ' et al.' : '')) : 'N/A';
-
-                categoryPublicationsGrid.innerHTML += `
-                    <div class="col">
-                        <div class="card h-100 list-tile-card">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${publication.Title || publication['Title of the Publication']}</h5>
-                                <p class="card-text text-muted">Authors: ${authorsShort}</p>
-                                <div class="mb-2">
-                                    ${technologies.map((tech, index) => `<span class="badge" style="border-color: ${getBadgeColorClass(tech)}; color: ${getBadgeColorClass(tech)};">${tech}</span>`).join('')}
-                                </div>
-                                <p class="card-text flex-grow-1">${summarySnippet}</p>
-                                <div class="mt-auto">
-                                    <button class="btn btn-sm btn-outline-primary rounded-pill mt-2" onclick="showPublicationDetail(${publication['S. No.']})">View Full Details</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
+let filteredItems = allData.filter(item => {
+    // First, filter by the category terms (Technology or Use Case)
+    let matchesCategoryTerm = false;
+    if (terms.length === 0) { // If no specific terms are selected from cloud, show all
+        matchesCategoryTerm = true;
+    } else {
+        const lowerCaseTerms = terms.map(t => t.toLowerCase());
+        if (item.type === 'patent') {
+            const patentTechnologies = item.technologies_used ? item.technologies_used.toLowerCase() : '';
+            const patentUseCases = item.use_case_mapping ? item.use_case_mapping.map(uc => uc.use_case.toLowerCase()).join(',') : '';
+            matchesCategoryTerm = lowerCaseTerms.some(term => patentTechnologies.includes(term) || patentUseCases.includes(term));
+        } else if (item.type === 'publication') {
+            const pubTechnologies = item['Technologies Used'] ? item['Technologies Used'].toLowerCase() : '';
+            const pubUseCases = item.Use_Cases ? Object.values(item.Use_Cases).flat().map(uc => uc.toLowerCase()).join(',') : '';
+            matchesCategoryTerm = lowerCaseTerms.some(term => pubTechnologies.includes(term) || pubUseCases.includes(term));
         }
+    }
+    
+    if (!matchesCategoryTerm) return false;
+
+    // Second, apply the additional filters from the sidebar
+    for (const field in currentFilters.categories) {
+        if (currentFilters.categories[field].length > 0) {
+            const selectedValues = currentFilters.categories[field];
+            let itemValue;
+
+            if (item.type === 'patent') {
+                if (field.includes('.')) {
+                    let nestedValue = item;
+                    field.split('.').forEach(key => {
+                        if (nestedValue && nestedValue[key] !== undefined) {
+                            nestedValue = nestedValue[key];
+                        } else {
+                            nestedValue = undefined;
+                        }
+                    });
+                    itemValue = nestedValue;
+                } else {
+                    itemValue = item[field];
+                }
+            } else if (item.type === 'publication') {
+                if (field === 'type') {
+                    itemValue = 'publication';
+                } else if (field === 'technology_trends_summary') {
+                    itemValue = item['Technology Trends Classification'];
+                } else if (field === 'technology_readiness') {
+                    itemValue = item['Technology Readiness Key Applications'];
+                } else if (field === 'market_potential_summary') {
+                    itemValue = item['Market Potential Category'];
+                } else if (field === 'market_activity') {
+                    itemValue = item['Market Activity Category'];
+                } else if (field === 'depth_of_technology_summary') {
+                    itemValue = item['Depth of Technology Category'];
+                } else if (field === 'innovation_level_summary') {
+                    itemValue = item['Depth'];
+                } else {
+                    itemValue = item[field];
+                }
+            }
+            
+            // Check if the item's value for the current field is included in the selected values
+            if (!selectedValues.includes(itemValue)) {
+                return false;
+            }
+        }
+    }
+    return true;
+});
+
+let matchedPatents = filteredItems.filter(item => item.type === 'patent');
+let matchedPublications = filteredItems.filter(item => item.type === 'publication');
+
+document.getElementById('currentCategoryTerm').textContent = terms.join(', ') || 'All Categories';
+
+if (displayFilter === 'patents') {
+    matchedPublications = [];
+} else if (displayFilter === 'publications') {
+    matchedPatents = [];
+}
+
+contentDiv.innerHTML += `
+    <h4 class="mt-4">Matched Patents (${matchedPatents.length})</h4>
+    <div class="row row-cols-1 g-4" id="categoryPatentsGrid"></div>
+    <h4 class="mt-4">Matched Publications (${matchedPublications.length})</h4>
+    <div class="row row-cols-1 g-4" id="categoryPublicationsGrid"></div>
+`;
+
+const categoryPatentsGrid = document.getElementById('categoryPatentsGrid');
+matchedPatents.forEach(patent => {
+    const technologies = patent.technologies_used ? patent.technologies_used.split(',').map(t => t.trim()).slice(0, 3) : [];
+    const summarySnippet = patent.summary ? (patent.summary.length > 180 ? patent.summary.substring(0, 180) + '...' : patent.summary) : 'N/A'; // ~3 lines
+    const inventorsShort = patent.inventors ? (patent.inventors.split(',')[0] + (patent.inventors.includes(',') ? ' et al.' : '')) : 'N/A';
+
+    categoryPatentsGrid.innerHTML += `
+        <div class="col">
+            <div class="card h-100 list-tile-card">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">${patent.title}</h5>
+                    <p class="card-text text-muted">Inventors: ${inventorsShort}</p>
+                    <div class="badge-group">
+                        ${technologies.map((tech, index) => `<span class="badge" style="border-color: ${getBadgeColorClass(tech)}; color: ${getBadgeColorClass(tech)};">${tech}</span>`).join('')}
+                    </div>
+                    <p class="card-text flex-grow-1">${summarySnippet}</p>
+                    <div class="mt-auto">
+                        <button class="btn btn-sm btn-outline-primary rounded-pill mt-2" onclick="showPatentDetail(${patent.id})">View Full Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+});
+
+const categoryPublicationsGrid = document.getElementById('categoryPublicationsGrid');
+matchedPublications.forEach(publication => {
+    const technologies = publication['Technologies Used'] ? publication['Technologies Used'].split(',').map(t => t.trim()).slice(0, 3) : [];
+    const summarySnippet = publication.Summary ? (publication.Summary.length > 180 ? publication.Summary.substring(0, 180) + '...' : publication.Summary) : 'N/A'; // ~3 lines
+    const authorsShort = publication.Authors ? (publication.Authors.split(',')[0] + (publication.Authors.includes(',') ? ' et al.' : '')) : 'N/A';
+
+    categoryPublicationsGrid.innerHTML += `
+        <div class="col">
+            <div class="card h-100 list-tile-card">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">${publication.Title || publication['Title of the Publication']}</h5>
+                    <p class="card-text text-muted">Authors: ${authorsShort}</p>
+                    <div class="mb-2">
+                        ${technologies.map((tech, index) => `<span class="badge" style="border-color: ${getBadgeColorClass(tech)}; color: ${getBadgeColorClass(tech)};">${tech}</span>`).join('')}
+                    </div>
+                    <p class="card-text flex-grow-1">${summarySnippet}</p>
+                    <div class="mt-auto">
+                        <button class="btn btn-sm btn-outline-primary rounded-pill mt-2" onclick="showPublicationDetail(${publication['S. No.']})">View Full Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+});
+}
+
+// --- Strategic Insights Page (Overview with Heatmaps) ---
+function renderStrategicInsightsPage() {
+    // The strategic-insights-page structure is now static in HTML.
+    // We just need to ensure the first heatmap is rendered by default.
+    const page = document.getElementById('strategic-insights-page');
+    const firstStrategicLink = page.querySelector('#strategic-nav a');
+    if (firstStrategicLink) {
+        // Pass the element itself to renderStrategicHeatmap to handle active class
+        renderStrategicHeatmap(firstStrategicLink.getAttribute('onclick').match(/'([^']+)'/)[1], firstStrategicLink);
+    }
+}
+
+async function renderStrategicHeatmap(type, element) {
+    // Handle active state for the sidebar navigation
+    if (element) {
+        const navLinks = document.querySelectorAll('#strategic-nav a');
+        navLinks.forEach(link => link.classList.remove('active'));
+        element.classList.add('active');
+    }
+
+    const strategicContentArea = document.getElementById('strategic-content-area');
+    strategicContentArea.innerHTML = '<div class="text-center mt-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+
+    const config = heatmapConfigs.find(c => c.type === type);
+
+    if (!config) {
+        strategicContentArea.innerHTML = '<div class="alert alert-danger">Heatmap configuration not found for this type.</div>';
+        return;
+    }
+
+    let summaryHtml = '';
+    switch (type) {
+        case 'productwise': summaryHtml = '<p class="lead">Explore the technological alignment and challenges for various products.</p>'; break;
+        case 'sdg': summaryHtml = '<p class="lead">View how different technologies contribute to UN Sustainable Development Goals.</p>'; break;
+        case 'social': summaryHtml = '<p class="lead">Discover the social impact and government applications of various technologies.</p>'; break;
+        case 'industry': summaryHtml = '<p class="lead">Analyze technology and product opportunities across different industry sectors.</p>'; break;
+        case 'company': summaryHtml = '<p class="lead">Examine the technology and research alignment of key companies.</p>'; break;
+        case 'lm': summaryHtml = '<p class="lead">Explore technologies and product concepts for education, training, and knowledge management.</p>'; break; // Placeholder, will be replaced by specific LM summary
+    }
+
+    // Construct and display heatmap using the found config, passing 'strategic-insights' as origin
+    const heatmapHtml = generateHeatmapTable(config, 'strategic-insights');
+
+    strategicContentArea.innerHTML = `
+        ${heatmapHtml}
+        <div class="text-center my-4">
+            ${summaryHtml}
+            <button class="btn btn-primary mt-3" onclick="showStrategicDetailPage('${type}', 'strategic-insights')">View Full Report</button>
+        </div>
+    `;
+    // Ensure scroll position is at the top of the heatmap container
+    const heatmapContainer = strategicContentArea.querySelector('.heatmap-container');
+    if (heatmapContainer) {
+        heatmapContainer.scrollTop = 0;
+    }
+}
+
+// Modified showStrategicDetailPage to accept originPage
+function showStrategicDetailPage(type, originPage = 'strategic-insights') {
+    const detailPageId = `${type}-detail-page`;
+    const detailPageElement = document.getElementById(detailPageId);
+    if (!detailPageElement) {
+        console.error(`Detail page element with ID '${detailPageId}' not found.`);
+        return;
+    }
+
+    let htmlContent = '';
+    let fullDetails = null;
+
+    switch(type) {
+        case 'productwise':
+            fullDetails = strategicDataCache.productwise;
+            if (fullDetails) htmlContent = getProductwiseInsightsHtml(fullDetails, originPage);
+            break;
+        case 'sdg':
+            fullDetails = strategicDataCache.sdg;
+            if (fullDetails) htmlContent = getSdgInsightsHtml(fullDetails, originPage);
+            break;
+        case 'social':
+            fullDetails = strategicDataCache.social;
+            if (fullDetails) htmlContent = getSocialInsightsHtml(fullDetails, originPage);
+            break;
+        case 'industry':
+            fullDetails = strategicDataCache.industry;
+            if (fullDetails) htmlContent = getIndustryInsightsHtml(fullDetails, originPage);
+            break;
+        case 'company':
+            fullDetails = strategicDataCache.company;
+            if (fullDetails) htmlContent = getCompanyInsightsHtml(fullDetails, originPage);
+            break;
+        case 'lm':
+            fullDetails = strategicDataCache.lm;
+            if (fullDetails) htmlContent = getLearningManagementInsightsHtml(fullDetails, originPage);
+            break;
+        default:
+            htmlContent = `<div class="alert alert-info" role="alert">Details not available for this type.</div>`;
+    }
+
+    if (fullDetails) {
+        currentStrategicEntryDetail = { data: fullDetails, fileNamePrefix: type.replace(/\s/g, '_') + '_FullReport' };
+    } else {
+        currentStrategicEntryDetail = null;
+    }
+
+    detailPageElement.innerHTML = htmlContent;
+    showPage(type + '-detail'); // Navigate to the full detail page
+}
+
+// Modified showStrategicEntryDetail to handle direct fullDetails object from market search
+function showStrategicEntryDetailFromMarketSearch(fullDetails, type) { // Changed cloudItemKey to fullDetails directly
+    if (!fullDetails) {
+        console.error(`Full details not found for cloud item.`);
+        return;
+    }
+
+    currentStrategicEntryDetail = { data: fullDetails, fileNamePrefix: type.replace(/\s/g, '_') + '_Details' };
+
+    document.getElementById('strategicEntryDetailModalLabel').textContent = `${type} Details`;
+    const modalBody = document.getElementById('strategicEntryDetailModalBody');
+    modalBody.innerHTML = displayObjectProperties(fullDetails); // Use the helper to display all properties
+
+    // Update the download button's onclick to use the currentStrategicEntryDetail
+    document.getElementById('downloadStrategicEntryPdfBtn').onclick = () => downloadPDF('strategic-entry-detail');
+
+    const strategicEntryModal = new bootstrap.Modal(document.getElementById('strategicEntryDetailModal'));
+    strategicEntryModal.show();
+}
+
+// New function to show details for a heatmap row/column header
+function showHeatmapHeaderDetail(type, header, headerType) {
+    const config = heatmapConfigs.find(c => c.type === type);
+    if (!config) {
+        console.error(`Heatmap config not found for type: ${type}`);
+        return;
+    }
+
+    let detailData = null;
+    let title = `${headerType === 'row' ? 'Row' : 'Column'} Header: ${header}`;
+    let description = '';
+    let relevantItems = [];
+
+    // Find the relevant data from strategicDataCache
+    switch (type) {
+        case 'industry':
+            if (headerType === 'row') { // Industry Sector
+                detailData = strategicDataCache.industry?.industry_sectors?.find(s => s.sector_name === header);
+                description = detailData?.description || 'No description available.';
+                relevantItems = detailData?.micro_sectors?.map(m => m.name) || [];
+            } else { // Technology (Column)
+                // For column headers (technologies), we don't have a direct detail object.
+                // We can list all patents/publications that use this technology.
+                description = `Technologies related to ${header}.`;
+                relevantItems = allData.filter(item => {
+                    const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
+                    return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
+                }).map(item => item.title || item.Title || item['Title of the Publication']);
+            }
+            break;
+        case 'company':
+            if (headerType === 'row') { // Company Name
+                detailData = strategicDataCache.company?.companies?.find(c => c.name === header);
+                description = detailData?.strategy || 'No strategy available.';
+                relevantItems = detailData?.strategic_areas?.map(a => a.Area) || [];
+            } else { // Technology (Column) - same as industry
+                description = `Technologies related to ${header}.`;
+                relevantItems = allData.filter(item => {
+                    const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
+                    return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
+                }).map(item => item.title || item.Title || item['Title of the Publication']);
+            }
+            break;
+        case 'productwise':
+            if (headerType === 'row') { // Product Name
+                // Products are nested under categories in productwise.json
+                for (const category in strategicDataCache.productwise) {
+                    detailData = strategicDataCache.productwise[category]?.find(p => p.product_name === header);
+                    if (detailData) break;
+                }
+                description = detailData?.description || 'No description available.';
+                relevantItems = detailData?.strategic_areas?.map(a => a.name) || [];
+            } else { // Technology (Column) - same as industry
+                description = `Technologies related to ${header}.`;
+                relevantItems = allData.filter(item => {
+                    const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
+                    return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
+                }).map(item => item.title || item.Title || item['Title of the Publication']);
+            }
+            break;
+        case 'social':
+            if (headerType === 'row') { // Social Impact Theme
+                detailData = strategicDataCache.social?.application_themes?.find(t => t.theme_name === header);
+                description = detailData?.theme_description || 'No description available.';
+                relevantItems = detailData?.applications?.map(a => a.title) || [];
+            } else { // Technology (Column) - same as industry
+                description = `Technologies related to ${header}.`;
+                relevantItems = allData.filter(item => {
+                    const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
+                    return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
+                }).map(item => item.title || item.Title || item['Title of the Publication']);
+            }
+            break;
+        case 'sdg':
+            if (headerType === 'row') { // SDG Goal
+                detailData = strategicDataCache.sdg?.sustainable_development_goals?.find(s => s.title === header);
+                description = detailData?.description || 'No description available.';
+                relevantItems = detailData?.applications?.map(a => a.application_name) || [];
+            } else { // Technology (Column) - same as industry
+                description = `Technologies related to ${header}.`;
+                relevantItems = allData.filter(item => {
+                    const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
+                    return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
+                }).map(item => item.title || item.Title || item['Title of the Publication']);
+            }
+            break;
+        case 'lm': // Learning Management
+            if (headerType === 'row') { // Micro-sector Title
+                detailData = strategicDataCache.lm?.micro_sectors?.find(ms => ms.title === header);
+                description = detailData?.micro_sector_overview || 'No overview available.';
+                relevantItems = [detailData?.product_concept?.name].filter(Boolean) || [];
+            } else { // Technology (Column) - same as other tech columns
+                description = `Technologies related to ${header}.`;
+                relevantItems = allData.filter(item => {
+                    const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
+                    return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
+                }).map(item => item.title || item.Title || item['Title of the Publication']);
+            }
+            break;
+    }
+
+    let modalBodyHtml = `
+        <h5>${title}</h5>
+        <p>${description}</p>
+    `;
+
+    if (relevantItems.length > 0) {
+        modalBodyHtml += `<h6>Relevant ${headerType === 'row' ? 'Sub-categories/Applications' : 'Patents/Publications'}:</h6><ul>`;
+        relevantItems.forEach(item => {
+            modalBodyHtml += `<li>${item}</li>`;
+        });
+        modalBodyHtml += `</ul>`;
+    } else if (!detailData) {
+         modalBodyHtml += `<p class="text-muted">No specific detailed data found for this header. Showing general information.</p>`;
+    }
+
+    // If a specific detailData object was found, display its properties
+    if (detailData && typeof detailData === 'object') {
+        modalBodyHtml += `<h6>Full Details:</h6>`;
+        modalBodyHtml += displayObjectProperties(detailData);
+    }
+
+    document.getElementById('heatmapHeaderCellDetailModalLabel').textContent = `${config.title} - ${header}`;
+    document.getElementById('heatmapHeaderCellDetailModalBody').innerHTML = modalBodyHtml;
+
+    currentHeatmapHeaderCellDetail = { data: detailData || { type: 'header', headerType: headerType, header: header, relevantItems: relevantItems }, fileNamePrefix: `${type}_${headerType}_${header.replace(/\s/g, '_')}` };
+    document.getElementById('downloadHeatmapHeaderCellPdfBtn').onclick = () => downloadPDF('heatmap-header-cell-detail');
+
+    const modal = new bootstrap.Modal(document.getElementById('heatmapHeaderCellDetailModal'));
+    modal.show();
+}
+
+// New function to show details for a specific heatmap cell (intersection)
+// This function is no longer called from heatmap cells directly, but can be used if needed.
+function showHeatmapCellDetail(type, rowHeader, colHeader, value) {
+    const config = heatmapConfigs.find(c => c.type === type);
+    if (!config) {
+        console.error(`Heatmap config not found for type: ${type}`);
+        return;
+    }
+
+    const papers = config.paperMapping?.[rowHeader]?.[colHeader] || [];
+    currentDrilldownPapers = papers; // Store for CSV download
+
+    let modalBodyHtml = `
+        <h5>Intersection: ${rowHeader} x ${colHeader}</h5>
+        <p>Value: ${value}</p>
+        <h6>Relevant Research Papers:</h6>
+    `;
+
+    if (papers.length > 0) {
+        modalBodyHtml += `<ul class="list-disc list-inside space-y-1">`;
+        papers.forEach(paper => {
+            modalBodyHtml += `<li>${paper}</li>`;
+        });
+        modalBodyHtml += `</ul>`;
+    } else {
+        modalBodyHtml += `<p>No relevant papers found for this intersection.</p>`;
+    }
+
+    document.getElementById('heatmapHeaderCellDetailModalLabel').textContent = `${config.title} - ${rowHeader} x ${colHeader}`;
+    document.getElementById('heatmapHeaderCellDetailModalBody').innerHTML = modalBodyHtml;
+
+    currentHeatmapHeaderCellDetail = { data: { type: 'cell', row: rowHeader, col: colHeader, value: value, papers: papers }, fileNamePrefix: `${type}_${rowHeader.replace(/\s/g, '_')}_${colHeader.replace(/\s/g, '_')}` };
+    document.getElementById('downloadHeatmapHeaderCellPdfBtn').onclick = () => downloadPDF('heatmap-header-cell-detail');
+
+
+    const modal = new bootstrap.Modal(document.getElementById('heatmapHeaderCellDetailModal'));
+    modal.show();
+}
+
+// --- Heatmap Drilldown and PDF/CSV Export Functions ---
+// showHeatmapDrilldown is now replaced by showHeatmapCellDetail for heatmap cell clicks.
+// Keeping it here for reference if needed elsewhere, but it's not directly called from heatmaps anymore.
+/*
+function showHeatmapDrilldown(type, rowHeader, colHeader) {
+    const config = heatmapConfigs.find(c => c.type === type);
+    if (!config || !config.paperMapping || !config.paperMapping[rowHeader] || !config.paperMapping[rowHeader][colHeader]) {
+        console.warn(`No papers found for ${type}: ${rowHeader} - ${colHeader}`);
+        document.getElementById('heatmapDrilldownPaperList').innerHTML = '<li>No relevant papers found.</li>';
+        document.getElementById('heatmapDetailCriteria').textContent = `${rowHeader} x ${colHeader}`;
+        document.getElementById('heatmapDetailTitleSpan').textContent = config ? config.title : 'N/A';
+        currentDrilldownPapers = []; // Clear for download
+        const heatmapModal = new bootstrap.Modal(document.getElementById('heatmapDetailModal'));
+        heatmapModal.show();
+        return;
+    }
+
+    const papers = config.paperMapping[rowHeader][colHeader];
+    currentDrilldownPapers = papers; // Store for CSV download
+
+    const paperListHtml = papers.map(paper => `<li>${paper}</li>`).join('');
+    document.getElementById('heatmapDrilldownPaperList').innerHTML = paperListHtml;
+    document.getElementById('heatmapDetailCriteria').textContent = `${rowHeader} x ${colHeader}`;
+    document.getElementById('heatmapDetailTitleSpan').textContent = config.title;
+
+    const heatmapModal = new bootstrap.Modal(document.getElementById('heatmapDetailModal'));
+    heatmapModal.show();
+}
+*/
+
+function downloadHeatmapDrilldownAsCSV() {
+    if (currentDrilldownPapers.length === 0) {
+        alert('No papers to download.');
+        return;
+    }
+
+    let csvContent = "data:text/csv;charset=utf-8,Paper Title\n";
+    currentDrilldownPapers.forEach(paper => {
+        csvContent += `"${paper.replace(/"/g, '""')}"\n`; // Handle commas and quotes
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "heatmap_drilldown_papers.csv");
+    document.body.appendChild(link); // Required for Firefox
+    link.click();
+    document.body.removeChild(link);
+}
+
+function downloadPDF(type) {
+    let element;
+    let filename = 'document.pdf';
+    let dataToPrint = {};
+
+    if (type === 'patent') {
+        element = document.getElementById('patentDetailModal').querySelector('.modal-body');
+        filename = document.getElementById('patentDetailTitle').textContent.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_PatentDetails.pdf';
+        const patentId = allPatents.find(p => p.title === document.getElementById('patentDetailTitle').textContent)?.id;
+        dataToPrint = allPatents.find(p => p.id === patentId);
+    } else if (type === 'publication') {
+        element = document.getElementById('publicationDetailModal').querySelector('.modal-body');
+        filename = document.getElementById('publicationDetailTitle').textContent.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_PublicationDetails.pdf';
+        const pubTitle = document.getElementById('publicationDetailTitle').textContent;
+        dataToPrint = allPublications.find(pub => pub.Title === pubTitle || pub['Title of the Publication'] === pubTitle);
+    } else if (type === 'strategic-entry-detail') {
+        if (!currentStrategicEntryDetail) {
+            console.error("No strategic entry detail available for PDF download.");
+            return;
+        }
+        element = document.getElementById('strategicEntryDetailModalBody');
+        filename = `${currentStrategicEntryDetail.fileNamePrefix || 'Strategic_Entry'}_Details.pdf`;
+        dataToPrint = currentStrategicEntryDetail.data;
+    } else if (type === 'heatmap-header-cell-detail') {
+         if (!currentHeatmapHeaderCellDetail) {
+            console.error("No heatmap header/cell detail available for PDF download.");
+            return;
+        }
+        element = document.getElementById('heatmapHeaderCellDetailModalBody'); // Corrected ID
+        filename = `${currentHeatmapHeaderCellDetail.fileNamePrefix || 'Heatmap_Detail'}_Details.pdf`;
+        dataToPrint = currentHeatmapHeaderCellDetail.data;
+    }
+    else { // For full strategic reports (productwise, sdg, social, industry, company, lm)
+        // We need to re-generate the content for the PDF to ensure it's complete and styled correctly
+        // as the page might not be visible or fully rendered when the PDF is requested.
+        dataToPrint = strategicDataCache[type];
+        if (!dataToPrint) {
+            console.error(`Strategic data for type '${type}' not found for PDF export.`);
+            return;
+        }
+        filename = `${type.replace(/\s/g, '_')}_FullReport.pdf`;
+    }
+
+    // Create a temporary div to render the content for PDF generation
+    const tempDiv = document.createElement('div');
+    tempDiv.style.padding = '20px';
+    tempDiv.style.fontFamily = 'Poppins, sans-serif';
+    tempDiv.style.fontSize = '12px';
+    tempDiv.style.color = '#343a40';
+    tempDiv.style.backgroundColor = 'white'; // Ensure background for PDF
+
+    // Populate tempDiv based on type
+    if (type === 'patent' || type === 'publication' || type === 'strategic-entry-detail' || type === 'heatmap-header-cell-detail') {
+        tempDiv.innerHTML = element.innerHTML;
+    } else { 
+        // Regenerate content for full strategic reports
+        switch(type) {
+            case 'productwise':
+                tempDiv.innerHTML = getProductwiseInsightsHtml(dataToPrint, 'pdf-export');
+                break;
+            case 'sdg':
+                tempDiv.innerHTML = getSdgInsightsHtml(dataToPrint, 'pdf-export');
+                break;
+            case 'social':
+                tempDiv.innerHTML = getSocialInsightsHtml(dataToPrint, 'pdf-export');
+                break;
+            case 'industry':
+                tempDiv.innerHTML = getIndustryInsightsHtml(dataToPrint, 'pdf-export');
+                break;
+            case 'company':
+                tempDiv.innerHTML = getCompanyInsightsHtml(dataToPrint, 'pdf-export');
+                break;
+            case 'lm':
+                tempDiv.innerHTML = getLearningManagementInsightsHtml(dataToPrint, 'pdf-export');
+                break;
+            default:
+                tempDiv.innerHTML = `<p>Error: Content for ${type} not found for PDF export.</p>`;
+        }
+    }
+
+    // Append to body temporarily to ensure styles are applied
+    document.body.appendChild(tempDiv);
+
+    html2pdf(tempDiv, {
+        margin: 10,
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }).then(() => {
+        // Clean up the temporary div after PDF generation
+        document.body.removeChild(tempDiv);
+    }).catch(error => {
+        console.error("Error generating PDF:", error);
+        // Clean up the temporary div even if there's an error
+        document.body.removeChild(tempDiv);
+        alert("Failed to generate PDF. Please try again.");
+    });
+}
+
+// --- Global Search Functionality ---
+function handleGlobalSearch(event) {
+    event.preventDefault();
+    const searchTerm = document.getElementById('globalSearchInput').value.toLowerCase();
+    if (!searchTerm) {
+        alert('Please enter a search term.');
+        return;
+    }
+
+    const searchResults = allData.filter(item => {
+        const title = item.type === 'patent' ? item.title : (item.Title || item['Title of the Publication']);
+        const summary = item.type === 'patent' ? item.summary : item.Summary;
+        const authorsOrInventors = item.type === 'patent' ? item.inventors : item.Authors;
+        const technologies = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
+
+        return (title && title.toLowerCase().includes(searchTerm)) ||
+               (summary && summary.toLowerCase().includes(searchTerm)) ||
+               (authorsOrInventors && authorsOrInventors.toLowerCase().includes(searchTerm)) ||
+               (technologies && technologies.toLowerCase().includes(searchTerm));
+    });
+
+    displayGlobalSearchResults(searchResults, searchTerm);
+    const searchModal = new bootstrap.Modal(document.getElementById('globalSearchResultsModal'));
+    searchModal.show();
+}
+
+function displayGlobalSearchResults(results, searchTerm) {
+    const resultsContent = document.getElementById('globalSearchResultsContent');
+    resultsContent.innerHTML = ''; // Clear previous results
+
+    if (results.length === 0) {
+        resultsContent.innerHTML = `<div class="col-12"><p class="text-center">No results found for "${searchTerm}".</p></div>`;
+        return;
+    }
+
+    results.forEach(item => {
+        const title = item.type === 'patent' ? item.title : (item.Title || item['Title of the Publication']);
+        const authorsOrInventors = item.type === 'patent' ? item.inventors : item.Authors;
+        const summarySnippet = item.type === 'patent' ? (item.summary ? (item.summary.length > 180 ? item.summary.substring(0, 180) + '...' : item.summary) : 'N/A') : (item.Summary ? (item.Summary.length > 180 ? item.Summary.substring(0, 180) + '...' : item.Summary) : 'N/A');
         
-        // --- Strategic Insights Page (Overview with Heatmaps) ---
-        function renderStrategicInsightsPage() {
-            // The strategic-insights-page structure is now static in HTML.
-            // We just need to ensure the first heatmap is rendered by default.
-            const page = document.getElementById('strategic-insights-page');
-            const firstStrategicLink = page.querySelector('#strategic-nav a');
-            if (firstStrategicLink) {
-                // Pass the element itself to renderStrategicHeatmap to handle active class
-                renderStrategicHeatmap(firstStrategicLink.getAttribute('onclick').match(/'([^']+)'/)[1], firstStrategicLink);
-            }
+        let techTrend, marketPotential, marketActivity, trl, useCaseText;
+
+        if (item.type === 'patent') {
+            techTrend = item.technology_trends_summary || 'N/A';
+            marketPotential = item.market_potential_summary || 'N/A';
+            marketActivity = item.market_activity || 'N/A';
+            trl = item.technology_readiness || 'N/A';
+            useCaseText = item.use_case_mapping && item.use_case_mapping.length > 0 ? item.use_case_mapping[0].use_case.split(' ').slice(0, 2).join(' ') : 'N/A';
+        } else { // publication
+            techTrend = item['Technology Trends Classification'] || 'N/A';
+            marketPotential = item['Market Potential Category'] || 'N/A';
+            marketActivity = item['Market Activity Category'] || 'N/A';
+            trl = item['Technology Readiness Key Applications'] || 'N/A';
+            useCaseText = extractUseCase(item.Use_Cases);
         }
 
-        async function renderStrategicHeatmap(type, element) {
-            // Handle active state for the sidebar navigation
-            if (element) {
-                const navLinks = document.querySelectorAll('#strategic-nav a');
-                navLinks.forEach(link => link.classList.remove('active'));
-                element.classList.add('active');
-            }
+        const detailFunction = item.type === 'patent' ? `showPatentDetail(${item.id})` : `showPublicationDetail(${item['S. No.']})`;
 
-            const strategicContentArea = document.getElementById('strategic-content-area');
-            strategicContentArea.innerHTML = '<div class="text-center mt-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
-
-            const config = heatmapConfigs.find(c => c.type === type);
-
-            if (!config) {
-                strategicContentArea.innerHTML = '<div class="alert alert-danger">Heatmap configuration not found for this type.</div>';
-                return;
-            }
-
-            let summaryHtml = '';
-            switch (type) {
-                case 'productwise': summaryHtml = '<p class="lead">Explore the technological alignment and challenges for various products.</p>'; break;
-                case 'sdg': summaryHtml = '<p class="lead">View how different technologies contribute to UN Sustainable Development Goals.</p>'; break;
-                case 'social': summaryHtml = '<p class="lead">Discover the social impact and government applications of various technologies.</p>'; break;
-                case 'industry': summaryHtml = '<p class="lead">Analyze technology and product opportunities across different industry sectors.</p>'; break;
-                case 'company': summaryHtml = '<p class="lead">Examine the technology and research alignment of key companies.</p>'; break;
-                case 'lm': summaryHtml = '<p class="lead">View how different technologies contribute to UN Sustainable Development Goals.</p>'; break; // Placeholder, will be replaced by specific LM summary
-            }
-
-            // Construct and display heatmap using the found config, passing 'strategic-insights' as origin
-            const heatmapHtml = generateHeatmapTable(config, 'strategic-insights');
-
-            strategicContentArea.innerHTML = `
-                ${heatmapHtml}
-                <div class="text-center my-4">
-                    ${summaryHtml}
-                    <button class="btn btn-primary mt-3" onclick="showStrategicDetailPage('${type}', 'strategic-insights')">View Full Report</button>
-                </div>
-            `;
-            // Ensure scroll position is at the top of the heatmap container
-            const heatmapContainer = strategicContentArea.querySelector('.heatmap-container');
-            if (heatmapContainer) {
-                heatmapContainer.scrollTop = 0;
-            }
-        }
-
-        // Modified showStrategicDetailPage to accept originPage
-        function showStrategicDetailPage(type, originPage = 'strategic-insights') {
-            const detailPageId = `${type}-detail-page`;
-            const detailPageElement = document.getElementById(detailPageId);
-            if (!detailPageElement) {
-                console.error(`Detail page element with ID '${detailPageId}' not found.`);
-                return;
-            }
-
-            let htmlContent = '';
-            let fullDetails = null;
-
-            switch(type) {
-                case 'productwise':
-                    fullDetails = strategicDataCache.productwise;
-                    if (fullDetails) htmlContent = getProductwiseInsightsHtml(fullDetails, originPage);
-                    break;
-                case 'sdg':
-                    fullDetails = strategicDataCache.sdg;
-                    if (fullDetails) htmlContent = getSdgInsightsHtml(fullDetails, originPage);
-                    break;
-                case 'social':
-                    fullDetails = strategicDataCache.social;
-                    if (fullDetails) htmlContent = getSocialInsightsHtml(fullDetails, originPage);
-                    break;
-                case 'industry':
-                    fullDetails = strategicDataCache.industry;
-                    if (fullDetails) htmlContent = getIndustryInsightsHtml(fullDetails, originPage);
-                    break;
-                case 'company':
-                    fullDetails = strategicDataCache.company;
-                    if (fullDetails) htmlContent = getCompanyInsightsHtml(fullDetails, originPage);
-                    break;
-                case 'lm':
-                    fullDetails = strategicDataCache.lm;
-                    if (fullDetails) htmlContent = getLearningManagementInsightsHtml(fullDetails, originPage);
-                    break;
-                default:
-                    htmlContent = `<div class="alert alert-info" role="alert">Details not available for this type.</div>`;
-            }
-
-            if (fullDetails) {
-                currentStrategicEntryDetail = { data: fullDetails, fileNamePrefix: type.replace(/\s/g, '_') + '_FullReport' };
-            } else {
-                currentStrategicEntryDetail = null;
-            }
-
-            detailPageElement.innerHTML = htmlContent;
-            showPage(type + '-detail'); // Navigate to the full detail page
-        }
-
-        // Modified showStrategicEntryDetail to handle direct fullDetails object from market search
-        function showStrategicEntryDetailFromMarketSearch(fullDetails, type) { // Changed cloudItemKey to fullDetails directly
-            if (!fullDetails) {
-                console.error(`Full details not found for cloud item.`);
-                return;
-            }
-
-            currentStrategicEntryDetail = { data: fullDetails, fileNamePrefix: type.replace(/\s/g, '_') + '_Details' };
-
-            document.getElementById('strategicEntryDetailModalLabel').textContent = `${type} Details`;
-            const modalBody = document.getElementById('strategicEntryDetailModalBody');
-            modalBody.innerHTML = displayObjectProperties(fullDetails); // Use the helper to display all properties
-
-            // Update the download button's onclick to use the currentStrategicEntryDetail
-            document.getElementById('downloadStrategicEntryPdfBtn').onclick = () => downloadPDF('strategic-entry-detail');
-
-            const strategicEntryModal = new bootstrap.Modal(document.getElementById('strategicEntryDetailModal'));
-            strategicEntryModal.show();
-        }
-
-        // New function to show details for a heatmap row/column header
-        function showHeatmapHeaderDetail(type, header, headerType) {
-            const config = heatmapConfigs.find(c => c.type === type);
-            if (!config) {
-                console.error(`Heatmap config not found for type: ${type}`);
-                return;
-            }
-
-            let detailData = null;
-            let title = `${headerType === 'row' ? 'Row' : 'Column'} Header: ${header}`;
-            let description = '';
-            let relevantItems = [];
-
-            // Find the relevant data from strategicDataCache
-            switch (type) {
-                case 'industry':
-                    if (headerType === 'row') { // Industry Sector
-                        detailData = strategicDataCache.industry?.industry_sectors?.find(s => s.sector_name === header);
-                        description = detailData?.description || 'No description available.';
-                        relevantItems = detailData?.micro_sectors?.map(m => m.name) || [];
-                    } else { // Technology (Column)
-                        // For column headers (technologies), we don't have a direct detail object.
-                        // We can list all patents/publications that use this technology.
-                        description = `Technologies related to ${header}.`;
-                        relevantItems = allData.filter(item => {
-                            const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
-                            return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                        }).map(item => item.title || item.Title || item['Title of the Publication']);
-                    }
-                    break;
-                case 'company':
-                    if (headerType === 'row') { // Company Name
-                        detailData = strategicDataCache.company?.companies?.find(c => c.name === header);
-                        description = detailData?.strategy || 'No strategy available.';
-                        relevantItems = detailData?.strategic_areas?.map(a => a.Area) || [];
-                    } else { // Technology (Column) - same as industry
-                        description = `Technologies related to ${header}.`;
-                        relevantItems = allData.filter(item => {
-                            const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
-                            return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                        }).map(item => item.title || item.Title || item['Title of the Publication']);
-                    }
-                    break;
-                case 'productwise':
-                    if (headerType === 'row') { // Product Name
-                        // Products are nested under categories in productwise.json
-                        for (const category in strategicDataCache.productwise) {
-                            detailData = strategicDataCache.productwise[category]?.find(p => p.product_name === header);
-                            if (detailData) break;
-                        }
-                        description = detailData?.description || 'No description available.';
-                        relevantItems = detailData?.strategic_areas?.map(a => a.name) || [];
-                    } else { // Technology (Column) - same as industry
-                        description = `Technologies related to ${header}.`;
-                        relevantItems = allData.filter(item => {
-                            const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
-                            return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                        }).map(item => item.title || item.Title || item['Title of the Publication']);
-                    }
-                    break;
-                case 'social':
-                    if (headerType === 'row') { // Social Impact Theme
-                        detailData = strategicDataCache.social?.application_themes?.find(t => t.theme_name === header);
-                        description = detailData?.theme_description || 'No description available.';
-                        relevantItems = detailData?.applications?.map(a => a.title) || [];
-                    } else { // Technology (Column) - same as industry
-                        description = `Technologies related to ${header}.`;
-                        relevantItems = allData.filter(item => {
-                            const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
-                            return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                        }).map(item => item.title || item.Title || item['Title of the Publication']);
-                    }
-                    break;
-                case 'sdg':
-                    if (headerType === 'row') { // SDG Goal
-                        detailData = strategicDataCache.sdg?.sustainable_development_goals?.find(s => s.title === header);
-                        description = detailData?.description || 'No description available.';
-                        relevantItems = detailData?.applications?.map(a => a.application_name) || [];
-                    } else { // Technology (Column) - same as industry
-                        description = `Technologies related to ${header}.`;
-                        relevantItems = allData.filter(item => {
-                            const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
-                            return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                        }).map(item => item.title || item.Title || item['Title of the Publication']);
-                    }
-                    break;
-                case 'lm': // Learning Management
-                    if (headerType === 'row') { // Micro-sector Title
-                        detailData = strategicDataCache.lm?.micro_sectors?.find(ms => ms.title === header);
-                        description = detailData?.micro_sector_overview || 'No overview available.';
-                        relevantItems = [detailData?.product_concept?.name].filter(Boolean) || [];
-                    } else { // Technology (Column) - same as other tech columns
-                        description = `Technologies related to ${header}.`;
-                        relevantItems = allData.filter(item => {
-                            const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
-                            return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                        }).map(item => item.title || item.Title || item['Title of the Publication']);
-                    }
-                    break;
-            }
-
-            let modalBodyHtml = `
-                <h5>${title}</h5>
-                <p>${description}</p>
-            `;
-
-            if (relevantItems.length > 0) {
-                modalBodyHtml += `<h6>Relevant ${headerType === 'row' ? 'Sub-categories/Applications' : 'Patents/Publications'}:</h6><ul>`;
-                relevantItems.forEach(item => {
-                    modalBodyHtml += `<li>${item}</li>`;
-                });
-                modalBodyHtml += `</ul>`;
-            } else if (!detailData) {
-                 modalBodyHtml += `<p class="text-muted">No specific detailed data found for this header. Showing general information.</p>`;
-            }
-
-            // If a specific detailData object was found, display its properties
-            if (detailData && typeof detailData === 'object') {
-                modalBodyHtml += `<h6>Full Details:</h6>`;
-                modalBodyHtml += displayObjectProperties(detailData);
-            }
-
-            document.getElementById('heatmapHeaderCellDetailModalLabel').textContent = `${config.title} - ${header}`;
-            document.getElementById('heatmapHeaderCellDetailModalBody').innerHTML = modalBodyHtml;
-
-            currentHeatmapHeaderCellDetail = { data: detailData || { type: 'header', headerType: headerType, header: header, relevantItems: relevantItems }, fileNamePrefix: `${type}_${headerType}_${header.replace(/\s/g, '_')}` };
-            document.getElementById('downloadHeatmapHeaderCellPdfBtn').onclick = () => downloadPDF('heatmap-header-cell-detail');
-
-            const modal = new bootstrap.Modal(document.getElementById('heatmapHeaderCellDetailModal'));
-            modal.show();
-        }
-
-        // New function to show details for a specific heatmap cell (intersection)
-        // This function is no longer called from heatmap cells directly, but can be used if needed.
-        function showHeatmapCellDetail(type, rowHeader, colHeader, value) {
-            const config = heatmapConfigs.find(c => c.type === type);
-            if (!config) {
-                console.error(`Heatmap config not found for type: ${type}`);
-                return;
-            }
-
-            const papers = config.paperMapping?.[rowHeader]?.[colHeader] || [];
-            currentDrilldownPapers = papers; // Store for CSV download
-
-            let modalBodyHtml = `
-                <h5>Intersection: ${rowHeader} x ${colHeader}</h5>
-                <p>Value: ${value}</p>
-                <h6>Relevant Research Papers:</h6>
-            `;
-
-            if (papers.length > 0) {
-                modalBodyHtml += `<ul class="list-disc list-inside space-y-1">`;
-                papers.forEach(paper => {
-                    modalBodyHtml += `<li>${paper}</li>`;
-                });
-                modalBodyHtml += `</ul>`;
-            } else {
-                modalBodyHtml += `<p>No relevant papers found for this intersection.</p>`;
-            }
-
-            document.getElementById('heatmapHeaderCellDetailModalLabel').textContent = `${config.title} - ${rowHeader} x ${colHeader}`;
-            document.getElementById('heatmapHeaderCellDetailModalBody').innerHTML = modalBodyHtml;
-
-            currentHeatmapHeaderCellDetail = { data: { type: 'cell', row: rowHeader, col: colHeader, value: value, papers: papers }, fileNamePrefix: `${type}_${rowHeader.replace(/\s/g, '_')}_${colHeader.replace(/\s/g, '_')}` };
-            document.getElementById('downloadHeatmapHeaderCellPdfBtn').onclick = () => downloadPDF('heatmap-header-cell-detail');
-
-
-            const modal = new bootstrap.Modal(document.getElementById('heatmapHeaderCellDetailModal'));
-            modal.show();
-        }
-
-        // --- Heatmap Drilldown and PDF/CSV Export Functions ---
-        // showHeatmapDrilldown is now replaced by showHeatmapCellDetail for heatmap cell clicks.
-        // Keeping it here for reference if needed elsewhere, but it's not directly called from heatmaps anymore.
-        /*
-        function showHeatmapDrilldown(type, rowHeader, colHeader) {
-            const config = heatmapConfigs.find(c => c.type === type);
-            if (!config || !config.paperMapping || !config.paperMapping[rowHeader] || !config.paperMapping[rowHeader][colHeader]) {
-                console.warn(`No papers found for ${type}: ${rowHeader} - ${colHeader}`);
-                document.getElementById('heatmapDrilldownPaperList').innerHTML = '<li>No relevant papers found.</li>';
-                document.getElementById('heatmapDetailCriteria').textContent = `${rowHeader} x ${colHeader}`;
-                document.getElementById('heatmapDetailTitleSpan').textContent = config ? config.title : 'N/A';
-                currentDrilldownPapers = []; // Clear for download
-                const heatmapModal = new bootstrap.Modal(document.getElementById('heatmapDetailModal'));
-                heatmapModal.show();
-                return;
-            }
-
-            const papers = config.paperMapping[rowHeader][colHeader];
-            currentDrilldownPapers = papers; // Store for CSV download
-
-            const paperListHtml = papers.map(paper => `<li>${paper}</li>`).join('');
-            document.getElementById('heatmapDrilldownPaperList').innerHTML = paperListHtml;
-            document.getElementById('heatmapDetailCriteria').textContent = `${rowHeader} x ${colHeader}`;
-            document.getElementById('heatmapDetailTitleSpan').textContent = config.title;
-
-            const heatmapModal = new bootstrap.Modal(document.getElementById('heatmapDetailModal'));
-            heatmapModal.show();
-        }
-        */
-
-        function downloadHeatmapDrilldownAsCSV() {
-            if (currentDrilldownPapers.length === 0) {
-                alert('No papers to download.');
-                return;
-            }
-
-            let csvContent = "data:text/csv;charset=utf-8,Paper Title\n";
-            currentDrilldownPapers.forEach(paper => {
-                csvContent += `"${paper.replace(/"/g, '""')}"\n`; // Handle commas and quotes
-            });
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "heatmap_drilldown_papers.csv");
-            document.body.appendChild(link); // Required for Firefox
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        function downloadPDF(type) {
-            let element;
-            let filename = 'document.pdf';
-            let dataToPrint = {};
-
-            if (type === 'patent') {
-                element = document.getElementById('patentDetailModal').querySelector('.modal-body');
-                filename = document.getElementById('patentDetailTitle').textContent.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_PatentDetails.pdf';
-                const patentId = allPatents.find(p => p.title === document.getElementById('patentDetailTitle').textContent)?.id;
-                dataToPrint = allPatents.find(p => p.id === patentId);
-            } else if (type === 'publication') {
-                element = document.getElementById('publicationDetailModal').querySelector('.modal-body');
-                filename = document.getElementById('publicationDetailTitle').textContent.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_PublicationDetails.pdf';
-                const pubTitle = document.getElementById('publicationDetailTitle').textContent;
-                dataToPrint = allPublications.find(pub => pub.Title === pubTitle || pub['Title of the Publication'] === pubTitle);
-            } else if (type === 'strategic-entry-detail') {
-                if (!currentStrategicEntryDetail) {
-                    console.error("No strategic entry detail available for PDF download.");
-                    return;
-                }
-                element = document.getElementById('strategicEntryDetailModalBody');
-                filename = `${currentStrategicEntryDetail.fileNamePrefix || 'Strategic_Entry'}_Details.pdf`;
-                dataToPrint = currentStrategicEntryDetail.data;
-            } else if (type === 'heatmap-header-cell-detail') {
-                 if (!currentHeatmapHeaderCellDetail) {
-                    console.error("No heatmap header/cell detail available for PDF download.");
-                    return;
-                }
-                element = document.getElementById('heatmapHeaderCellDetailModalBody'); // Corrected ID
-                filename = `${currentHeatmapHeaderCellDetail.fileNamePrefix || 'Heatmap_Detail'}_Details.pdf`;
-                dataToPrint = currentHeatmapHeaderCellDetail.data;
-            }
-            else { // For full strategic reports (productwise, sdg, social, industry, company, lm)
-                // We need to re-generate the content for the PDF to ensure it's complete and styled correctly
-                // as the page might not be visible or fully rendered when the PDF is requested.
-                dataToPrint = strategicDataCache[type];
-                if (!dataToPrint) {
-                    console.error(`Strategic data for type '${type}' not found for PDF export.`);
-                    return;
-                }
-                filename = `${type.replace(/\s/g, '_')}_FullReport.pdf`;
-            }
-
-            // Create a temporary div to render the content for PDF generation
-            const tempDiv = document.createElement('div');
-            tempDiv.style.padding = '20px';
-            tempDiv.style.fontFamily = 'Poppins, sans-serif';
-            tempDiv.style.fontSize = '12px';
-            tempDiv.style.color = '#343a40';
-            tempDiv.style.backgroundColor = 'white'; // Ensure background for PDF
-
-            // Populate tempDiv based on type
-            if (type === 'patent' || type === 'publication' || type === 'strategic-entry-detail' || type === 'heatmap-header-cell-detail') {
-                tempDiv.innerHTML = element.innerHTML;
-            } else { 
-                // Regenerate content for full strategic reports
-                switch(type) {
-                    case 'productwise':
-                        tempDiv.innerHTML = getProductwiseInsightsHtml(dataToPrint, 'pdf-export');
-                        break;
-                    case 'sdg':
-                        tempDiv.innerHTML = getSdgInsightsHtml(dataToPrint, 'pdf-export');
-                        break;
-                    case 'social':
-                        tempDiv.innerHTML = getSocialInsightsHtml(dataToPrint, 'pdf-export');
-                        break;
-                    case 'industry':
-                        tempDiv.innerHTML = getIndustryInsightsHtml(dataToPrint, 'pdf-export');
-                        break;
-                    case 'company':
-                        tempDiv.innerHTML = getCompanyInsightsHtml(dataToPrint, 'pdf-export');
-                        break;
-                    case 'lm':
-                        tempDiv.innerHTML = getLearningManagementInsightsHtml(dataToPrint, 'pdf-export');
-                        break;
-                    default:
-                        tempDiv.innerHTML = `<p>Error: Content for ${type} not found for PDF export.</p>`;
-                }
-            }
-
-            // Append to body temporarily to ensure styles are applied
-            document.body.appendChild(tempDiv);
-
-            html2pdf(tempDiv, {
-                margin: 10,
-                filename: filename,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            }).then(() => {
-                // Clean up the temporary div after PDF generation
-                document.body.removeChild(tempDiv);
-            }).catch(error => {
-                console.error("Error generating PDF:", error);
-                // Clean up the temporary div even if there's an error
-                document.body.removeChild(tempDiv);
-                alert("Failed to generate PDF. Please try again.");
-            });
-        }
-
-        // --- Global Search Functionality ---
-        function handleGlobalSearch(event) {
-            event.preventDefault();
-            const searchTerm = document.getElementById('globalSearchInput').value.toLowerCase();
-            if (!searchTerm) {
-                alert('Please enter a search term.');
-                return;
-            }
-
-            const searchResults = allData.filter(item => {
-                const title = item.type === 'patent' ? item.title : (item.Title || item['Title of the Publication']);
-                const summary = item.type === 'patent' ? item.summary : item.Summary;
-                const authorsOrInventors = item.type === 'patent' ? item.inventors : item.Authors;
-                const technologies = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
-
-                return (title && title.toLowerCase().includes(searchTerm)) ||
-                       (summary && summary.toLowerCase().includes(searchTerm)) ||
-                       (authorsOrInventors && authorsOrInventors.toLowerCase().includes(searchTerm)) ||
-                       (technologies && technologies.toLowerCase().includes(searchTerm));
-            });
-
-            displayGlobalSearchResults(searchResults, searchTerm);
-            const searchModal = new bootstrap.Modal(document.getElementById('globalSearchResultsModal'));
-            searchModal.show();
-        }
-
-        function displayGlobalSearchResults(results, searchTerm) {
-            const resultsContent = document.getElementById('globalSearchResultsContent');
-            resultsContent.innerHTML = ''; // Clear previous results
-
-            if (results.length === 0) {
-                resultsContent.innerHTML = `<div class="col-12"><p class="text-center">No results found for "${searchTerm}".</p></div>`;
-                return;
-            }
-
-            results.forEach(item => {
-                const title = item.type === 'patent' ? item.title : (item.Title || item['Title of the Publication']);
-                const authorsOrInventors = item.type === 'patent' ? item.inventors : item.Authors;
-                const summarySnippet = item.type === 'patent' ? (item.summary ? (item.summary.length > 180 ? item.summary.substring(0, 180) + '...' : item.summary) : 'N/A') : (item.Summary ? (item.Summary.length > 180 ? item.Summary.substring(0, 180) + '...' : item.Summary) : 'N/A');
-                
-                let techTrend, marketPotential, marketActivity, trl, useCaseText;
-
-                if (item.type === 'patent') {
-                    techTrend = item.technology_trends_summary || 'N/A';
-                    marketPotential = item.market_potential_summary || 'N/A';
-                    marketActivity = item.market_activity || 'N/A';
-                    trl = item.technology_readiness || 'N/A';
-                    useCaseText = item.use_case_mapping && item.use_case_mapping.length > 0 ? item.use_case_mapping[0].use_case.split(' ').slice(0, 2).join(' ') : 'N/A';
-                } else { // publication
-                    techTrend = item['Technology Trends Classification'] || 'N/A';
-                    marketPotential = item['Market Potential Category'] || 'N/A';
-                    marketActivity = item['Market Activity Category'] || 'N/A';
-                    trl = item['Technology Readiness Key Applications'] || 'N/A';
-                    useCaseText = extractUseCase(item.Use_Cases);
-                }
-
-                const detailFunction = item.type === 'patent' ? `showPatentDetail(${item.id})` : `showPublicationDetail(${item['S. No.']})`;
-
-                resultsContent.innerHTML += `
-                    <div class="col">
-                        <div class="card h-100 list-tile-card">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${title}</h5>
-                                <p class="card-text mb-1">${item.type === 'patent' ? 'Inventors' : 'Authors'}: ${authorsOrInventors || 'N/A'}</p>
-                                <div class="badge-group">
-                                    <span class="badge" style="border-color: ${getBadgeColorClass(techTrend)}; color: ${getBadgeColorClass(techTrend)};">${techTrend}</span>
-                                    <span class="badge" style="border-color: ${getBadgeColorClass(marketPotential)}; color: ${getBadgeColorClass(marketPotential)};">${marketPotential}</span>
-                                    <span class="badge" style="border-color: ${getBadgeColorClass(marketActivity)}; color: ${getBadgeColorClass(marketActivity)};">${marketActivity}</span>
-                                    <span class="badge" style="border-color: ${getBadgeColorClass(trl)}; color: ${getBadgeColorClass(trl)};">${trl}</span>
-                                </div>
-                                <p class="card-text mb-1">Abstract: ${summarySnippet}</p>
-                                <p class="card-text mb-3">Use Case: <span class="badge" style="border-color: ${getBadgeColorClass(useCaseText)}; color: ${getBadgeColorClass(useCaseText)};">${useCaseText}</span></p>
-                                <div class="mt-auto">
-                                    <button class="btn btn-outline-primary btn-sm" onclick="${detailFunction}">View Details</button>
-                                </div>
-                            </div>
+        resultsContent.innerHTML += `
+            <div class="col">
+                <div class="card h-100 list-tile-card">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text mb-1">${item.type === 'patent' ? 'Inventors' : 'Authors'}: ${authorsOrInventors || 'N/A'}</p>
+                        <div class="badge-group">
+                            <span class="badge" style="border-color: ${getBadgeColorClass(techTrend)}; color: ${getBadgeColorClass(techTrend)};">${techTrend}</span>
+                            <span class="badge" style="border-color: ${getBadgeColorClass(marketPotential)}; color: ${getBadgeColorClass(marketPotential)};">${marketPotential}</span>
+                            <span class="badge" style="border-color: ${getBadgeColorClass(marketActivity)}; color: ${getBadgeColorClass(marketActivity)};">${marketActivity}</span>
+                            <span class="badge" style="border-color: ${getBadgeColorClass(trl)}; color: ${getBadgeColorClass(trl)};">${trl}</span>
+                        </div>
+                        <p class="card-text mb-1">Abstract: ${summarySnippet}</p>
+                        <p class="card-text mb-3">Use Case: <span class="badge" style="border-color: ${getBadgeColorClass(useCaseText)}; color: ${getBadgeColorClass(useCaseText)};">${useCaseText}</span></p>
+                        <div class="mt-auto">
+                            <button class="btn btn-outline-primary btn-sm" onclick="${detailFunction}">View Details</button>
                         </div>
                     </div>
-                `;
-            });
+                </div>
+            </div>
+        `;
+    });
+}
+
+// --- Market View Search Functionality ---
+let currentMarketSearchClassification = 'all'; // Default classification
+
+function setupMarketViewSearch() {
+    const searchInput = document.getElementById('marketViewSearchInput');
+    const searchSuggestions = document.getElementById('marketViewSearchResultsSuggestions');
+    const classificationBtn = document.getElementById('marketViewSearchClassificationBtn');
+
+    // Event listener for classification dropdown items
+    document.querySelectorAll('.market-view-search-classification-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            currentMarketSearchClassification = this.dataset.classification;
+            classificationBtn.textContent = `Classification: ${this.textContent}`;
+            // Trigger search with new classification
+            performMarketViewSearch(searchInput.value);
+        });
+    });
+
+    // Event listener for search input (keyup for suggestions)
+    searchInput.addEventListener('keyup', function() {
+        const searchTerm = this.value;
+        if (searchTerm.length > 2) {
+            showMarketViewSearchSuggestions(searchTerm);
+        } else {
+            searchSuggestions.classList.add('d-none');
+            document.getElementById('marketViewSearchResultsContainer').classList.add('d-none'); // Hide results when search term is too short
         }
+    });
 
-        // --- Market View Search Functionality ---
-        let currentMarketSearchClassification = 'all'; // Default classification
-
-        function setupMarketViewSearch() {
-            const searchInput = document.getElementById('marketViewSearchInput');
-            const searchSuggestions = document.getElementById('marketViewSearchResultsSuggestions');
-            const classificationBtn = document.getElementById('marketViewSearchClassificationBtn');
-
-            // Event listener for classification dropdown items
-            document.querySelectorAll('.market-view-search-classification-item').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    currentMarketSearchClassification = this.dataset.classification;
-                    classificationBtn.textContent = `Classification: ${this.textContent}`;
-                    // Trigger search with new classification
-                    performMarketViewSearch(searchInput.value);
-                });
-            });
-
-            // Event listener for search input (keyup for suggestions)
-            searchInput.addEventListener('keyup', function() {
-                const searchTerm = this.value;
-                if (searchTerm.length > 2) {
-                    showMarketViewSearchSuggestions(searchTerm);
-                } else {
-                    searchSuggestions.classList.add('d-none');
-                    document.getElementById('marketViewSearchResultsContainer').classList.add('d-none'); // Hide results when search term is too short
-                }
-            });
-
-            // Event listener for clicking outside suggestions to hide them
-            document.addEventListener('click', function(event) {
-                if (!searchInput.contains(event.target) && !searchSuggestions.contains(event.target)) {
-                    searchSuggestions.classList.add('d-none');
-                }
-            });
+    // Event listener for clicking outside suggestions to hide them
+    document.addEventListener('click', function(event) {
+        if (!searchInput.contains(event.target) && !searchSuggestions.contains(event.target)) {
+            searchSuggestions.classList.add('d-none');
         }
+    });
+}
 
-        function showMarketViewSearchSuggestions(searchTerm) {
-            const searchSuggestions = document.getElementById('marketViewSearchResultsSuggestions');
-            searchSuggestions.innerHTML = '';
-            const lowerCaseSearchTerm = searchTerm.toLowerCase();
+function showMarketViewSearchSuggestions(searchTerm) {
+    const searchSuggestions = document.getElementById('marketViewSearchResultsSuggestions');
+    searchSuggestions.innerHTML = '';
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
-            const uniqueSuggestions = new Set();
-            const MAX_SUGGESTIONS = 10;
+    const uniqueSuggestions = new Set();
+    const MAX_SUGGESTIONS = 10;
 
-            searchableData.forEach(item => {
-                // Check title
-                if (item.title && item.title.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
-                    uniqueSuggestions.add(item.title);
-                }
-                // Check summary
-                if (item.summary && item.summary.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
-                    uniqueSuggestions.add(item.summary);
-                }
-                // Check technologies
-                item.technologies.forEach(tech => {
-                    if (tech.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
-                        uniqueSuggestions.add(tech);
-                    }
-                });
-                // Check sectors
-                item.sectors.forEach(sector => {
-                    if (sector.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
-                        uniqueSuggestions.add(sector);
-                    }
-                });
-                // Check companies
-                item.companies.forEach(company => {
-                    if (company.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
-                        uniqueSuggestions.add(company);
-                    }
-                });
-                // Check products
-                item.products.forEach(product => {
-                    if (product.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
-                        uniqueSuggestions.add(product);
-                    }
-                });
-                // Check SDGs
-                item.sdgs.forEach(sdg => {
-                    if (sdg.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
-                        uniqueSuggestions.add(sdg);
-                    }
-                });
-                // Check use_cases
-                item.use_cases.forEach(uc => {
-                    if (uc.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
-                        uniqueSuggestions.add(uc);
-                    }
-                });
-            });
+    searchableData.forEach(item => {
+        // Check title
+        if (item.title && item.title.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
+            uniqueSuggestions.add(item.title);
+        }
+        // Check summary
+        if (item.summary && item.summary.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
+            uniqueSuggestions.add(item.summary);
+        }
+        // Check technologies
+        item.technologies.forEach(tech => {
+            if (tech.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
+                uniqueSuggestions.add(tech);
+            }
+        });
+        // Check sectors
+        item.sectors.forEach(sector => {
+            if (sector.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
+                uniqueSuggestions.add(sector);
+            }
+        });
+        // Check companies
+        item.companies.forEach(company => {
+            if (company.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
+                uniqueSuggestions.add(company);
+            }
+        });
+        // Check products
+        item.products.forEach(product => {
+            if (product.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
+                uniqueSuggestions.add(product);
+            }
+        });
+        // Check SDGs
+        item.sdgs.forEach(sdg => {
+            if (sdg.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
+                uniqueSuggestions.add(sdg);
+            }
+        });
+        // Check use_cases
+        item.use_cases.forEach(uc => {
+            if (uc.toLowerCase().includes(lowerCaseSearchTerm) && uniqueSuggestions.size < MAX_SUGGESTIONS) {
+                uniqueSuggestions.add(uc);
+            }
+        });
+    });
 
-            if (uniqueSuggestions.size > 0) {
-                Array.from(uniqueSuggestions).slice(0, MAX_SUGGESTIONS).forEach(suggestion => {
-                    const div = document.createElement('div');
-                    div.className = 'market-view-search-suggestion-item';
-                    div.textContent = suggestion;
-                    div.onclick = () => {
-                        document.getElementById('marketViewSearchInput').value = suggestion;
-                        searchSuggestions.classList.add('d-none');
-                        performMarketViewSearch(suggestion);
-                    };
-                    searchSuggestions.appendChild(div);
-                });
-                searchSuggestions.classList.remove('d-none');
-            } else {
+    if (uniqueSuggestions.size > 0) {
+        Array.from(uniqueSuggestions).slice(0, MAX_SUGGESTIONS).forEach(suggestion => {
+            const div = document.createElement('div');
+            div.className = 'market-view-search-suggestion-item';
+            div.textContent = suggestion;
+            div.onclick = () => {
+                document.getElementById('marketViewSearchInput').value = suggestion;
                 searchSuggestions.classList.add('d-none');
-            }
+                performMarketViewSearch(suggestion);
+            };
+            searchSuggestions.appendChild(div);
+        });
+        searchSuggestions.classList.remove('d-none');
+    } else {
+        searchSuggestions.classList.add('d-none');
+    }
+}
+
+function performMarketViewSearch(searchTerm) {
+    const resultsDisplay = document.getElementById('marketViewSearchResultsDisplay');
+    const resultsContainer = document.getElementById('marketViewSearchResultsContainer');
+    const resultsTitle = document.getElementById('marketViewResultsClassificationTitle');
+    resultsDisplay.innerHTML = '';
+    resultsContainer.classList.remove('d-none'); // Show the results container
+
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    const filteredResults = searchableData.filter(item => {
+        let matches = false;
+        if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'technology') {
+            matches = matches || item.technologies.some(tech => tech.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+        if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'problem') {
+            matches = matches || (item.summary && item.summary.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+        if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'usecase') {
+            matches = matches || item.use_cases.some(uc => uc.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+        if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'industry') {
+            matches = matches || item.sectors.some(sector => sector.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+        if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'company') {
+            matches = matches || item.companies.some(company => company.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+        if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'product') {
+            matches = matches || item.products.some(product => product.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+        if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'sdg') {
+            matches = matches || item.sdgs.some(sdg => sdg.toLowerCase().includes(lowerCaseSearchTerm));
+        }
+        if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'social') {
+            // Social impact items are generally covered by title/summary matching
+            matches = matches || (item.type === 'Social Impact Application' && (item.title.toLowerCase().includes(lowerCaseSearchTerm) || item.summary.toLowerCase().includes(lowerCaseSearchTerm)));
+        }
+        if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'lm') {
+            matches = matches || (item.type === 'Learning Management Micro-Sector' && (item.title.toLowerCase().includes(lowerCaseSearchTerm) || item.summary.toLowerCase().includes(lowerCaseSearchTerm)));
         }
 
-        function performMarketViewSearch(searchTerm) {
-            const resultsDisplay = document.getElementById('marketViewSearchResultsDisplay');
-            const resultsContainer = document.getElementById('marketViewSearchResultsContainer');
-            const resultsTitle = document.getElementById('marketViewResultsClassificationTitle');
-            resultsDisplay.innerHTML = '';
-            resultsContainer.classList.remove('d-none'); // Show the results container
+        // Always include title match for 'all' or if no specific classification matched yet
+        if (currentMarketSearchClassification === 'all' && item.title && item.title.toLowerCase().includes(lowerCaseSearchTerm)) {
+            matches = true;
+        }
 
-            const lowerCaseSearchTerm = searchTerm.toLowerCase();
-            const filteredResults = searchableData.filter(item => {
-                let matches = false;
-                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'technology') {
-                    matches = matches || item.technologies.some(tech => tech.toLowerCase().includes(lowerCaseSearchTerm));
-                }
-                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'problem') {
-                    matches = matches || (item.summary && item.summary.toLowerCase().includes(lowerCaseSearchTerm));
-                }
-                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'usecase') {
-                    matches = matches || item.use_cases.some(uc => uc.toLowerCase().includes(lowerCaseSearchTerm));
-                }
-                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'industry') {
-                    matches = matches || item.sectors.some(sector => sector.toLowerCase().includes(lowerCaseSearchTerm));
-                }
-                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'company') {
-                    matches = matches || item.companies.some(company => company.toLowerCase().includes(lowerCaseSearchTerm));
-                }
-                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'product') {
-                    matches = matches || item.products.some(product => product.toLowerCase().includes(lowerCaseSearchTerm));
-                }
-                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'sdg') {
-                    matches = matches || item.sdgs.some(sdg => sdg.toLowerCase().includes(lowerCaseSearchTerm));
-                }
-                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'social') {
-                    // Social impact items are generally covered by title/summary matching
-                    matches = matches || (item.type === 'Social Impact Application' && (item.title.toLowerCase().includes(lowerCaseSearchTerm) || item.summary.toLowerCase().includes(lowerCaseSearchTerm)));
-                }
-                if (currentMarketSearchClassification === 'all' || currentMarketSearchClassification === 'lm') {
-                    matches = matches || (item.type === 'Learning Management Micro-Sector' && (item.title.toLowerCase().includes(lowerCaseSearchTerm) || item.summary.toLowerCase().includes(lowerCaseSearchTerm)));
-                }
+        return matches;
+    });
 
-                // Always include title match for 'all' or if no specific classification matched yet
-                if (currentMarketSearchClassification === 'all' && item.title && item.title.toLowerCase().includes(lowerCaseSearchTerm)) {
-                    matches = true;
-                }
+    resultsTitle.textContent = `Search Results for "${searchTerm}" (${filteredResults.length} results)`;
 
-                return matches;
-            });
+    if (filteredResults.length === 0) {
+        resultsDisplay.innerHTML = `<div class="col-12"><p class="text-center">No results found for "${searchTerm}" under "${currentMarketSearchClassification}" classification.</p></div>`;
+        return;
+    }
 
-            resultsTitle.textContent = `Search Results for "${searchTerm}" (${filteredResults.length} results)`;
+    filteredResults.forEach(item => {
+        const technologiesDisplay = item.technologies.map(tech => `<span class="badge" style="border-color: ${getBadgeColorClass(tech)}; color: ${getBadgeColorClass(tech)};">${tech}</span>`).join(' ');
+        const summarySnippet = item.summary ? (item.summary.length > 180 ? item.summary.substring(0, 180) + '...' : item.summary) : 'No summary available.';
 
-            if (filteredResults.length === 0) {
-                resultsDisplay.innerHTML = `<div class="col-12"><p class="text-center">No results found for "${searchTerm}" under "${currentMarketSearchClassification}" classification.</p></div>`;
-                return;
-            }
-
-            filteredResults.forEach(item => {
-                const technologiesDisplay = item.technologies.map(tech => `<span class="badge" style="border-color: ${getBadgeColorClass(tech)}; color: ${getBadgeColorClass(tech)};">${tech}</span>`).join(' ');
-                const summarySnippet = item.summary ? (item.summary.length > 180 ? item.summary.substring(0, 180) + '...' : item.summary) : 'No summary available.';
-
-                resultsDisplay.innerHTML += `
-                    <div class="col-lg-6 col-md-12 mb-4">
-                        <div class="card h-100 list-tile-card">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${item.title}</h5>
-                                <p class="card-text text-muted mb-1">Type: ${item.type}</p>
-                                <div class="badge-group mb-2">
-                                    ${technologiesDisplay}
-                                </div>
-                                <p class="card-text flex-grow-1">${summarySnippet}</p>
-                                <div class="mt-auto">
-                                    <button class="btn btn-outline-primary btn-sm" onclick="showStrategicEntryDetailFromMarketSearch(${JSON.stringify(item.fullDetails)}, '${item.type}')">View Full Details</button>
-                                </div>
-                            </div>
+        resultsDisplay.innerHTML += `
+            <div class="col-lg-6 col-md-12 mb-4">
+                <div class="card h-100 list-tile-card">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${item.title}</h5>
+                        <p class="card-text text-muted mb-1">Type: ${item.type}</p>
+                        <div class="badge-group mb-2">
+                            ${technologiesDisplay}
+                        </div>
+                        <p class="card-text flex-grow-1">${summarySnippet}</p>
+                        <div class="mt-auto">
+                            <button class="btn btn-outline-primary btn-sm" onclick="showStrategicEntryDetailFromMarketSearch(${JSON.stringify(item.fullDetails)}, '${item.type}')">View Full Details</button>
                         </div>
                     </div>
-                `;
-            });
-        }
-
-        // --- Market View Heatmap Rendering ---
-        async function renderMarketHeatmap(type, element) {
-            // Handle active state for the sidebar navigation
-            if (element) {
-                const navLinks = document.querySelectorAll('#market-heatmap-nav a');
-                navLinks.forEach(link => link.classList.remove('active'));
-                element.classList.add('active');
-            }
-
-            const marketHeatmapsContentArea = document.getElementById('market-view-heatmaps-content-area');
-            marketHeatmapsContentArea.innerHTML = '<div class="text-center mt-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
-
-            const config = heatmapConfigs.find(c => c.type === type);
-
-            if (!config) {
-                marketHeatmapsContentArea.innerHTML = '<div class="alert alert-danger">Heatmap configuration not found for this type.</div>';
-                return;
-            }
-
-            let summaryHtml = '';
-            switch (type) {
-                case 'productwise': summaryHtml = '<p class="lead">Explore the technological alignment and challenges for various products.</p>'; break;
-                case 'sdg': summaryHtml = '<p class="lead">View how different technologies contribute to UN Sustainable Development Goals.</p>'; break;
-                case 'social': summaryHtml = '<p class="lead">Discover the social impact and government applications of various technologies.</p>'; break;
-                case 'industry': summaryHtml = '<p class="lead">Analyze technology and product opportunities across different industry sectors.</p>'; break;
-                case 'company': summaryHtml = '<p class="lead">Examine the technology and research alignment of key companies.</p>'; break;
-                case 'lm': summaryHtml = '<p class="lead">Explore technologies and product concepts for education, training, and knowledge management.</p>'; break;
-            }
-
-            // Construct and display heatmap using the found config, passing 'market' as origin
-            const heatmapHtml = generateHeatmapTable(config, 'market');
-
-            marketHeatmapsContentArea.innerHTML = `
-                ${heatmapHtml}
-                <div class="text-center my-4">
-                    ${summaryHtml}
-                    <button class="btn btn-primary mt-3" onclick="showStrategicDetailPage('${type}', 'market')">View Full Report</button>
                 </div>
-            `;
-            // Ensure scroll position is at the top of the heatmap container
-            const heatmapContainer = marketHeatmapsContentArea.querySelector('.heatmap-container');
-            if (heatmapContainer) {
-                heatmapContainer.scrollTop = 0;
-            }
-        }
+            </div>
+        `;
+    });
+}
+
+// --- Market View Heatmap Rendering ---
+async function renderMarketHeatmap(type, element) {
+    // Handle active state for the sidebar navigation
+    if (element) {
+        const navLinks = document.querySelectorAll('#market-heatmap-nav a');
+        navLinks.forEach(link => link.classList.remove('active'));
+        element.classList.add('active');
+    }
+
+    const marketHeatmapsContentArea = document.getElementById('market-view-heatmaps-content-area');
+    marketHeatmapsContentArea.innerHTML = '<div class="text-center mt-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+
+    const config = heatmapConfigs.find(c => c.type === type);
+
+    if (!config) {
+        marketHeatmapsContentArea.innerHTML = '<div class="alert alert-danger">Heatmap configuration not found for this type.</div>';
+        return;
+    }
+
+    let summaryHtml = '';
+    switch (type) {
+        case 'productwise': summaryHtml = '<p class="lead">Explore the technological alignment and challenges for various products.</p>'; break;
+        case 'sdg': summaryHtml = '<p class="lead">View how different technologies contribute to UN Sustainable Development Goals.</p>'; break;
+        case 'social': summaryHtml = '<p class="lead">Discover the social impact and government applications of various technologies.</p>'; break;
+        case 'industry': summaryHtml = '<p class="lead">Analyze technology and product opportunities across different industry sectors.</p>'; break;
+        case 'company': summaryHtml = '<p class="lead">Examine the technology and research alignment of key companies.</p>'; break;
+        case 'lm': summaryHtml = '<p class="lead">Explore technologies and product concepts for education, training, and knowledge management.</p>'; break;
+    }
+
+    // Construct and display heatmap using the found config, passing 'market' as origin
+    const heatmapHtml = generateHeatmapTable(config, 'market');
+
+    marketHeatmapsContentArea.innerHTML = `
+        ${heatmapHtml}
+        <div class="text-center my-4">
+            ${summaryHtml}
+            <button class="btn btn-primary mt-3" onclick="showStrategicDetailPage('${type}', 'market')">View Full Report</button>
+        </div>
+    `;
+    // Ensure scroll position is at the top of the heatmap container
+    const heatmapContainer = marketHeatmapsContentArea.querySelector('.heatmap-container');
+    if (heatmapContainer) {
+        heatmapContainer.scrollTop = 0;
+    }
+}
 
 
-        // Load data when the window loads
-        window.onload = loadData;
-    </script>
+// Load data when the window loads
+window.onload = loadData;
+</script>
 </body>
 </html>
