@@ -17,7 +17,7 @@
   ],
   "Automotive & Mobility": [
     {
-      "product_name": "Tesla Autopilot",
+      "product_name": "Advanced Driver-Assistance System (Tesla Autopilot)",
       "description": "The world's most recognized Advanced Driver-Assistance System (ADAS), which serves as the foundation for Tesla's Full Self-Driving (FSD) ambitions.",
       "strategic_areas": [
         {
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "product_name": "Ather 450X Electric Scooter",
+      "product_name": "Electric Scooter (Ather 450X)",
       "description": "A tech-forward Indian electric scooter, positioned as a smart and safe alternative for urban commuting.",
       "strategic_areas": [
         {
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "product_name": "Google Maps",
+      "product_name": "Navigation Tool (Google Maps)",
       "description": "The most-used navigation product globally, with a critical need for accurate, up-to-date, and context-aware information.",
       "strategic_areas": [
         {
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "product_name": "Boston Dynamics' Spot Robot",
+      "product_name": "Agile Robot (Boston Dynamics' Spot Robot)",
       "description": "An iconic, agile quadruped robot designed for inspection, security, and remote operation in complex, human-centric environments.",
       "strategic_areas": [
         {
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "product_name": "iRobot Roomba j7+",
+      "product_name": "Robotic Vacuum Cleaner (iRobot Roomba j7+)",
       "description": "A market-leading robotic vacuum cleaner, with a key competitive advantage in its AI-powered obstacle avoidance and intelligent navigation.",
       "strategic_areas": [
         {
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "product_name": "Apple iPhone's \"Night Mode\"",
+      "product_name": "Computational Photography Feature (Apple iPhone's \"Night Mode\")",
       "description": "A specific, market-defining computational photography feature that enables high-quality photos in low-light conditions.",
       "strategic_areas": [
         {
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "product_name": "Palantir Gotham",
+      "product_name": "Data Analytics Platform (Palantir Gotham)",
       "description": "A high-stakes data analytics platform used by defense, intelligence, and financial institutions for finding patterns and connections in massive, disparate datasets.",
       "strategic_areas": [
         {
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "product_name": "SAP Ariba",
+      "product_name": "Procurement & Supply Chain Logistics (SAP Ariba)",
       "description": "A specific, high-value B2B product suite for managing procurement, supply chain logistics, and contracts.",
       "strategic_areas": [
         {
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "product_name": "Flexport Platform",
+      "product_name": "Logistics and Supply Chain (Flexport Platform)",
       "description": "A modern, data-driven platform for managing global freight forwarding, logistics, and supply chain operations.",
       "strategic_areas": [
         {
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "product_name": "CrowdStrike Falcon",
+      "product_name": "Cybersecurity (CrowdStrike Falcon)",
       "description": "A leading cybersecurity platform focused on endpoint protection, real-time threat detection, and proactive threat hunting.",
       "strategic_areas": [
         {
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "product_name": "HERE HD Live Map",
+      "product_name": "Maps for autonomous vehicles (HERE HD Live Map)",
       "description": "A specific B2B product that provides high-definition, machine-readable maps for autonomous vehicles.",
       "strategic_areas": [
         {
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "product_name": "OpenAI's GPT-4 API",
+      "product_name": "Large Language Model (OpenAI's GPT-4 API)",
       "description": "The foundational large language model accessed as a product, used for a vast range of applications from chatbots to scientific research.",
       "strategic_areas": [
         {
@@ -327,7 +327,7 @@
       ]
     },
     {
-      "product_name": "Freshworks' \"Freddy AI\" Chatbot",
+      "product_name": "AI-powered Chatbot (Freshworks' \"Freddy AI\" Chatbot)",
       "description": "Freddy AI is the AI-powered chatbot and automation platform integrated across the Freshworks suite, designed to handle customer and employee conversations.",
       "strategic_areas": [
         {
@@ -365,7 +365,7 @@
       ]
     },
     {
-      "product_name": "Cure.fit / Cult.fit App",
+      "product_name": "Health and Fitness (Cure.fit / Cult.fit)",
       "description": "A popular Indian health and fitness app that combines at-home workouts, gym classes, and wellness content.",
       "strategic_areas": [
         {
@@ -389,7 +389,7 @@
   ],
   "Fintech & Digital Payments": [
     {
-      "product_name": "Paytm App",
+      "product_name": "Digital Payment (Paytm App)",
       "description": "India's leading digital payments and financial services \"Super App,\" presenting challenges in fraud detection, user recommendations, and secure transactions.",
       "strategic_areas": [
         {
@@ -411,7 +411,7 @@
       ]
     },
     {
-      "product_name": "Zerodha Kite",
+      "product_name": "Stockbroker (Zerodha Kite)",
       "description": "The flagship trading platform for India's largest stockbroker, with a focus on real-time data analytics, user interface design, and security.",
       "strategic_areas": [
         {
@@ -433,7 +433,7 @@
       ]
     },
     {
-      "product_name": "CRED",
+      "product_name": "Credit card Manager & Digital Payment (CRED)",
       "description": "The members-only app for credit card management, aligning with research in gamification, user engagement, and and building high-trust financial platforms.",
       "strategic_areas": [
         {
@@ -457,7 +457,7 @@
   ],
   "E-commerce & Q-Commerce": [
     {
-      "product_name": "Flipkart's \"Flipkart Plus\" Program",
+      "product_name": "Loyalty Program (Flipkart's \"Flipkart Plus\" Program)",
       "description": "A specific loyalty program where challenges include personalized rewards, understanding high-value customer behavior, and preventing system gaming.",
       "strategic_areas": [
         {
@@ -479,7 +479,7 @@
       ]
     },
     {
-      "product_name": "Swiggy Instamart",
+      "product_name": "Quick-Commerce (Swiggy Instamart)",
       "description": "A quick-commerce product where the core challenges are hyper-local logistics, real-time demand management, and inventory optimization.",
       "strategic_areas": [
         {

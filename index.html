@@ -747,7 +747,7 @@
 
             <div class="row pt-4">
                 <div class="col-12">
-                    <ul class="nav nav-tabs justify-content-center dashboard-tabs mb-3" id="dashboardTabs" role="tablist">
+                    <ul class="nav nav-tabs justify-content-start dashboard-tabs mb-3" id="dashboardTabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="technology-tab" data-bs-toggle="tab" data-bs-target="#technology-portfolio-view" type="button" role="tab" aria-controls="technology-portfolio-view" aria-selected="true" onclick="showDashboardView('technology')">Technology Portfolio View</button>
                         </li>
@@ -1245,6 +1245,7 @@
                 <div class="heatmap-container">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="my-0">Heatmap: ${title}</h4>
+                        <button class="btn btn-primary mt-3" onclick="showStrategicDetailPage('${config.type}', '${origin}')">View Full Report</button>
                     </div>
                     <div class="mb-3 d-flex flex-wrap gap-2">
                         <div class="dropdown">
@@ -2402,32 +2403,59 @@
                 if (pub['Market Activity Category']) marketActivity[pub['Market Activity Category']] = (marketActivity[pub['Market Activity Category']] || 0) + 1;
             });
 
-            // Function to process and limit categories to top 2 + "Others"
-            const processCategories = (data, topN = 2) => {
-                const sortedEntries = Object.entries(data).sort(([, a], [, b]) => b - a);
+            // Function to process and limit categories to top N + "Others"
+            const processCategories = (data, preferredOrder = [], topN = 2) => {
+                const counts = {};
+                for (const key in data) {
+                    counts[key] = data[key];
+                }
+
+                const sortedEntries = Object.entries(counts).sort(([, a], [, b]) => b - a);
+
                 let processed = {};
                 let othersCount = 0;
+                let addedCount = 0;
 
-                if (sortedEntries.length > topN) {
-                    for (let i = 0; i < topN; i++) {
-                        processed[sortedEntries[i][0]] = sortedEntries[i][1];
+                // Add preferred categories first in their specified order
+                for (const preferredCat of preferredOrder) {
+                    if (counts[preferredCat] !== undefined) {
+                        processed[preferredCat] = counts[preferredCat];
+                        addedCount++;
+                        delete counts[preferredCat]; // Remove from original counts to avoid double counting
                     }
-                    for (let i = topN; i < sortedEntries.length; i++) {
-                        othersCount += sortedEntries[i][1];
+                }
+
+                // Add remaining top categories until topN is reached
+                for (let i = 0; i < sortedEntries.length && addedCount < topN; i++) {
+                    const [cat, count] = sortedEntries[i];
+                    if (processed[cat] === undefined) { // Only add if not already added from preferred
+                        processed[cat] = count;
+                        addedCount++;
+                        delete counts[cat];
                     }
-                    if (othersCount > 0) {
-                        processed['Others'] = othersCount;
-                    }
-                } else {
-                    processed = data; // If 2 or fewer categories, use them as is
+                }
+
+                // Aggregate remaining into 'Others'
+                for (const key in counts) {
+                    othersCount += counts[key];
+                }
+                if (othersCount > 0) {
+                    processed['Others'] = othersCount;
                 }
                 return processed;
             };
 
-            const limitedTechTrends = processCategories(techTrends);
-            const limitedTechReadiness = processCategories(techReadiness);
-            const limitedMarketPotential = processCategories(marketPotential);
-            const limitedMarketActivity = processCategories(marketActivity);
+            // Define preferred order for each category
+            const techTrendOrder = ['Contemporary', 'Visionary'];
+            const techReadinessOrder = ['Feasibility', 'Lab PoC', 'Theoretical']; // Assuming these are the exact names
+            const marketPotentialOrder = ['High Potential', 'Medium Potential'];
+            const marketActivityOrder = ['Scalable / Breakout Ready', 'High growth leader'];
+
+
+            const limitedTechTrends = processCategories(techTrends, techTrendOrder, 2);
+            const limitedTechReadiness = processCategories(techReadiness, techReadinessOrder, 3); // Top 3 for readiness
+            const limitedMarketPotential = processCategories(marketPotential, marketPotentialOrder, 2);
+            const limitedMarketActivity = processCategories(marketActivity, marketActivityOrder, 2);
 
 
             const summaryData = [
@@ -2712,12 +2740,7 @@
                                     <option value="">All</option>
                                 </select>
                             </div>
-                            <div class="mb-3">
-                                <label for="patentInnovationFilter" class="form-label">Innovation Level</label>
-                                <select id="patentInnovationFilter" class="form-select" onchange="applyPatentFilters()">
-                                    <option value="">All</option>
-                                </select>
-                            </div>
+                            
                             <div class="mb-3">
                                 <label for="patentDepthFilter" class="form-label">Depth of Tech</label>
                                 <select id="patentDepthFilter" class="form-select" onchange="applyPatentFilters()">
@@ -2727,6 +2750,12 @@
                             <div class="mb-3">
                                 <label for="patentMarketCategoryFilter" class="form-label">Market Category</label>
                                 <select id="patentMarketCategoryFilter" class="form-select" onchange="applyPatentFilters()">
+                                    <option value="">All</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="patentInnovationFilter" class="form-label">Innovation Level</label>
+                                <select id="patentInnovationFilter" class="form-select" onchange="applyPatentFilters()">
                                     <option value="">All</option>
                                 </select>
                             </div>
@@ -2995,7 +3024,7 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="pubDepthFilter" class="form-label">Depth</label>
+                                <label for="pubDepthFilter" class="form-label">Depth of Technology</label>
                                 <select id="pubDepthFilter" class="form-select" onchange="applyPublicationFilters()">
                                     <option value="">All</option>
                                 </select>
@@ -3060,7 +3089,7 @@
                 'pubTechTrendFilter': 'Technology Trends Classification',
                 'pubReadinessFilter': 'Technology Readiness Key Applications',
                 'pubMarketPotentialFilter': 'Market Potential Category',
-                'pubDepthFilter': 'Depth',
+                'pubDepthFilter': 'Depth of Technology Category', // Changed to "Depth of Technology Category"
                 'pubCategoryFilter': 'Category',
                 'pubTypeFilter': 'Type of Publication'
             };
@@ -3149,7 +3178,7 @@
                 const matchesSelectFilters = (techTrend === '' || pub['Technology Trends Classification'] === techTrend) &&
                                              (readiness === '' || pub['Technology Readiness Key Applications'] === readiness) &&
                                              (marketPotential === '' || pub['Market Potential Category'] === marketPotential) &&
-                                             (depth === '' || pub.Depth === depth) &&
+                                             (depth === '' || pub['Depth of Technology Category'] === depth) && // Changed to "Depth of Technology Category"
                                              (category === '' || pub.Category === category) &&
                                              (type === '' || pub['Type of Publication'] === type) &&
                                              (useCaseExtent === '' || (pub.Use_Cases && (
@@ -3573,7 +3602,7 @@ let filteredItems = allData.filter(item => {
                 } else if (field === 'market_activity') {
                     itemValue = item['Market Activity Category'];
                 } else if (field === 'depth_of_technology_summary') {
-                    itemValue = item['Depth of Technology Category'];
+                    itemValue = item['Depth of Technology Category']; // Corrected field name
                 } else if (field === 'innovation_level_summary') {
                     itemValue = item['Depth'];
                 } else {
@@ -3706,7 +3735,7 @@ async function renderStrategicHeatmap(type, element) {
         ${heatmapHtml}
         <div class="text-center my-4">
             ${summaryHtml}
-            <button class="btn btn-primary mt-3" onclick="showStrategicDetailPage('${type}', 'strategic-insights')">View Full Report</button>
+            <!-- "View Full Report" button is now part of generateHeatmapTable for strategic insights -->
         </div>
     `;
     // Ensure scroll position is at the top of the heatmap container
@@ -4370,7 +4399,7 @@ function performMarketViewSearch(searchTerm) {
                         </div>
                         <p class="card-text flex-grow-1">${summarySnippet}</p>
                         <div class="mt-auto">
-                            <button class="btn btn-outline-primary btn-sm" onclick="showStrategicEntryDetailFromMarketSearch(${JSON.stringify(item.fullDetails)}, '${item.type}')">View Full Details</button>
+                            <button class="btn btn-outline-primary btn-sm" onclick="showStrategicEntryDetailFromMarketSearch(${JSON.stringify(item.fullDetails).replace(/"/g, '&quot;')}, '${item.type}')">View Full Details</button>
                         </div>
                     </div>
                 </div>
@@ -4415,7 +4444,7 @@ async function renderMarketHeatmap(type, element) {
         ${heatmapHtml}
         <div class="text-center my-4">
             ${summaryHtml}
-            <button class="btn btn-primary mt-3" onclick="showStrategicDetailPage('${type}', 'market')">View Full Report</button>
+            <!-- "View Full Report" button is now part of generateHeatmapTable for market view -->
         </div>
     `;
     // Ensure scroll position is at the top of the heatmap container
