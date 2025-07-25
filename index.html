@@ -2400,7 +2400,7 @@
                 if (pub['Technology Trends Classification']) techTrends[pub['Technology Trends Classification']] = (techTrends[pub['Technology Trends Classification']] || 0) + 1;
                 if (pub['Technology Readiness Key Applications']) techReadiness[pub['Technology Readiness Key Applications']] = (techReadiness[pub['Technology Readiness Key Applications']] || 0) + 1;
                 if (pub['Market Potential Category']) marketPotential[pub['Market Potential Category']] = (marketPotential[pub['Market Potential Category']] || 0) + 1;
-                if (pub['Market Activity Category']) marketActivity[pub['Market Activity Category']] = (marketActivity[pub['Market Activity Category']] || 0) + 1;
+                if (pub['Market Activity Category']) marketActivity[pub['Market Activity Category']] = (marketActivity[pub['Market Activity Category']] || 0) + 2;
             });
 
             // Function to process and limit categories to top N + "Others"
@@ -2447,13 +2447,13 @@
 
             // Define preferred order for each category
             const techTrendOrder = ['Contemporary', 'Visionary'];
-            const techReadinessOrder = ['Feasibility', 'Lab PoC', 'Theoretical']; // Assuming these are the exact names
+            const techReadinessOrder = ['Feasibility', 'Lab PoC' ]; // Assuming these are the exact names
             const marketPotentialOrder = ['High Potential', 'Medium Potential'];
-            const marketActivityOrder = ['Scalable / Breakout Ready', 'High growth leader'];
+            const marketActivityOrder = ['Scalable / Breakout Ready', 'Amateur / Developing'];
 
 
             const limitedTechTrends = processCategories(techTrends, techTrendOrder, 2);
-            const limitedTechReadiness = processCategories(techReadiness, techReadinessOrder, 3); // Top 3 for readiness
+            const limitedTechReadiness = processCategories(techReadiness, techReadinessOrder, 2); // Top 3 for readiness
             const limitedMarketPotential = processCategories(marketPotential, marketPotentialOrder, 2);
             const limitedMarketActivity = processCategories(marketActivity, marketActivityOrder, 2);
 
@@ -3030,7 +3030,7 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="pubCategoryFilter" class="form-label">Category</label>
+                                <label for="pubCategoryFilter" class="form-label">Market Category</label>
                                 <select id="pubCategoryFilter" class="form-select" onchange="applyPublicationFilters()">
                                     <option value="">All</option>
                                 </select>
