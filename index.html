@@ -2688,8 +2688,8 @@
                 const useCaseText = extractUseCase(pub.Use_Cases);
 
                 return `
-                    <tr onclick="showPublicationDetail(${pub['S. No.']})">
-                        <td>${pub.Title || pub['Title of the Publication']}</td>
+                    <tr onclick="showPublicationDetail(${pub['Paper_No']})">
+                        <td>${pub.Title || pub['Title']}</td>
                         <td>${pub.Authors || 'N/A'}</td>
                         <td><span class="badge" style="border-color: ${getBadgeColorClass(techTrend)}; color: ${getBadgeColorClass(techTrend)};">${techTrend}</span></td>
                         <td><span class="badge" style="border-color: ${getBadgeColorClass(marketPotential)}; color: ${getBadgeColorClass(marketPotential)};">${marketPotential}</span></td>
@@ -3201,7 +3201,7 @@
 
                 const matchesSearch = globalSearchTerm === '' ||
                                       (pub.Title && pub.Title.toLowerCase().includes(globalSearchTerm)) ||
-                                      (pub['Title of the Publication'] && pub['Title of the Publication'].toLowerCase().includes(globalSearchTerm)) ||
+                                      (pub['Title'] && pub['Title'].toLowerCase().includes(globalSearchTerm)) ||
                                       (pub.Summary && pub.Summary.toLowerCase().includes(globalSearchTerm)) ||
                                       (pub.Authors && pub.Authors.toLowerCase().includes(globalSearchTerm)) ||
                                       (pub['Technologies Used'] && pub['Technologies Used'].toLowerCase().includes(globalSearchTerm));
@@ -3252,7 +3252,7 @@
                     <div class="col">
                         <div class="card h-100 list-tile-card">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${pub.Title || pub['Title of the Publication']}</h5>
+                                <h5 class="card-title">${pub.Title || pub['Title']}</h5>
                                 <p class="card-text mb-1">Authors: ${pub.Authors || 'N/A'}</p>
                                 <div class="badge-group">
                                     <span class="badge" style="border-color: ${getBadgeColorClass(techTrend)}; color: ${getBadgeColorClass(techTrend)};">${techTrend}</span>
@@ -3262,7 +3262,7 @@
                                 </div>
                                 <p class="card-text mb-1">Abstract: ${abstractGlimpse}</p>
                                 <p class="card-text mb-3">Use Case: <span class="badge" style="border-color: ${getBadgeColorClass(useCaseText)}; color: ${getBadgeColorClass(useCaseText)};">${useCaseText}</span></p>
-                                <button class="btn btn-outline-primary btn-sm" onclick="showPublicationDetail(${pub['S. No.']})">View Details</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="showPublicationDetail(${pub['Paper_No']})">View Details</button>
                             </div>
                         </div>
                     </div>
@@ -3328,7 +3328,7 @@
         }
 
         function showPublicationDetail(sNo) {
-            const publication = allPublications.find(pub => pub['S. No.'] === sNo);
+            const publication = allPublications.find(pub => pub['Paper_No'] === sNo);
             if (!publication) return;
 
             // Close global search results modal if open
@@ -3338,7 +3338,7 @@
                 globalSearchModal.hide();
             }
 
-            document.getElementById('publicationDetailTitle').textContent = publication.Title || publication['Title of the Publication'] || 'N/A';
+            document.getElementById('publicationDetailTitle').textContent = publication.Title || publication['Title'] || 'N/A';
             document.getElementById('publicationDetailAuthors').textContent = publication.Authors || 'N/A';
 
             // Badges at the top
@@ -3672,14 +3672,14 @@ matchedPublications.forEach(publication => {
         <div class="col">
             <div class="card h-100 list-tile-card">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${publication.Title || publication['Title of the Publication']}</h5>
+                    <h5 class="card-title">${publication.Title || publication['Title']}</h5>
                     <p class="card-text text-muted">Authors: ${authorsShort}</p>
                     <div class="mb-2">
                         ${technologies.map((tech, index) => `<span class="badge" style="border-color: ${getBadgeColorClass(tech)}; color: ${getBadgeColorClass(tech)};">${tech}</span>`).join('')}
                     </div>
                     <p class="card-text flex-grow-1">${summarySnippet}</p>
                     <div class="mt-auto">
-                        <button class="btn btn-sm btn-outline-primary rounded-pill mt-2" onclick="showPublicationDetail(${publication['S. No.']})">View Full Details</button>
+                        <button class="btn btn-sm btn-outline-primary rounded-pill mt-2" onclick="showPublicationDetail(${publication['Paper_No']})">View Full Details</button>
                     </div>
                 </div>
             </div>
@@ -3843,7 +3843,7 @@ function showHeatmapHeaderDetail(type, header, headerType) {
                 relevantItems = allData.filter(item => {
                     const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
                     return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                }).map(item => item.title || item.Title || item['Title of the Publication']);
+                }).map(item => item.title || item.Title || item['Title']);
             }
             break;
         case 'company':
@@ -3856,7 +3856,7 @@ function showHeatmapHeaderDetail(type, header, headerType) {
                 relevantItems = allData.filter(item => {
                     const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
                     return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                }).map(item => item.title || item.Title || item['Title of the Publication']);
+                }).map(item => item.title || item.Title || item['Title']);
             }
             break;
         case 'productwise':
@@ -3873,7 +3873,7 @@ function showHeatmapHeaderDetail(type, header, headerType) {
                 relevantItems = allData.filter(item => {
                     const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
                     return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                }).map(item => item.title || item.Title || item['Title of the Publication']);
+                }).map(item => item.title || item.Title || item['Title']);
             }
             break;
         case 'social':
@@ -3886,7 +3886,7 @@ function showHeatmapHeaderDetail(type, header, headerType) {
                 relevantItems = allData.filter(item => {
                     const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
                     return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                }).map(item => item.title || item.Title || item['Title of the Publication']);
+                }).map(item => item.title || item.Title || item['Title']);
             }
             break;
         case 'sdg':
@@ -3899,7 +3899,7 @@ function showHeatmapHeaderDetail(type, header, headerType) {
                 relevantItems = allData.filter(item => {
                     const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
                     return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                }).map(item => item.title || item.Title || item['Title of the Publication']);
+                }).map(item => item.title || item.Title || item['Title']);
             }
             break;
         case 'lm': // Learning Management
@@ -3912,7 +3912,7 @@ function showHeatmapHeaderDetail(type, header, headerType) {
                 relevantItems = allData.filter(item => {
                     const technologiesUsed = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
                     return technologiesUsed && technologiesUsed.toLowerCase().includes(header.toLowerCase());
-                }).map(item => item.title || item.Title || item['Title of the Publication']);
+                }).map(item => item.title || item.Title || item['Title']);
             }
             break;
     }
@@ -4051,7 +4051,7 @@ function downloadPDF(type) {
         element = document.getElementById('publicationDetailModal').querySelector('.modal-body');
         filename = document.getElementById('publicationDetailTitle').textContent.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_PublicationDetails.pdf';
         const pubTitle = document.getElementById('publicationDetailTitle').textContent;
-        dataToPrint = allPublications.find(pub => pub.Title === pubTitle || pub['Title of the Publication'] === pubTitle);
+        dataToPrint = allPublications.find(pub => pub.Title === pubTitle || pub['Title'] === pubTitle);
     } else if (type === 'strategic-entry-detail') {
         if (!currentStrategicEntryDetail) {
             console.error("No strategic entry detail available for PDF download.");
@@ -4147,7 +4147,7 @@ function handleGlobalSearch(event) {
     }
 
     const searchResults = allData.filter(item => {
-        const title = item.type === 'patent' ? item.title : (item.Title || item['Title of the Publication']);
+        const title = item.type === 'patent' ? item.title : (item.Title || item['Title']);
         const summary = item.type === 'patent' ? item.summary : item.Summary;
         const authorsOrInventors = item.type === 'patent' ? item.inventors : item.Authors;
         const technologies = item.type === 'patent' ? item.technologies_used : item['Technologies Used'];
@@ -4173,7 +4173,7 @@ function displayGlobalSearchResults(results, searchTerm) {
     }
 
     results.forEach(item => {
-        const title = item.type === 'patent' ? item.title : (item.Title || item['Title of the Publication']);
+        const title = item.type === 'patent' ? item.title : (item.Title || item['Title']);
         const authorsOrInventors = item.type === 'patent' ? item.inventors : item.Authors;
         const summarySnippet = item.type === 'patent' ? (item.summary ? (item.summary.length > 180 ? item.summary.substring(0, 180) + '...' : item.summary) : 'N/A') : (item.Summary ? (item.Summary.length > 180 ? item.Summary.substring(0, 180) + '...' : item.Summary) : 'N/A');
         
@@ -4193,7 +4193,7 @@ function displayGlobalSearchResults(results, searchTerm) {
             useCaseText = extractUseCase(item.Use_Cases);
         }
 
-        const detailFunction = item.type === 'patent' ? `showPatentDetail(${item.id})` : `showPublicationDetail(${item['S. No.']})`;
+        const detailFunction = item.type === 'patent' ? `showPatentDetail(${item.id})` : `showPublicationDetail(${item['Paper_No']})`;
 
         resultsContent.innerHTML += `
             <div class="col">

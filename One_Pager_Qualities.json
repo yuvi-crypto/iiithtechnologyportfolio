@@ -1,7 +1,5 @@
 [
     {
-      "S. No.": 1,
-      "Title of the Publication": "MAdVerse: A Hierarchical Dataset of Multi-Lingual Ads from Diverse Sources and Categories",
       "Technologies Used": "Computer Vision, Dataset Curation, Hierarchical Classification, Multilingual Classification, Advertising Analysis.",
       "Type of Publication": "Datasets",
       "Technology Trends Classification": "Visionary",
@@ -44,8 +42,6 @@
       }
     },
     {
-      "S. No.": 2,
-      "Title of the Publication": "Proportional Aggregation of Preferences for Sequential Decision Making",
       "Technologies Used": "Sequential Decision Making, Computational Social Choice, Multi-winner Voting Algorithms (Sequential Phragm\u00e9n, Method of Equal Shares, Proportional Approval Voting), Preference Modeling, Empirical Analysis.",
       "Type of Publication": "Theoretical",
       "Technology Trends Classification": "Visionary",
@@ -88,15 +84,13 @@
       }
     },
     {
-      "S. No.": 3,
-      "Title of the Publication": "GSN: Generalisable Segmentation in Neural Radiance Fields",
       "Technologies Used": "Neural Radiance Fields (NeRF), 3D Scene Reconstruction, Semantic Segmentation, Transformers (GNT architecture), Multi-view Segmentation, Transfer Learning (Fine-tuning).",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Visionary",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep",
       "Paper_No": 3,
@@ -132,14 +126,12 @@
       }
     },
     {
-      "S. No.": 4,
-      "Title of the Publication": "SWITCH: An Exemplar for Evaluating Self-Adaptive ML-Enabled Systems",
       "Technologies Used": "Point Cloud Prediction, Deep Learning, Convolutional LSTM (Conv-LSTM), Attention Mechanisms (Channel-wise, Spatial), 3D Convolutional Neural Networks (3D-CNN), Autonomous Driving Perception, LiDAR processing.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Visionary",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Amateur / Developing",
       "Depth of Technology Category": "Module",
       "Depth": "Deep",
@@ -175,15 +167,13 @@
       }
     },
     {
-      "S. No.": 5,
-      "Title of the Publication": "Previously On ... From Recaps to Story Summarization",
       "Technologies Used": "Multimodal Learning, Video Summarization, Natural Language Processing (NLP), Hierarchical Models (TaleSumm), Dataset Curation (PlotSnap).",
       "Type of Publication": "Datasets",
       "Technology Trends Classification": "Visionary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
       "Market Potential Category": "Low Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Component",
       "Depth": "Deep",
       "Paper_No": 5,
@@ -218,8 +208,6 @@
       }
     },
     {
-      "S. No.": 6,
-      "Title of the Publication": "Specularity Factorization for Low-Light Enhancement",
       "Technologies Used": "Computer Vision, Low-Light Image Enhancement, Specularity Factorization.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Visionary",
@@ -261,15 +249,13 @@
       }
     },
     {
-      "S. No.": 7,
-      "Title of the Publication": "New Objects on the Road? No Problem, Well Learn Them Too",
       "Technologies Used": "Green AI, Sustainable Computing, MLOps, Self-adaptive Systems, Machine Learning Model Switching, Object Detection, Energy-efficient Computing.",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Visionary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
       "Market Potential Category": "Low Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Module",
       "Depth": "Deep",
       "Paper_No": 96,
@@ -304,15 +290,13 @@
       }
     },
     {
-      "S. No.": 8,
-      "Title of the Publication": "EcoMLS: A Self-Adaptation Approach for Architecting Green ML-Enabled Systems",
       "Technologies Used": "Self-adaptive Systems, Machine Learning, MLOps, Quality of Service (QoS), Web Services, Object Detection, Real-time Dashboards.",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Visionary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep",
       "Paper_No": 7,
@@ -347,8 +331,6 @@
       }
     },
     {
-      "S. No.": 9,
-      "Title of the Publication": "GDIP: Gated Differentiable Image Processing for Object-Detection in Adverse Conditions",
       "Technologies Used": "Robotic Motion Planning, Diffusion Models, Deep Learning, Ensemble Methods, Trajectory Optimization.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Visionary",
@@ -390,8 +372,6 @@
       }
     },
     {
-      "S. No.": 10,
-      "Title of the Publication": "Towards Accurate Lip-to-Speech Synthesis in-the-Wild",
       "Technologies Used": "Large Language Models (LLMs), Classical Planning, Robotics, Task Anticipation, Virtual Environments (VirtualHome).",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Visionary",
@@ -433,8 +413,6 @@
       }
     },
     {
-      "S. No.": 11,
-      "Title of the Publication": "LiDAR guided Small obstacle Segmentation",
       "Technologies Used": "Self-Supervised Learning, RGB-D Registration, Computer Vision, Gated Recurrent Unit (GRU), Pose Estimation, Keypoint Matching.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Visionary",
@@ -476,15 +454,13 @@
       }
     },
     {
-      "S. No.": 12,
-      "Title of the Publication": "Exploratory Study of oneM2M-based Interoperability Architectures for IoT: A Smart City Perspective",
       "Technologies Used": "Internet of Things (IoT), Smart Cities, Interoperability Standards (oneM2M), System Architecture Analysis (Mobius, OM2M, ACME).",
       "Type of Publication": "Study",
       "Technology Trends Classification": "Visionary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "System",
       "Depth": "Shallow",
       "Paper_No": 12,
@@ -519,8 +495,6 @@
       }
     },
     {
-      "S. No.": 13,
-      "Title of the Publication": "Imagine2Servo: Intelligent Visual Servoing with Diffusion-Driven Goal Generation for Robotic Tasks",
       "Technologies Used": "Visual Servoing, Robotics, Diffusion Models, Goal Generation.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Visionary",
@@ -562,8 +536,6 @@
       }
     },
     {
-      "S. No.": 14,
-      "Title of the Publication": "MANUS: Markerless Grasp Capture using Articulated 3D Gaussians",
       "Technologies Used": "Computer Vision, 3D Hand-Object Grasp Capture, 3D Gaussian Splatting, Articulated Models, Multi-view Reconstruction.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Contemporary",
@@ -605,15 +577,13 @@
       }
     },
     {
-      "S. No.": 15,
-      "Title of the Publication": "DiVa-360: The Dynamic Visual Dataset for Immersive Neural Fields",
       "Technologies Used": "Dynamic Neural Fields, Dataset Curation, 360-degree Video, Multi-view Video, Computer Vision, 3D Scene Capture.",
       "Type of Publication": "Datasets",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
       "Market Potential Category": "Low Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Component",
       "Depth": "Deep",
       "Paper_No": 15,
@@ -648,15 +618,13 @@
       }
     },
     {
-      "S. No.": 16,
-      "Title of the Publication": "Talk2BEV: Language-enhanced Bird's-eye View Maps for Autonomous Driving",
       "Technologies Used": "Large Vision-Language Models (LVLM), Autonomous Driving, Bird's-Eye View (BEV) Maps, Natural Language Querying, Scene Understanding, Benchmark Creation.",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "System",
       "Depth": "Deep",
       "Paper_No": 16,
@@ -691,8 +659,6 @@
       }
     },
     {
-      "S. No.": 17,
-      "Title of the Publication": "Can LLMs Generate Architectural Design Decisions? - An Exploratory Empirical study",
       "Technologies Used": "Large Language Models (LLMs), Software Architecture, Architectural Knowledge Management (AKM), Architecture Decision Records (ADR), Zero-shot Learning, Few-shot Learning, Fine-tuning (GPT, T5).",
       "Type of Publication": "Study",
       "Technology Trends Classification": "Contemporary",
@@ -734,8 +700,6 @@
       }
     },
     {
-      "S. No.": 18,
-      "Title of the Publication": "Towards Improving NAM-to-Speech Synthesis Intelligibility using Self-Supervised Speech Models",
       "Technologies Used": "Speech-to-Speech Machine Translation (SSMT), Text-to-Speech (TTS), Prosody Transfer, Stress Classification, Speech Synthesis.",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Contemporary",
@@ -777,8 +741,6 @@
       }
     },
     {
-      "S. No.": 19,
-      "Title of the Publication": "IDD-X: A Multi-View Dataset for Ego-relative Important Object Localization and Explanation in Dense and Unstructured Traffic",
       "Technologies Used": "Autonomous Driving, Computer Vision, Dataset Curation (IDD-X), Object Localization, Explainable AI, Deep Networks.",
       "Type of Publication": "Datasets",
       "Technology Trends Classification": "Contemporary",
@@ -820,8 +782,6 @@
       }
     },
     {
-      "S. No.": 20,
-      "Title of the Publication": "MICap: A Unified Model for Identity-aware Movie Descriptions",
       "Technologies Used": "Computer Vision, Natural Language Processing (NLP), Identity-aware Captioning, Auto-regressive Decoders, Scene Graphs, Evaluation Metrics (iSPICE).",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Contemporary",
@@ -863,8 +823,6 @@
       }
     },
     {
-      "S. No.": 21,
-      "Title of the Publication": "Tight Sampling in Unbounded Networks",
       "Technologies Used": "Network Science, Graph Sampling (Snowball Sampling), Community Detection, Social Media Analysis.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Contemporary",
@@ -906,8 +864,6 @@
       }
     },
     {
-      "S. No.": 22,
-      "Title of the Publication": "Shared-Memory Parallel Dynamic Louvain Algorithm for Community Detection",
       "Technologies Used": "Parallel Computing, Graph Algorithms, Community Detection (Louvain Algorithm), Dynamic Graphs.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Contemporary",
@@ -949,8 +905,6 @@
       }
     },
     {
-      "S. No.": 23,
-      "Title of the Publication": "Factored MDP based Moving Target Defense with Dynamic Threat Modeling",
       "Technologies Used": "Game Theory, Reinforcement Learning, Factored Markov Decision Processes (MDP), Moving Target Defense (MTD), Cybersecurity.",
       "Type of Publication": "Theoretical",
       "Technology Trends Classification": "Contemporary",
@@ -992,9 +946,7 @@
       }
     },
     {
-      "S. No.": 24,
-      "Title of the Publication": "From Sound To Meaning In The Auditory Cortex: A Neuronal Representation And Classification Analysis",
-      "Technologies Used": "Computational Neuroscience, Auditory Cortex Modeling, Neural Representation, Semantic Classification, Acoustic Analysis.",
+     "Technologies Used": "Computational Neuroscience, Auditory Cortex Modeling, Neural Representation, Semantic Classification, Acoustic Analysis.",
       "Type of Publication": "Study",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
@@ -1035,8 +987,6 @@
       }
     },
     {
-      "S. No.": 25,
-      "Title of the Publication": "Towards Architecting Sustainable MLOps: A Self-Adaptation Approach",
       "Technologies Used": "MLOps, Sustainable AI, Self-adaptive Systems, MAPE-K Loop, Smart City Applications.",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Contemporary",
@@ -1078,15 +1028,13 @@
       }
     },
     {
-      "S. No.": 26,
-      "Title of the Publication": "Reimagining Self-Adaptation in the Age of Large Language Models",
       "Technologies Used": "Self-adaptive Systems, Generative AI, Large Language Models (LLMs), Software Architecture, Resilience Engineering.",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
       "Market Potential Category": "Low Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Module",
       "Depth": "Deep",
       "Paper_No": 26,
@@ -1121,15 +1069,13 @@
       }
     },
     {
-      "S. No.": 27,
-      "Title of the Publication": "Anticipate & Act : Integrating LLMs and Classical Planning for Efficient Task Execution in Household Environments",
       "Technologies Used": "3D Scene Understanding, Topological Mapping, Semantic Segmentation, Natural Language Querying, Transformers (Self-attention), Computer Vision.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Module",
       "Depth": "Deep",
       "Paper_No": 10,
@@ -1164,8 +1110,6 @@
       }
     },
     {
-      "S. No.": 28,
-      "Title of the Publication": "LimGen: Probing the LLMs for Generating Suggestive Limitations of Research Papers",
       "Technologies Used": "Large Language Models (LLMs), Natural Language Generation (NLG), Scholarly Document Processing, Dataset Curation (LimGen).",
       "Type of Publication": "Datasets",
       "Technology Trends Classification": "Contemporary",
@@ -1207,15 +1151,13 @@
       }
     },
     {
-      "S. No.": 29,
-      "Title of the Publication": "Fairness and Privacy Guarantees in Federated Contextual Bandits",
       "Technologies Used": "Federated Learning, Contextual Bandits, Algorithmic Fairness, Privacy Guarantees.",
       "Type of Publication": "Theoretical",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Component",
       "Depth": "Deep",
       "Paper_No": 29,
@@ -1250,9 +1192,7 @@
       }
     },
     {
-      "S. No.": 30,
-      "Title of the Publication": "Revisit Anything: Visual Place Recognition via Image Segment Retrieval",
-      "Technologies Used": "Visual Place Recognition, Computer Vision, Image Segmentation (Open-set), Feature Aggregation (SegVLAD), Object-goal Navigation.",
+     "Technologies Used": "Visual Place Recognition, Computer Vision, Image Segmentation (Open-set), Feature Aggregation (SegVLAD), Object-goal Navigation.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
@@ -1293,9 +1233,7 @@
       }
     },
     {
-      "S. No.": 31,
-      "Title of the Publication": "LeGo-Drive: Language-enhanced Goal-oriented Closed Loop End-to-End Autonomous Driving",
-      "Technologies Used": "Autonomous Driving, End-to-End Learning, Language-enhanced Models, Goal-oriented Driving.",
+     "Technologies Used": "Autonomous Driving, End-to-End Learning, Language-enhanced Models, Goal-oriented Driving.",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
@@ -1336,15 +1274,13 @@
       }
     },
     {
-      "S. No.": 32,
-      "Title of the Publication": "No Transaction Fees? No Problem! Achieving Fairness in Transaction Fee Mechanism Design.",
       "Technologies Used": "Blockchain, Transaction Fee Mechanisms (TFM), Algorithmic Fairness, Game Theory, On-chain Randomness.",
       "Type of Publication": "Theoretical",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
       "Market Potential Category": "Low Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Component",
       "Depth": "Deep",
       "Paper_No": 32,
@@ -1379,8 +1315,6 @@
       }
     },
     {
-      "S. No.": 33,
-      "Title of the Publication": "Understanding the Generalization of Pretrained Diffusion Models on Out-of-Distribution Data",
       "Technologies Used": "Generative Models (Diffusion Models, GANs), Out-of-Distribution Generalization, Image Manipulation, Few-shot Generation, Data Augmentation.",
       "Type of Publication": "Study",
       "Technology Trends Classification": "Contemporary",
@@ -1422,8 +1356,6 @@
       }
     },
     {
-      "S. No.": 34,
-      "Title of the Publication": "DECENT-BRM: Decentralization through Block Reward Mechanisms",
       "Technologies Used": "Blockchain, Proof-of-Work (PoW), Decentralization, Block Reward Mechanisms (BRM), Game Theory, Mining Pools.",
       "Type of Publication": "Theoretical",
       "Technology Trends Classification": "Contemporary",
@@ -1465,15 +1397,13 @@
       }
     },
     {
-      "S. No.": 35,
-      "Title of the Publication": "Towards Rational Consensus in Honest Majority",
       "Technologies Used": "Distributed Consensus, Blockchain, Byzantine Fault Tolerance (BFT), Rational Fault Tolerance (RFT), Atomic Broadcast (ABC), Game Theory.",
       "Type of Publication": "Theoretical",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
       "Market Potential Category": "Low Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Component",
       "Depth": "Deep",
       "Paper_No": 35,
@@ -1508,8 +1438,6 @@
       }
     },
     {
-      "S. No.": 36,
-      "Title of the Publication": "OLAF: A Plug-and-Play Framework for Enhanced Multi-object Multi-part Scene Parsing",
       "Technologies Used": "Computer Vision, Scene Parsing, Multi-object Segmentation, Multi-part Segmentation.",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Contemporary",
@@ -1551,9 +1479,7 @@
       }
     },
     {
-      "S. No.": 37,
-      "Title of the Publication": "Knowledge-Aware Reasoning over Multimodal Semi-structured Tables",
-      "Technologies Used": "Multimodal AI, Tabular Question Answering, Knowledge-aware Reasoning, Dataset Creation (MMTabQA), Structured Data Analysis.",
+     "Technologies Used": "Multimodal AI, Tabular Question Answering, Knowledge-aware Reasoning, Dataset Creation (MMTabQA), Structured Data Analysis.",
       "Type of Publication": "Datasets",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Theoretical",
@@ -1594,8 +1520,6 @@
       }
     },
     {
-      "S. No.": 38,
-      "Title of the Publication": "Extreme-scale Talking-Face Video Upsampling with Audio-Visual Priors",
       "Technologies Used": "Speech Synthesis, Non-Audible Murmur (NAM)-to-Speech, Self-Supervised Learning, Sequence-to-Sequence (Seq2Seq) Models.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Contemporary",
@@ -1637,8 +1561,6 @@
       }
     },
     {
-      "S. No.": 39,
-      "Title of the Publication": "ATPPNet: Attention based Temporal Point cloud Prediction Network",
       "Technologies Used": "Silent Speech Interfaces, Speech Generation, Non-Audible Murmur (NAM), Sequence-to-Sequence Models, Dataset Curation (StethoText).",
       "Type of Publication": "System Solution",
       "Technology Trends Classification": "Contemporary",
@@ -1678,15 +1600,13 @@
       }
     },
     {
-      "S. No.": 40,
-      "Title of the Publication": "ParrotTTS: Text-to-speech synthesis exploiting disentangled self-supervised representations",
       "Technologies Used": "Text-to-Speech (TTS), Self-Supervised Learning, Disentangled Representations, Voice Transfer, Cross-lingual Synthesis.",
       "Type of Publication": "Experimental",
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Module",
       "Depth": "Deep",
       "Paper_No": 40,
@@ -1721,8 +1641,6 @@
       }
     },
     {
-      "S. No.": 41,
-      "Title of the Publication": "Random Representations Outperform Online Continually Learned Representations",
       "Technologies Used": "Continual Learning, Representation Learning, Random Projections (RBF-Kernel Approximation), Online Learning, Pre-trained Models.",
       "Type of Publication": "Study",
       "Technology Trends Classification": "Contemporary",
@@ -1923,7 +1841,7 @@
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Module",
           "Depth": "Deep"
         },
@@ -2046,7 +1964,7 @@
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "B2B Enterprise",
           "Market Potential Category": "Medium Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "System",
           "Depth": "Deep"
         },
@@ -2415,7 +2333,7 @@
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Module",
           "Depth": "Deep"
         },
@@ -2497,7 +2415,7 @@
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "Consumer Product",
           "Market Potential Category": "Medium Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -2538,7 +2456,7 @@
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "B2B Enterprise",
           "Market Potential Category": "Medium Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -2866,7 +2784,7 @@
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Shallow"
         },
@@ -2907,7 +2825,7 @@
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "B2B Enterprise",
           "Market Potential Category": "Medium Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Shallow"
         },
@@ -2988,7 +2906,7 @@
           "Technology Trends Classification": "Contemporary",
           "Technology Readiness Key Applications": "Feasibility",
           "Market Potential Technology Type": "B2B Enterprise",
-          "Market Potential Category": "High Potential",
+          "Market Potential Category": "High to Medium Potential",
           "Market Activity Category": "Scalable / Breakout Ready",
           "Depth of Technology Category": "Component",
           "Depth": "Shallow"
@@ -3317,7 +3235,7 @@
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "B2B Enterprise",
           "Market Potential Category": "High Potential",
-          "Market Activity Category": "Scalable / Breakout Ready",
+          "Market Activity Category": "High-Growth Leader",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -3359,7 +3277,7 @@
             "Technology Readiness Key Applications": "Feasibility",
             "Market Potential Technology Type": "Early-Stage Deep Tech",
             "Market Potential Category": "Medium Potential",
-            "Market Activity Category": "Scalable / Breakout Ready",
+            "Market Activity Category": "High-Growth Leader",
             "Depth of Technology Category": "Component",
             "Depth": "Deep"
           },
@@ -3584,7 +3502,7 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Theoretical",
               "Market Potential Technology Type": "Early-Stage Deep Tech",
-              "Market Potential Category": "High Potential",
+              "Market Potential Category": "High to Medium Potential",
               "Market Activity Category": "Niche Mature",
               "Depth of Technology Category": "Module",
               "Depth": "Deep",
@@ -3757,7 +3675,7 @@
               "Technology Readiness Key Applications": "Theoretical",
               "Market Potential Technology Type": "Early-Stage Deep Tech",
               "Market Potential Category": "Low Potential",
-              "Market Activity Category": "Niche Mature",
+              "Market Activity Category": "Narrow / Underexposed",
               "Depth of Technology Category": "Component",
               "Depth": "Deep",
               "Paper_No": 90,
@@ -3843,7 +3761,7 @@
               "Technology Readiness Key Applications": "Theoretical",
               "Market Potential Technology Type": "Early-Stage Deep Tech",
               "Market Potential Category": "Low Potential",
-              "Market Activity Category": "Niche Mature",
+              "Market Activity Category": "Narrow / Underexposed",
               "Depth of Technology Category": "Component",
               "Depth": "Shallow",
               "Paper_No": 92,
@@ -3885,7 +3803,7 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Feasibility",
               "Market Potential Technology Type": "B2B Enterprise",
-              "Market Potential Category": "High Potential",
+              "Market Potential Category": "High to Medium Potential",
               "Market Activity Category": "Scalable / Breakout Ready",
               "Depth of Technology Category": "Component",
               "Depth": "Shallow",
@@ -3972,7 +3890,7 @@
               "Technology Readiness Key Applications": "Lab POC",
               "Market Potential Technology Type": "B2B Enterprise",
               "Market Potential Category": "Medium Potential",
-              "Market Activity Category": "Niche Mature",
+              "Market Activity Category": "Narrow / Underexposed",
               "Depth of Technology Category": "Module",
               "Depth": "Deep",
               "Paper_No": 95,
@@ -4058,7 +3976,7 @@
               "Technology Readiness Key Applications": "Lab POC",
               "Market Potential Technology Type": "B2B Enterprise",
               "Market Potential Category": "Medium Potential",
-              "Market Activity Category": "Niche Mature",
+              "Market Activity Category": "Narrow / Underexposed",
               "Depth of Technology Category": "Component",
               "Depth": "Deep",
               "Paper_No": 97,
@@ -4101,7 +4019,7 @@
               "Technology Readiness Key Applications": "Lab POC",
               "Market Potential Technology Type": "Consumer Product",
               "Market Potential Category": "High Potential",
-              "Market Activity Category": "Niche Mature",
+              "Market Activity Category": "Narrow / Underexposed",
               "Depth of Technology Category": "Component",
               "Depth": "Shallow",
               "Paper_No": 98,
@@ -4444,7 +4362,7 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Theoretical",
               "Market Potential Technology Type": "Early-Stage Deep Tech",
-              "Market Potential Category": "High Potential",
+              "Market Potential Category": "High to Medium Potential",
               "Market Activity Category": "Amateur / Developing",
               "Depth of Technology Category": "Component",
               "Depth": "Deep",
@@ -4487,7 +4405,7 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Feasibility",
               "Market Potential Technology Type": "B2B Enterprise",
-              "Market Potential Category": "High Potential",
+              "Market Potential Category": "High to Medium Potential",
               "Market Activity Category": "Scalable / Breakout Ready",
               "Depth of Technology Category": "System",
               "Depth": "Deep",
@@ -4616,7 +4534,7 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Feasibility",
               "Market Potential Technology Type": "B2B Enterprise",
-              "Market Potential Category": "High Potential",
+              "Market Potential Category": "High to Medium Potential",
               "Market Activity Category": "Amateur / Developing",
               "Depth of Technology Category": "System",
               "Depth": "Deep",
@@ -4659,7 +4577,7 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Feasibility",
               "Market Potential Technology Type": "B2B Enterprise",
-              "Market Potential Category": "High Potential",
+              "Market Potential Category": "High to Medium Potential",
               "Market Activity Category": "Amateur / Developing",
               "Depth of Technology Category": "System",
               "Depth": "Deep",
@@ -4702,8 +4620,8 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Lab POC",
               "Market Potential Technology Type": "B2B Enterprise",
-              "Market Potential Category": "High Potential",
-              "Market Activity Category": "Scalable / Breakout Ready",
+              "Market Potential Category": "High to Medium Potential",
+              "Market Activity Category": "High-Growth Leader",
               "Depth of Technology Category": "Module",
               "Depth": "Deep",
               "Paper_No": 112,
@@ -4788,7 +4706,7 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Lab POC",
               "Market Potential Technology Type": "B2B Enterprise",
-              "Market Potential Category": "High Potential",
+              "Market Potential Category": "High to Medium Potential",
               "Market Activity Category": "Scalable / Breakout Ready",
               "Depth of Technology Category": "System",
               "Depth": "Deep",
@@ -4831,7 +4749,7 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Theoretical",
               "Market Potential Technology Type": "Early-Stage Deep Tech",
-              "Market Potential Category": "High Potential",
+              "Market Potential Category": "High to Medium Potential",
               "Market Activity Category": "Amateur / Developing",
               "Depth of Technology Category": "System",
               "Depth": "Deep",
@@ -4918,7 +4836,7 @@
               "Technology Readiness Key Applications": "Feasibility",
               "Market Potential Technology Type": "Consumer Product",
               "Market Potential Category": "Medium Potential",
-              "Market Activity Category": "Scalable / Breakout Ready",
+              "Market Activity Category": "High-Growth Leader",
               "Depth of Technology Category": "System",
               "Depth": "Shallow",
               "Paper_No": 117,
@@ -4960,8 +4878,8 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Lab POC",
               "Market Potential Technology Type": "Consumer Product",
-              "Market Potential Category": "High Potential",
-              "Market Activity Category": "Scalable / Breakout Ready",
+              "Market Potential Category": "High to Medium Potential",
+              "Market Activity Category": "High-Growth Leader",
               "Depth of Technology Category": "Module",
               "Depth": "Deep",
               "Paper_No": 118,
@@ -5003,7 +4921,7 @@
               "Technology Trends Classification": "Contemporary",
               "Technology Readiness Key Applications": "Theoretical",
               "Market Potential Technology Type": "B2B Enterprise",
-              "Market Potential Category": "High Potential",
+              "Market Potential Category": "High to Medium Potential",
               "Market Activity Category": "Amateur / Developing",
               "Depth of Technology Category": "System",
               "Depth": "Deep",
@@ -5076,7 +4994,7 @@
                 "Technology Readiness Key Applications": "Lab POC",
                 "Market Potential Technology Type": "B2B Enterprise",
                 "Market Potential Category": "High Potential",
-                "Market Activity Category": "Scalable / Breakout Ready",
+                "Market Activity Category": "High-Growth Leader",
                 "Depth of Technology Category": "Component",
                 "Depth": "Deep"
               },
@@ -5116,7 +5034,7 @@
                 "Technology Trends Classification": "Contemporary",
                 "Technology Readiness Key Applications": "Lab POC",
                 "Market Potential Technology Type": "B2B Enterprise",
-                "Market Potential Category": "High Potential",
+                "Market Potential Category": "High to Medium Potential",
                 "Market Activity Category": "Scalable / Breakout Ready",
                 "Depth of Technology Category": "Module",
                 "Depth": "Deep"
@@ -5160,8 +5078,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "System",
       "Depth": "Shallow"
     }
@@ -5205,7 +5123,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Scalable / Breakout Ready",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
@@ -5251,7 +5169,7 @@
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Low Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Component",
       "Depth": "Shallow"
     }
@@ -5296,7 +5214,7 @@
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "Consumer Product",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     }
@@ -5340,7 +5258,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Scalable / Breakout Ready",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
@@ -5386,7 +5304,7 @@
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     }
@@ -5475,7 +5393,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Scalable / Breakout Ready",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
@@ -5520,8 +5438,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     }
@@ -5565,8 +5483,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     }
@@ -5655,7 +5573,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Amateur / Developing",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
@@ -5700,7 +5618,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Consumer Product",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Scalable / Breakout Ready",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
@@ -5745,8 +5663,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Consumer Product",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     }
@@ -5790,7 +5708,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Amateur / Developing",
       "Depth of Technology Category": "Component",
       "Depth": "Deep"
@@ -5881,7 +5799,7 @@
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "Consumer Product",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "System",
       "Depth": "Shallow"
     }
@@ -5925,7 +5843,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Amateur / Developing",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
@@ -5970,7 +5888,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Scalable / Breakout Ready",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
@@ -6015,7 +5933,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "Smart City Solutions",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Amateur / Developing",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
@@ -6060,7 +5978,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Scalable / Breakout Ready",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
@@ -6150,7 +6068,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Scalable / Breakout Ready",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
@@ -6240,8 +6158,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     }
@@ -6285,8 +6203,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Consumer Product",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     }
@@ -6331,7 +6249,7 @@
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "Consumer Product",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "System",
       "Depth": "Shallow"
     }
@@ -6420,8 +6338,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "System",
       "Depth": "Shallow"
     }
@@ -6465,7 +6383,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Scalable / Breakout Ready",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
@@ -6510,8 +6428,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
     }
@@ -6555,8 +6473,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     }
@@ -6645,8 +6563,8 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
-      "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Potential Category": "High to Medium Potential",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     }
@@ -6690,7 +6608,7 @@
       "Technology Trends Classification": "Contemporary",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "B2B Enterprise",
-      "Market Potential Category": "High Potential",
+      "Market Potential Category": "High to Medium Potential",
       "Market Activity Category": "Scalable / Breakout Ready",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
@@ -7337,7 +7255,7 @@
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Module",
       "Depth": "Deep"
     },
@@ -7419,7 +7337,7 @@
       "Title of the Publication": "iiit-indic-hw-words: A Dataset for Indic Handwritten Text Recognition",
       "Technologies Used": "Handwriting Recognition, Indic Scripts, OCR, Dataset Creation.",
       "Type of Publication": "Datasets",
-      "Technology Trends Classification": "Visionary",
+      "Technology Trends Classification": "Foundational",
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
       "Market Potential Category": "Low Potential",
@@ -7465,7 +7383,7 @@
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
     },
@@ -7680,7 +7598,7 @@
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "Early-Stage Deep Tech",
       "Market Potential Category": "Low Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Component",
       "Depth": "Deep"
     },
@@ -7895,7 +7813,7 @@
       "Technology Readiness Key Applications": "Lab POC",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "Component",
       "Depth": "Deep"
     },
@@ -8020,11 +7938,11 @@
       "Title of the Publication": "Knowledge Driven Approach To Auto-Generate Digital Twins for Industrial Plants",
       "Technologies Used": "Digital Twins, Knowledge-driven AI, Piping and Instrumentation Diagrams (P&IDs), Automated Modeling.",
       "Type of Publication": "System Solution",
-      "Technology Trends Classification": "Visionary",
+      "Technology Trends Classification": "Emerging",
       "Technology Readiness Key Applications": "Feasibility",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "High Potential",
-      "Market Activity Category": "Scalable / Breakout Ready",
+      "Market Activity Category": "High-Growth Leader",
       "Depth of Technology Category": "System",
       "Depth": "Deep"
     },
@@ -8153,7 +8071,7 @@
       "Technology Readiness Key Applications": "Theoretical",
       "Market Potential Technology Type": "B2B Enterprise",
       "Market Potential Category": "Medium Potential",
-      "Market Activity Category": "Niche Mature",
+      "Market Activity Category": "Narrow / Underexposed",
       "Depth of Technology Category": "Component",
       "Depth": "Shallow"
     },
@@ -8441,7 +8359,7 @@
           "Technology Trends Classification": "Contemporary",
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
-          "Market Potential Category": "High Potential",
+          "Market Potential Category": "High to Medium Potential",
           "Market Activity Category": "Amateur / Developing",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
@@ -8729,7 +8647,7 @@
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -8770,7 +8688,7 @@
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -8811,7 +8729,7 @@
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "System",
           "Depth": "Deep"
         },
@@ -8893,7 +8811,7 @@
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -9015,7 +8933,7 @@
           "Technology Trends Classification": "Contemporary",
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "B2B Enterprise",
-          "Market Potential Category": "High Potential",
+          "Market Potential Category": "High to Medium Potential",
           "Market Activity Category": "Scalable / Breakout Ready",
           "Depth of Technology Category": "Module",
           "Depth": "Deep"
@@ -9262,7 +9180,7 @@
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -9303,7 +9221,7 @@
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -9384,7 +9302,7 @@
           "Technology Trends Classification": "Contemporary",
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
-          "Market Potential Category": "High Potential",
+          "Market Potential Category": "High to Medium Potential",
           "Market Activity Category": "Scalable / Breakout Ready",
           "Depth of Technology Category": "Module",
           "Depth": "Deep"
@@ -9426,7 +9344,7 @@
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -9466,7 +9384,7 @@
           "Technology Trends Classification": "Contemporary",
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "B2B Enterprise",
-          "Market Potential Category": "High Potential",
+          "Market Potential Category": "High to Medium Potential",
           "Market Activity Category": "Scalable / Breakout Ready",
           "Depth of Technology Category": "System",
           "Depth": "Deep"
@@ -9549,7 +9467,7 @@
           "Technology Readiness Key Applications": "Lab POC",
           "Market Potential Technology Type": "B2B Enterprise",
           "Market Potential Category": "Medium Potential",
-          "Market Activity Category": "Scalable / Breakout Ready",
+          "Market Activity Category": "High-Growth Leader",
           "Depth of Technology Category": "Module",
           "Depth": "Deep"
         },
@@ -9631,7 +9549,7 @@
           "Technology Readiness Key Applications": "Feasibility",
           "Market Potential Technology Type": "B2B Enterprise",
           "Market Potential Category": "Medium Potential",
-          "Market Activity Category": "Scalable / Breakout Ready",
+          "Market Activity Category": "High-Growth Leader",
           "Depth of Technology Category": "Module",
           "Depth": "Deep"
         },
@@ -9713,7 +9631,7 @@
           "Technology Readiness Key Applications": "Theoretical",
           "Market Potential Technology Type": "Early-Stage Deep Tech",
           "Market Potential Category": "Low Potential",
-          "Market Activity Category": "Niche Mature",
+          "Market Activity Category": "Narrow / Underexposed",
           "Depth of Technology Category": "Component",
           "Depth": "Deep"
         },
@@ -9877,7 +9795,7 @@
             "Technology Trends Classification": "Contemporary",
             "Technology Readiness Key Applications": "Theoretical",
             "Market Potential Technology Type": "B2B Enterprise",
-            "Market Potential Category": "High Potential",
+            "Market Potential Category": "High to Medium Potential",
             "Market Activity Category": "Amateur / Developing",
             "Depth of Technology Category": "Component",
             "Depth": "Deep"
@@ -9959,7 +9877,7 @@
             "Technology Trends Classification": "Contemporary",
             "Technology Readiness Key Applications": "Feasibility",
             "Market Potential Technology Type": "B2B Enterprise",
-            "Market Potential Category": "High Potential",
+            "Market Potential Category": "High to Medium Potential",
             "Market Activity Category": "Scalable / Breakout Ready",
             "Depth of Technology Category": "System",
             "Depth": "Deep"
@@ -10001,7 +9919,7 @@
             "Technology Readiness Key Applications": "Lab POC",
             "Market Potential Technology Type": "B2B Enterprise",
             "Market Potential Category": "Medium Potential",
-            "Market Activity Category": "Scalable / Breakout Ready",
+            "Market Activity Category": "High-Growth Leader",
             "Depth of Technology Category": "Module",
             "Depth": "Deep"
           },
@@ -10534,7 +10452,7 @@
             "Technology Readiness Key Applications": "Theoretical",
             "Market Potential Technology Type": "Early-Stage Deep Tech",
             "Market Potential Category": "Low Potential",
-            "Market Activity Category": "Niche Mature",
+            "Market Activity Category": "Narrow / Underexposed",
             "Depth of Technology Category": "Component",
             "Depth": "Deep"
           },
@@ -10575,7 +10493,7 @@
             "Technology Readiness Key Applications": "Theoretical",
             "Market Potential Technology Type": "Early-Stage Deep Tech",
             "Market Potential Category": "Low Potential",
-            "Market Activity Category": "Niche Mature",
+            "Market Activity Category": "Narrow / Underexposed",
             "Depth of Technology Category": "Component",
             "Depth": "Deep"
           },
@@ -10612,7 +10530,7 @@
             },
             "Technologies Used": "Voice Disorder Assessment, Speech Processing, Machine Learning (SVM), Feature Extraction (OpenSMILE), Clinical Diagnostics.",
             "Type": "Study",
-            "Technology Trends Classification": "Contemporary",
+            "Technology Trends Classification": "Laggers",
             "Technology Readiness Key Applications": "Theoretical",
             "Market Potential Technology Type": "B2B Enterprise",
             "Market Potential Category": "Medium Potential",
@@ -10653,7 +10571,7 @@
             },
             "Technologies Used": "Medical Signal Processing, Parkinson's Disease Detection, Speech Analysis, Single Frequency Filtering Cepstral Coefficients (SFFCCs), i-vectors.",
             "Type": "Experimental",
-            "Technology Trends Classification": "Contemporary",
+            "Technology Trends Classification": "Laggers",
             "Technology Readiness Key Applications": "Theoretical",
             "Market Potential Technology Type": "B2B Enterprise",
             "Market Potential Category": "Medium Potential",
